@@ -1,5 +1,5 @@
 ﻿namespace Breakout_Game.Game{
-    interface ICancellable{
+    internal interface ICancellable{
         bool IsCancelled();
         void SetCancelled();
         void SetCancelled(bool cancelled);
