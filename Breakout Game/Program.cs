@@ -6,7 +6,7 @@ namespace Breakout_Game{
     internal class Program{
         public static void Main(string[] args){
             
-            GameManager.GetInstance(new GameWindow(
+            Game.Game.GetInstance(new GameWindow(
                 1200,
                 600,
                 GraphicsMode.Default,

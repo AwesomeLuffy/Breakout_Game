@@ -48,19 +48,22 @@
         <Compile Include="Game\Audio\FichierWAV.cs" />
         <Compile Include="Game\Commands\CreateText.cs" />
         <Compile Include="Game\Commands\ICommand.cs" />
-        <Compile Include="Game\Events\EventTest.cs" />
+        <Compile Include="Game\Events\Event.cs" />
         <Compile Include="Game\Events\EventListener.cs" />
         <Compile Include="Game\Events\ICancellable.cs" />
-        <Compile Include="Game\Events\TestEv.cs" />
+        <Compile Include="Game\Events\Ev.cs" />
         <Compile Include="Game\Forms\Ball.cs" />
         <Compile Include="Game\Forms\BaseForm.cs" />
         <Compile Include="Game\Forms\Brick.cs" />
         <Compile Include="Game\Forms\Racket.cs" />
-        <Compile Include="Game\GameManager.cs" />
+        <Compile Include="Game\Game.cs" />
+        <Compile Include="Game\GameBase.cs" />
         <Compile Include="Game\Levels\LevelManager.cs" />
         <Compile Include="Game\Texture\Texture.cs" />
         <Compile Include="Game\Text\Text.cs" />
         <Compile Include="Game\UserInterac\UserControl.cs" />
+        <Compile Include="Game\Utils\Math.cs" />
+        <Compile Include="Game\Utils\Utils.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
