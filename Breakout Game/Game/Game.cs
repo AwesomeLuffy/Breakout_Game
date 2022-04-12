@@ -1,4 +1,5 @@
 ﻿using System;
+using Breakout_Game.Audio;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
@@ -31,9 +32,11 @@ namespace Breakout_Game.Game{
             //TODO
             GL.ClearColor(.75f, .75f, .75f, 1.0f);
             GL.Enable(EnableCap.Texture2D);
+            AudioManager.init();
         }
 
         private void Update(object sender, EventArgs e){
+            
         }
 
         private void Render(object sender, EventArgs e){
@@ -43,7 +46,8 @@ namespace Breakout_Game.Game{
             this._gameWindow.SwapBuffers();
         }
 
-        public static void CallEvent(Event e){ //If an event called ...
+        public static void CallEvent(Event e){ 
+            //If an event called ...
         }
         
         
