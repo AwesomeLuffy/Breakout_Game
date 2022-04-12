@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Breakout_Game.Game{
+namespace Breakout_Game.Game.Events{
     public sealed class EvExemple : Event{
         private static event EventHandler TestHandler;
 
