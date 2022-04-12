@@ -24,7 +24,6 @@ namespace Breakout_Game.Game{
             this._gameWindow.RenderFrame += this.Render;
             this._gameWindow.Resize += base.Resize;
 
-            this._gameWindow.MouseDown += EventListener.MouseDown;
             this._gameWindow.Run(1.0/60.0);
         }
 

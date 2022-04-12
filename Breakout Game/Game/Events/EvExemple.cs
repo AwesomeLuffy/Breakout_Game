@@ -1,10 +1,10 @@
 ﻿using System;
 
 namespace Breakout_Game.Game{
-    public sealed class Ev : Event{
+    public sealed class EvExemple : Event{
         private static event EventHandler TestHandler;
 
-        public Ev() {
+        public EvExemple() {
             TestHandler += EventListener.OnTestEv;
             TestHandler?.Invoke(this, EventArgs.Empty);
         }

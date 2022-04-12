@@ -7,11 +7,7 @@ namespace Breakout_Game.Game{
 
         
         public static void OnTestEv(object sender, EventArgs e){
-            Console.WriteLine("PROUT");
-        }
-
-        public static void MouseDown(object sender, EventArgs e){
-
+            Console.WriteLine("Work");
         }
     }
 }

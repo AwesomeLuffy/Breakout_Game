@@ -51,7 +51,7 @@
         <Compile Include="Game\Events\Event.cs" />
         <Compile Include="Game\Events\EventListener.cs" />
         <Compile Include="Game\Events\ICancellable.cs" />
-        <Compile Include="Game\Events\Ev.cs" />
+        <Compile Include="Game\Events\EvExemple.cs" />
         <Compile Include="Game\Forms\Ball.cs" />
         <Compile Include="Game\Forms\BaseForm.cs" />
         <Compile Include="Game\Forms\Brick.cs" />
