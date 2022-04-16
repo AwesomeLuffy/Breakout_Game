@@ -1,4 +1,4 @@
-﻿namespace Breakout_Game.Forms{
+﻿namespace Breakout_Game.Game.Forms{
     public class Ball{
         
     }

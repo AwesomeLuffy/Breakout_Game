@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Breakout.Game;
+using Breakout_Game.Game.Events;
+using Breakout_Game.Game.Texture;
 using Breakout_Game.Game.Utils;
-using Breakout_Game.Texture;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using Breakout_Game.Game;
 
-namespace Breakout_Game.Forms{
+namespace Breakout_Game.Game.Forms{
     internal abstract class BaseForm : IUpdatable{
         #region Attributes
 
         private List<Vector2> _coordinates; //Texture
-        private List<Vector2> _points; //Form Position
+        protected List<Vector2> _points; //Form Position
         private Vector3 _colorRGB;
 
         private readonly int textureId;
@@ -36,14 +35,14 @@ namespace Breakout_Game.Forms{
 
             this._colorRGB = new Vector3(.0f, .5f, .8f);
             
-            Game.Game.CallEvent(new CreateFormEvent(this));
+            Breakout_Game.Game.Game.CallEvent(new CreateFormEvent(this));
 
         }
 
         #region Getter
         
 
-        protected abstract Dictionary<SideObject, List<Vector2>> GetSides();
+        public abstract Dictionary<SideObject, List<Vector2>> GetSides();
 
         #endregion
 

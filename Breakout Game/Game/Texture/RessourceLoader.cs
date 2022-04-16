@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using OpenTK;
-using OpenTK.Graphics.OpenGL;
 using System.Drawing.Imaging;
+using OpenTK.Graphics.OpenGL;
 using PixelFormat = OpenTK.Graphics.OpenGL.PixelFormat;
 
-namespace Breakout_Game.Texture{
+namespace Breakout_Game.Game.Texture{
     internal static class RessourceLoader{
         #region Attributes
         
@@ -105,7 +104,7 @@ namespace Breakout_Game.Texture{
             bmpTxt.UnlockBits(dataTxt);
         }
 
-        private static bool IsLibraryExpected(Dictionary<string, object> data){
+        private static bool IsLibraryExpected(IReadOnlyDictionary<string, object> data){
             return data["width"] is int &&
                    data["height"] is int &&
                    data["text"] is string &&
