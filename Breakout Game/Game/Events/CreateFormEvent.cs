@@ -1,9 +1,7 @@
 using System;
-using Breakout_Game.Forms;
-using Breakout_Game.Game;
-using Breakout_Game.Game.Events;
+using Breakout_Game.Game.Forms;
 
-namespace Breakout.Game{
+namespace Breakout_Game.Game.Events{
     public sealed class CreateFormEvent : Event{
         private static event EventHandler Handler;
 
