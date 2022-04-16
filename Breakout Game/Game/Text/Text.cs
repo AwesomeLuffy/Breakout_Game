@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using Breakout_Game.Forms;
-using Breakout_Game.Texture;
+using Breakout_Game.Game.Forms;
+using Breakout_Game.Game.Texture;
 
-namespace Breakout_Game.Game.Forms.Text{
+namespace Breakout_Game.Game.Text{
     internal class Text : IRenderable{
         #region Attributes
         /*
          * Data Dict Composition
+         * 
          * width -> Int
          * height -> Int
          * text -> string
@@ -28,20 +29,15 @@ namespace Breakout_Game.Game.Forms.Text{
 
             this._data = new Dictionary<string, object>(); //Création de la dictionnary 
 
-            // this._data["width"] = -1;
-            // this._data["height"] = -1;
-            //etc...
-            
             RessourceLoader.CreateText(this.textureID, this._data); //Création du texte
         }
 
-        // public void setText(string text){
-        //     this._data["text"] = text;
-        //     RessourceLoader.LoadText(this.textureID, this._data);
-        // } //TODO -> Exemple d'utilisation pour charger le texte et les nouvelles valeurs
+        public void setText(string text){
+            this._data["text"] = text;
+            RessourceLoader.LoadText(this.textureID, this._data);
+        } //TODO -> Exemple d'utilisation pour charger le texte et les nouvelles valeurs
 
         public void Draw(){
-            
         }
     }
 }
