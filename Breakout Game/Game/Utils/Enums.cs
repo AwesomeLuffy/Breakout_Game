@@ -1,5 +1,7 @@
 ﻿namespace Breakout_Game.Game.Utils{
+    
+    //In order creation
     public enum SideObject{
-        Top, Bottom, Right, Left
+        Left, Bottom, Right, Top
     }
 }
