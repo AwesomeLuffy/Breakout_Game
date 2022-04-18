@@ -14,17 +14,18 @@ namespace Breakout_Game.Game.Forms{
         
         private string _textureName;
 
-        private const float LenghtBrick = 20.0f;
-        private const float HeightBrick = 10.0f;
+        public const float LenghtBrick = 50.0f;
+        public const float HeightBrick = 20.0f;
         
         private const string LevelOneTextureName = "brick_lvl_one.bmp";
         private const string LevelTwoTextureName = "brick_lvl_two.bmp";
         private const string LevelThreeTextureName = "brick_lvl_three.bmp";
+        private const string IndestructibleTextureName = "indestructible.bmp";
         
         
         internal byte Level{
             get => this._level;
-            set => this._level = (byte) (value > 3 ? 0 : value);
+            set => this._level = (byte) (value > 4 ? 0 : value);
             }
 
         internal bool IsInDestruction{ get; set; } = false;
@@ -44,7 +45,10 @@ namespace Breakout_Game.Game.Forms{
                     { new Vector2(origin.X + LenghtBrick, origin.Y)}}),
                 level: level,
                 texture: 
-                ((level == 2) ? LevelTwoTextureName : ((level == 3) ? LevelThreeTextureName : LevelOneTextureName))){ }
+                ((level == 4) ? IndestructibleTextureName :
+                    ((level == 3) ? LevelThreeTextureName :
+                        ((level == 2) ? LevelTwoTextureName :
+                            LevelOneTextureName)))){ }
 
         // public Brick(List<Vector2> points) : this(points, 1, "brick_lvl_three.bmp"){
         // }
@@ -105,7 +109,6 @@ namespace Breakout_Game.Game.Forms{
             int i = 5;
             var task = new Thread(() => {
                 while (i > 0) {
-                    Console.WriteLine("Test + " + i);
                     i--;
                     System.Threading.Thread.Sleep(5000);
                 }
