@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Breakout_Game.Forms{
+﻿namespace Breakout_Game.Game.Forms{
     /// <summary>
     /// Interface to implement the Draw method
     /// </summary>

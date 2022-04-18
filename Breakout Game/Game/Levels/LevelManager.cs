@@ -1,4 +1,4 @@
-﻿namespace Breakout_Game.Levels{
+﻿namespace Breakout_Game.Game.Levels{
     public static class LevelManager{
         
     }

@@ -17,5 +17,7 @@ namespace Breakout_Game.Game{
             GL.Ortho(-300.0, 300.0, -150.0, 150, -1.0, 1.0);
             GL.MatrixMode(MatrixMode.Modelview);
         }
+
+
     }
 }

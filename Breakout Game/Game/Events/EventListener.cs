@@ -1,5 +1,4 @@
 ﻿using System;
-using Breakout.Game;
 
 namespace Breakout_Game.Game.Events{
     public static class EventListener{
