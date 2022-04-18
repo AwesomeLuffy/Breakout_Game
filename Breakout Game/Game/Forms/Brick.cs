@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Breakout_Game.Game.Utils;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -38,8 +39,8 @@ namespace Breakout_Game.Game.Forms{
             this(
                 points: (new List<Vector2>() {
                     { origin },
-                    { new Vector2(origin.X, origin.Y + HeightBrick)},
-                    { new Vector2(origin.X + LenghtBrick, origin.Y + HeightBrick)},
+                    { new Vector2(origin.X, origin.Y - HeightBrick)},
+                    { new Vector2(origin.X + LenghtBrick, origin.Y - HeightBrick)},
                     { new Vector2(origin.X + LenghtBrick, origin.Y)}}),
                 level: level,
                 texture: 
@@ -101,6 +102,20 @@ namespace Breakout_Game.Game.Forms{
         private void DestructBrick(){
             this.IsInDestruction = true;
             //TODO
+            int i = 5;
+            var task = new Thread(() => {
+                while (i > 0) {
+                    Console.WriteLine("Test + " + i);
+                    i--;
+                    System.Threading.Thread.Sleep(5000);
+                }
+
+            });
+            task.Start();
+            if(i == 0)
+            {
+                task.Abort();
+            }
         }
 
         public override void Update(){
