@@ -6,10 +6,21 @@ using OpenTK.Graphics.OpenGL;
 using PrimitiveType = OpenTK.Graphics.OpenGL.PrimitiveType;
 
 namespace Breakout_Game.Game.Forms{
-    internal class Brick : BaseForm{
+    internal class Brick : BaseForm, IEditableTexture{
         #region Attributes
 
         private byte _level;
+        
+        private string _textureName;
+
+        private const float LenghtBrick = 20.0f;
+        private const float HeightBrick = 10.0f;
+        
+        private const string LevelOneTextureName = "brick_lvl_one.bmp";
+        private const string LevelTwoTextureName = "brick_lvl_two.bmp";
+        private const string LevelThreeTextureName = "brick_lvl_three.bmp";
+        
+        
         internal byte Level{
             get => this._level;
             set => this._level = (byte) (value > 3 ? 0 : value);
@@ -23,14 +34,26 @@ namespace Breakout_Game.Game.Forms{
 
         #region Constructors
 
-        public Brick(List<Vector2> points) : this(points, 1, "imgTest.bmp"){
-        }
+        public Brick(Vector2 origin, byte level = 1) : 
+            this(
+                points: (new List<Vector2>() {
+                    { origin },
+                    { new Vector2(origin.X, origin.Y + HeightBrick)},
+                    { new Vector2(origin.X + LenghtBrick, origin.Y + HeightBrick)},
+                    { new Vector2(origin.X + LenghtBrick, origin.Y)}}),
+                level: level,
+                texture: 
+                ((level == 2) ? LevelTwoTextureName : ((level == 3) ? LevelThreeTextureName : LevelOneTextureName))){ }
 
-        public Brick(List<Vector2> points, byte level) : this(points, level, "imgTest.bmp"){}
+        // public Brick(List<Vector2> points) : this(points, 1, "brick_lvl_three.bmp"){
+        // }
 
-        public Brick(List<Vector2> points, string texture) : this(points, 1, texture){}
+        // public Brick(List<Vector2> points, byte level) : this(points, level, "brick_lvl_three.bmp"){}
+        //
+        // public Brick(List<Vector2> points, string texture) : this(points, 1, texture){}
 
         public Brick(List<Vector2> points, byte level, string texture) : base(points, texture){
+            
             this.Level = level;
         }
 
@@ -66,6 +89,18 @@ namespace Breakout_Game.Game.Forms{
             
             return sides;
 
+        }
+
+        internal void RemoveLevel(){
+            this.Level -= 1;
+            if (this.Level == 0) {
+                this.DestructBrick();
+            }
+        }
+
+        private void DestructBrick(){
+            this.IsInDestruction = true;
+            //TODO
         }
 
         public override void Update(){
