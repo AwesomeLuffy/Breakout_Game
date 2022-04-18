@@ -7,6 +7,7 @@ namespace Breakout_Game.Audio{
 
         public static readonly Audio TestSoundLoop = new Audio("audioTest.wav", true);
         public static readonly Audio TestSound = new Audio("audio2Test.wav");
+        public static readonly Audio TestNextSound = new Audio("audio3Test.wav");
 
 
         static AudioManager()
