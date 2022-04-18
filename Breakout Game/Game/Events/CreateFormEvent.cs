@@ -3,13 +3,12 @@ using Breakout_Game.Game.Forms;
 
 namespace Breakout_Game.Game.Events{
     public sealed class CreateFormEvent : Event{
-        private static event EventHandler Handler;
+        internal static event EventHandler Handler;
 
         private readonly BaseForm _form;
 
         internal CreateFormEvent(BaseForm form){
             this._form = form;
-            Handler += EventListener.OnFormCreate;
             Handler?.Invoke(this, EventArgs.Empty);
         }
 
