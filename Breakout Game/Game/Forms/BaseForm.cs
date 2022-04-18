@@ -82,10 +82,20 @@ namespace Breakout_Game.Game.Forms{
             GL.BindTexture(TextureTarget.Texture2D, this.textureId);
             GL.Begin(type);
 
-            for (int i = 0; i < this._points.Count(); i++) {
-                GL.TexCoord2(this._coordinates[i]);
-                GL.Vertex2(this._points[i]);
+            if (type is PrimitiveType.TriangleFan) {
+                for (int i = 0; i < 360; i++)
+                {
+                    GL.Vertex2((this._points[0].X + Ball.Radius) + Math.Cos(i) * Ball.Radius, (this._points[0].Y - Ball.Radius) + Math.Sin(i) * Ball.Radius);
+                }
             }
+            else if(type is PrimitiveType.Quads){
+                for (int i = 0; i < this._points.Count(); i++) {
+                    GL.TexCoord2(this._coordinates[i]);
+                    GL.Vertex2(this._points[i]);
+                }
+            }
+
+
 
             GL.End();
         }
