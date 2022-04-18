@@ -63,13 +63,19 @@ namespace Breakout_Game.Audio{
         {
             return (AL.GetSourceState(this.sourceSound) == ALSourceState.Playing);
         }
-        public void waitForPlaying(string nameNextSound)
+        public void waitForPlaying(Audio nameNextSound)
         {
+            ALSourceState isSoundEnd;
+            this.play();
             do
             {
- 
-            }while (this.isPlaying() == true);
-            
+                isSoundEnd = (AL.GetSourceState(this.getSource()));
+            } while (isSoundEnd == ALSourceState.Playing);
+            nameNextSound.play();
+        }
+        public int getSource()
+        {
+            return this.sourceSound;
         }
     }
 }
