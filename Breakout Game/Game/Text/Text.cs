@@ -22,13 +22,17 @@ namespace Breakout_Game.Game.Text{
         */
 
         private Dictionary<string, object> _data;
-        
+
+        private List<Vector2> points;
+
         private readonly int textureID;
         #endregion
-        internal Text(int width, int height, string text, Color background, Font police, SolidBrush solidBrush, PointF position){
+        internal Text(int width, int height, string text, PointF position,
+            Color background = new Color(), Font police = default, SolidBrush solidBrush = null){
 
             this.textureID = RessourceLoader.GenId(); //Génération de l'ID de la texture pour le texte
-            
+            background = (background == Color.Empty) ? Color.LightGray : background;
+            solidBrush = solidBrush ?? new SolidBrush(Color.Red);
             if (_data == null)
             {
                 this._data = new Dictionary<string, object>(); //Création de la dictionnary 
@@ -43,6 +47,12 @@ namespace Breakout_Game.Game.Text{
             _data.Add("position", position);
             RessourceLoader.CreateText(this.textureID, this._data); //Création du texte
             RessourceLoader.LoadText(this.textureID, this._data); // Chargement du texte
+        }
+        
+        //TODO
+        //Tranvase le code du draw avec les vector ici et appel cette methode dans le constructeur
+        private static List<Vector2> ConstructPosition(PointF origin){
+            return new List<Vector2>();;
         }
 
         public void setText(string text){
