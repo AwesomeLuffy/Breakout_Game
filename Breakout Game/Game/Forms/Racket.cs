@@ -19,10 +19,11 @@ namespace Breakout_Game.Game.Forms{
             
         }
 
-        public void SetDirection(Direction direction){
-            if (direction == this.Direction) return;
+        public Racket SetDirection(Direction direction){
+            if (direction == this.Direction) return this;
             this.Direction = direction;
             this._incrementFactor *= -1.0f;
+            return this;
         }
 
         public override void Update(){
