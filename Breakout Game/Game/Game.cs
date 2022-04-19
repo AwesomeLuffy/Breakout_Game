@@ -1,7 +1,10 @@
 ﻿using System;
 using Breakout_Game.Audio;
+using Breakout_Game.Game.Events;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using System.Threading;
+using Breakout_Game.Game.Text;
 
 namespace Breakout_Game.Game{
     internal sealed class Game : GameBase{
@@ -33,16 +36,16 @@ namespace Breakout_Game.Game{
             GL.ClearColor(.75f, .75f, .75f, 1.0f);
             GL.Enable(EnableCap.Texture2D);
             AudioManager.init();
+            TextManager.init();
         }
 
         private void Update(object sender, EventArgs e){
-            
+            //TextManager.TestText.setTxt();
         }
 
         private void Render(object sender, EventArgs e){
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            
-            
+
             this._gameWindow.SwapBuffers();
         }
 
