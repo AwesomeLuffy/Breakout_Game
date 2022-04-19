@@ -2,14 +2,20 @@
     /// <summary>
     /// Interface to implement the Draw method
     /// </summary>
-    internal interface IRenderable{
+    internal interface IDrawable{
         void Draw();
     }
 
     /// <summary>
+    /// Interface to implement the Update method
+    /// </summary>
+    internal interface IUpdatable{
+        void Update();
+    }
+    /// <summary>
     /// Interface to implement the Draw And Update method
     /// </summary>
-    internal interface IUpdatable : IRenderable{
-        void Update();
+    internal interface IRenderable : IUpdatable, IDrawable{
+        
     }
 }

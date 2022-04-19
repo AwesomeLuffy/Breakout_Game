@@ -57,7 +57,7 @@
     <Compile Include="Game\Forms\BaseForm.cs" />
     <Compile Include="Game\Forms\Brick.cs" />
     <Compile Include="Game\Forms\IEditableTexture.cs" />
-    <Compile Include="Game\Forms\IDrawable.cs" />
+    <Compile Include="Game\Forms\IRenderable.cs" />
     <Compile Include="Game\Forms\Racket.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameBase.cs" />
