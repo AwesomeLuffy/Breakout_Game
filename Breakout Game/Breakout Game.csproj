@@ -61,9 +61,11 @@
     <Compile Include="Game\Forms\Racket.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameBase.cs" />
+    <Compile Include="Game\Levels\Level.cs" />
     <Compile Include="Game\Levels\LevelManager.cs" />
     <Compile Include="Game\Texture\RessourceLoader.cs" />
     <Compile Include="Game\Text\Text.cs" />
+    <Compile Include="Game\Text\TextManager.cs" />
     <Compile Include="Game\UserInterac\UserControl.cs" />
     <Compile Include="Game\Utils\Enums.cs" />
     <Compile Include="Game\Utils\Math.cs" />
