@@ -75,14 +75,14 @@ namespace Breakout_Game.Game.Texture{
         /// <param name="textureId">TextureID getted by GenId() method of this class</param>
         /// <param name="data">Data of the text field</param>
         internal static void LoadText(int textureId, Dictionary<string, object> data){
-            if (!IsLibraryExpected(data)) return;
+            if (!IsLibraryExpected(data))  return;
             
             Bitmap bmpTxt = new Bitmap((int) data["width"], (int) data["height"],
                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             Graphics graphics = Graphics.FromImage(bmpTxt);
             graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            graphics.Clear((Color)data["backgroundColor"]);
+            graphics.Clear((Color)data["background"]);
             
             graphics.DrawString(
                 (string) data["text"],
