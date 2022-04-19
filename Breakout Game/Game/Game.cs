@@ -6,6 +6,7 @@ using Breakout_Game.Audio;
 using Breakout_Game.Game.Events;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Levels;
+using Breakout_Game.Game.Text;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
@@ -52,6 +53,8 @@ namespace Breakout_Game.Game{
             this.bricks = new Brick(new Vector2(-80.0f, -40.0f));
             this.brickss = new Brick(new Vector2(-100, 100));
             
+            TextManager.init();
+            
             LevelManager.CreateFirstLevel();
             this.first = LevelManager.GetFirstLevel();
 
@@ -72,6 +75,8 @@ namespace Breakout_Game.Game{
                     brick1?.Draw();
                 }
             }
+            
+            TextManager.TestText.Draw();
             
             //this.brick.Draw();
 
