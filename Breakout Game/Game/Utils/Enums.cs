@@ -4,4 +4,8 @@
     public enum SideObject{
         Left, Bottom, Right, Top
     }
+
+    public enum Direction{
+        Right, Left
+    }
 }
