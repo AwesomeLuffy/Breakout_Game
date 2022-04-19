@@ -7,7 +7,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Breakout_Game.Game.Text{
-    public class Text : IRenderable{
+    public class Text : IDrawable{
         #region Attributes
         /*
          * Data Dict Composition
@@ -33,6 +33,7 @@ namespace Breakout_Game.Game.Text{
             this.textureID = RessourceLoader.GenId(); //Génération de l'ID de la texture pour le texte
             background = (background == Color.Empty) ? Color.LightGray : background;
             solidBrush = solidBrush ?? new SolidBrush(Color.Red);
+            
             if (_data == null)
             {
                 this._data = new Dictionary<string, object>(); //Création de la dictionnary 
