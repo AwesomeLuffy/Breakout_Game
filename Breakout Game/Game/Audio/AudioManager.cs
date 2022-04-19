@@ -15,7 +15,8 @@ namespace Breakout_Game.Audio{
             Audios = new List<Audio>()
             {
                 TestSoundLoop,
-                TestSound
+                TestSound,
+                TestNextSound
             };
         }
 
