@@ -15,10 +15,7 @@ namespace Breakout_Game.Game.Text
         public static readonly Text TestText = new Text(
                 220,
                 25, 
-                "TXT HERE", 
-                Color.LightGray, 
-                new Font(FontFamily.GenericSansSerif, 11), 
-                new SolidBrush(Color.Red), 
+                "TXT HERE",
                 new PointF(0.0f, 0.0f)
             );
 
