@@ -23,6 +23,7 @@ namespace Breakout_Game.Game.Levels{
             this.InitList();
             
             Vector2 originPoint = new Vector2(StartX, StartY);
+            //TODO THREADING
             for (int i = 0; i < emplacement.Count; i++) {
 
                 for (int j = 0; j < emplacement[i].Count; j++) {
@@ -38,8 +39,7 @@ namespace Breakout_Game.Game.Levels{
                     originPoint.X += Brick.LenghtBrick + HorizontalGap;
                 }
                 originPoint.X = StartX;
-
-
+                
                 originPoint.Y -= Brick.HeightBrick + VerticalGap;
             }
         }
