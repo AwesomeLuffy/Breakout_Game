@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Breakout_Game.Game.Levels{
     public static class LevelManager{
@@ -14,15 +15,15 @@ namespace Breakout_Game.Game.Levels{
         private static List<List<bool>> _emplacement = Enumerable.Range(0, Level.MaxBrickInColumn).Select(i =>
             Enumerable.Repeat(true, Level.MaxBrickInARow).ToList()).ToList();
 
-        private static List<Level> _levels = new List<Level>();
+        internal static List<Level> _levels = new List<Level>();
 
 
-        internal static void CreateFirstLevel(){
-            _levels.Add(new Level(_emplacement));
-        }
+        internal static void GenerateFirstLevel(){
+                _levels.Add(new Level(_emplacement));
+            }
 
-        internal static Level GetFirstLevel(){
-            return _levels[0] ?? throw new Exception("Level not initilized");
+        internal static void NextLevel(ref int actual){
+            actual += (actual > -1 && actual < _levels.Count) ? 1 : 0;
         }
 
 
