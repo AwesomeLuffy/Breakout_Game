@@ -8,7 +8,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Breakout_Game.Game.Forms{
-    internal abstract class BaseForm : IUpdatable{
+    internal abstract class BaseForm : IRenderable{
         #region Attributes
         
         private static Dictionary<string, int> _ressourceLoaderId = new Dictionary<string, int>();
