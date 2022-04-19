@@ -11,7 +11,6 @@ namespace Breakout_Game.Game.Texture{
         
         #endregion
         
-
         internal static int GenId(){
             int text = -1;
             GL.GenTextures(1, out text);//Fill text to the value of the ID
