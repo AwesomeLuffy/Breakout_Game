@@ -64,6 +64,7 @@
     <Compile Include="Game\Levels\LevelManager.cs" />
     <Compile Include="Game\Texture\RessourceLoader.cs" />
     <Compile Include="Game\Text\Text.cs" />
+    <Compile Include="Game\Text\TextManager.cs" />
     <Compile Include="Game\UserInterac\UserControl.cs" />
     <Compile Include="Game\Utils\Enums.cs" />
     <Compile Include="Game\Utils\Math.cs" />
