@@ -57,8 +57,6 @@ namespace Breakout_Game.Game{
             LevelManager.GenerateFirstLevel();
             
             Renderables.Add(new Racket());
-            
-
         }
 
         private void Update(object sender, EventArgs e){
@@ -77,14 +75,15 @@ namespace Breakout_Game.Game{
                 }
             }
 
-            this._gameWindow.SwapBuffers();
+            TextManager.Text1.Draw();// Pas de rôle dedans
+            TextManager.Text2.Draw();
+            //TextManager.Text3.Draw();
 
+            this._gameWindow.SwapBuffers();
         }
 
         public static void CallEvent(Event e){ //If an event called ...
         }
-        
-        
 
     }
 }

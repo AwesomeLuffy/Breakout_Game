@@ -27,13 +27,23 @@ namespace Breakout_Game.Game.Text{
 
         private readonly int textureID;
         #endregion
-        internal Text(int width, int height, string text, PointF position,
-            Color background = new Color(), Font police = default, SolidBrush solidBrush = null){
+        internal Text(int width, int height, string text, PointF position, Color background, Font police, SolidBrush solidBrush){
 
             this.textureID = RessourceLoader.GenId(); //Génération de l'ID de la texture pour le texte
+
+            // internal Text(int width, int height, string text, PointF position, Color background = new Color(), Font police = null, SolidBrush solidBrush = null){
             background = (background == Color.Empty) ? Color.LightGray : background;
+            police = (police == null) ? new Font(FontFamily.GenericSansSerif, 11) : police;
             solidBrush = solidBrush ?? new SolidBrush(Color.Red);
-            
+
+
+            /*
+             Erreur affichage texte en fonctione de la position ???
+             Peut-être dans le DrawString ???
+             
+             */
+
+
             if (_data == null)
             {
                 this._data = new Dictionary<string, object>(); //Création de la dictionnary 
@@ -48,56 +58,36 @@ namespace Breakout_Game.Game.Text{
             _data.Add("position", position);
             RessourceLoader.CreateText(this.textureID, this._data); //Création du texte
             RessourceLoader.LoadText(this.textureID, this._data); // Chargement du texte
-        }
-        
-        //TODO
-        //Tranvase le code du draw avec les vector ici et appel cette methode dans le constructeur
-        private static List<Vector2> ConstructPosition(PointF origin){
-            return new List<Vector2>();;
-        }
 
+            points = ConstructPosition((PointF) this._data["position"], (int) this._data["width"], (int) this._data["height"]);
+        }
+        private static List<Vector2> ConstructPosition(PointF origin, int width, int height){
+
+            List<Vector2> listPoint = new List<Vector2>
+            {
+                new Vector2(origin.X, origin.Y),
+                new Vector2(origin.X, origin.Y - height),
+                new Vector2(origin.X + width, origin.Y - height),
+                new Vector2(origin.X + width, origin.Y)
+            };
+
+            return listPoint;
+        }
         public void setText(string text){
             this._data["text"] = text;
             RessourceLoader.LoadText(this.textureID, this._data);
         } //TODO -> Exemple d'utilisation pour charger le texte et les nouvelles valeurs
-
         public void Draw(){
-            #region Commentaire
-            //// Créer une image BMP pour recevoir le texte converti par le graphique
-            //Bitmap bmpTxt = new Bitmap((int)this._data["width"], (int)this._data["height"], System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-            //// Convertir le texte en graphique
-            //Graphics graphique = Graphics.FromImage(bmpTxt);
-            //graphique.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            //graphique.Clear((Color)this._data["background"]);
-            //graphique.DrawString(this._data["text"].ToString(), (Font)this._data["police"], (SolidBrush)this._data["solidBrush"], (PointF)this._data["position"]);
-
-            //// Extraire les données de l'image BMP
-            //Rectangle zoneTexte = new Rectangle(0, 0, (int)this._data["width"], (int)this._data["height"]);
-            //System.Drawing.Imaging.BitmapData dataTxt = bmpTxt.LockBits(zoneTexte, System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-            //// Appliquer les données de l'image BMP à la texture
-            //GL.BindTexture(TextureTarget.Texture2D, textureID);
-            //GL.TexSubImage2D(TextureTarget.Texture2D, 0, 0, 0, (int)this._data["width"], (int)this._data["height"], PixelFormat.Bgra, PixelType.UnsignedByte, dataTxt.Scan0);
-
-            //// Libérer les données de l'image BMP
-            //bmpTxt.UnlockBits(dataTxt);
-            #endregion
-            Vector2 pointA = new Vector2(((PointF)this._data["position"]).X, ((PointF)this._data["position"]).Y);
-            Vector2 pointB = new Vector2(((PointF)this._data["position"]).X + (int)this._data["width"], ((PointF)this._data["position"]).Y);
-            Vector2 pointC = new Vector2(((PointF)this._data["position"]).X + (int)this._data["width"], ((PointF)this._data["position"]).Y + (int)this._data["height"]);
-            Vector2 pointD = new Vector2(((PointF)this._data["position"]).X, ((PointF)this._data["position"]).Y + (int)this._data["height"]);
-
             GL.BindTexture(TextureTarget.Texture2D, this.textureID);
             GL.Begin(PrimitiveType.Quads);
             GL.TexCoord2(0.0f, 1.0f);
-            GL.Vertex2(pointA.X, pointA.Y);
+            GL.Vertex2(points[0].X, points[0].Y);
             GL.TexCoord2(1.0f, 1.0f);
-            GL.Vertex2(pointB.X, pointB.Y);
+            GL.Vertex2(points[1].X, points[1].Y);
             GL.TexCoord2(1.0f, 0.0f);
-            GL.Vertex2(pointC.X, pointC.Y);
+            GL.Vertex2(points[2].X, points[2].Y);
             GL.TexCoord2(0.0f, 0.0f);
-            GL.Vertex2(pointD.X, pointD.Y);
+            GL.Vertex2(points[3].X, points[3].Y);
             GL.End();
         }
     }

@@ -82,7 +82,12 @@ namespace Breakout_Game.Game.Texture{
             Graphics graphics = Graphics.FromImage(bmpTxt);
             graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             graphics.Clear((Color)data["background"]);
-            
+
+            //Console.WriteLine((string)data["text"]);
+            //Console.WriteLine((Font)data["police"]);
+            //Console.WriteLine((SolidBrush)data["solid_brush"]);
+            //Console.WriteLine((PointF)data["position"]);
+
             graphics.DrawString(
                 (string) data["text"],
                 (Font) data["police"],
@@ -90,8 +95,18 @@ namespace Breakout_Game.Game.Texture{
                 (PointF) data["position"]
                 );
 
-            Rectangle rectangle = new Rectangle(0, 0, (int) data["width"], (int) data["height"]);
+            int x = (int)((PointF)data["position"]).X;
+            int test = (int)((PointF)data["position"]).Y;
+
+            Console.WriteLine(x.ToString());
+            Console.WriteLine(test.ToString());
+
+            Rectangle rectangle = new Rectangle(x, 0, (int) data["width"], (int) data["height"]);
             
+
+            Console.WriteLine(rectangle);
+            Console.WriteLine("");
+
             System.Drawing.Imaging.BitmapData dataTxt = bmpTxt.LockBits(rectangle,
                 System.Drawing.Imaging.ImageLockMode.ReadOnly,
                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
