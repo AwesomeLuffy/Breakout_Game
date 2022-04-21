@@ -6,24 +6,24 @@ namespace Breakout_Game.Game.Events{
 
         public static void InitEventListener(){
             CreateFormEvent.Handler += OnFormCreate;
-        }
-
-        
-        public static void OnTestEv(object sender, EventArgs e){
-            Console.WriteLine("Work");
+            BrickDamage.Handler += OnBrickDamage;
         }
 
         public static void OnFormCreate(object sender, EventArgs e){
-            CreateFormEvent form = sender as CreateFormEvent;
-            if (form != null) {
-                if (form.GetForm() is Brick) {
-                    Brick brick = form.GetForm() as Brick;
-                    if (brick != null) {
+            if (!(sender is CreateFormEvent form)) return;
+            if (!(form.GetForm() is Brick)) return;
+            Brick brick = form.GetForm() as Brick;
+            if (brick != null) {
 
-                    }
-                }
             }
- 
+
+        }
+
+        public static void OnBrickDamage(object sender, EventArgs e){
+            if (!(sender is BrickDamage brickDamage)) return;
+            if (brickDamage.Brick.Level == 0) {
+                brickDamage.Brick.DestructBrick();
+            }
         }
     }
 }

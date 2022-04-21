@@ -48,6 +48,7 @@
     <Compile Include="Game\Audio\FichierWAV.cs" />
     <Compile Include="Game\Commands\CreateText.cs" />
     <Compile Include="Game\Commands\ICommand.cs" />
+    <Compile Include="Game\Events\BrickDamage.cs" />
     <Compile Include="Game\Events\CreateFormEvent.cs" />
     <Compile Include="Game\Events\Event.cs" />
     <Compile Include="Game\Events\EventListener.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Game\GameBase.cs" />
     <Compile Include="Game\Levels\Level.cs" />
     <Compile Include="Game\Levels\LevelManager.cs" />
+    <Compile Include="Game\Menu\MenuManager.cs" />
     <Compile Include="Game\Texture\RessourceLoader.cs" />
     <Compile Include="Game\Text\Text.cs" />
     <Compile Include="Game\Text\TextManager.cs" />

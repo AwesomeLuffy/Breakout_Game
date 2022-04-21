@@ -1,4 +1,5 @@
 ﻿using System;
+using Breakout_Game.Game.Events;
 
 namespace Breakout_Game.Game{
     public abstract class Event{
@@ -27,7 +28,6 @@ namespace Breakout_Game.Game{
             if (!(this is ICancellable)) {
                 throw new Exception("This event is not cancellable.");
             }
-
             this._isCancelled = true;
         }
         
