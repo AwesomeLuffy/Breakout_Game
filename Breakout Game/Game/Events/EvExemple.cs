@@ -5,7 +5,6 @@ namespace Breakout_Game.Game.Events{
         private static event EventHandler TestHandler;
 
         public EvExemple() {
-            TestHandler += EventListener.OnTestEv;
             TestHandler?.Invoke(this, EventArgs.Empty);
         }
 
