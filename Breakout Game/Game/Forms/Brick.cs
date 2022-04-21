@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Breakout_Game.Game.Events;
 using Breakout_Game.Game.Utils;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -10,10 +11,6 @@ namespace Breakout_Game.Game.Forms{
     internal class Brick : BaseForm, IEditableTexture{
         #region Attributes
 
-        private byte _level;
-        
-        private string _textureName;
-
         public const float LenghtBrick = 50.0f;
         public const float HeightBrick = 20.0f;
         
@@ -21,6 +18,12 @@ namespace Breakout_Game.Game.Forms{
         private const string LevelTwoTextureName = "brick_lvl_two.bmp";
         private const string LevelThreeTextureName = "brick_lvl_three.bmp";
         private const string IndestructibleTextureName = "indestructible.bmp";
+        
+        private byte _level;
+        
+        private string _textureName;
+
+        private bool IsInvincible = false;
         
         
         internal byte Level{
@@ -36,26 +39,23 @@ namespace Breakout_Game.Game.Forms{
 
         #region Constructors
 
-        public Brick(Vector2 origin, byte level = 1) : 
+        public Brick(Vector2 origin, byte level = 1) :
             this(
                 points: (new List<Vector2>() {
-                    { origin },
-                    { new Vector2(origin.X, origin.Y - HeightBrick)},
-                    { new Vector2(origin.X + LenghtBrick, origin.Y - HeightBrick)},
-                    { new Vector2(origin.X + LenghtBrick, origin.Y)}}),
+                    {origin},
+                    {new Vector2(origin.X, origin.Y - HeightBrick)},
+                    {new Vector2(origin.X + LenghtBrick, origin.Y - HeightBrick)},
+                    {new Vector2(origin.X + LenghtBrick, origin.Y)}
+                }),
                 level: level,
-                texture: 
-                ((level == 4) ? IndestructibleTextureName :
-                    ((level == 3) ? LevelThreeTextureName :
-                        ((level == 2) ? LevelTwoTextureName :
-                            LevelOneTextureName)))){ }
-
-        // public Brick(List<Vector2> points) : this(points, 1, "brick_lvl_three.bmp"){
-        // }
-
-        // public Brick(List<Vector2> points, byte level) : this(points, level, "brick_lvl_three.bmp"){}
-        //
-        // public Brick(List<Vector2> points, string texture) : this(points, 1, texture){}
+                texture:
+                ((level == 4)
+                    ? IndestructibleTextureName
+                    : ((level == 3)
+                        ? LevelThreeTextureName
+                        : ((level == 2) ? LevelTwoTextureName : LevelOneTextureName)))){
+            this.IsInvincible = (this.Level == 4);
+        }
 
         public Brick(List<Vector2> points, byte level, string texture) : base(points, texture){
             
@@ -98,12 +98,10 @@ namespace Breakout_Game.Game.Forms{
 
         internal void RemoveLevel(){
             this.Level -= 1;
-            if (this.Level == 0) {
-                this.DestructBrick();
-            }
+            Game.CallEvent(new BrickDamage(this, 1));
         }
 
-        private void DestructBrick(){
+        internal void DestructBrick(){
             this.IsInDestruction = true;
             //TODO
             int i = 5;
