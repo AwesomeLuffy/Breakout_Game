@@ -2,6 +2,7 @@
 using OpenTK.Audio.OpenAL;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Breakout_Game.Audio{
     public class Audio{
@@ -53,7 +54,7 @@ namespace Breakout_Game.Audio{
         }
         public void play()
         {
-            AL.SourcePlay(sourceSound);
+            new Thread(() => AL.SourcePlay(this.sourceSound)).Start();
         }
         public void stop()
         {
