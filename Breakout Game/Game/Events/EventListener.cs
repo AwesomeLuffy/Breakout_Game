@@ -21,6 +21,7 @@ namespace Breakout_Game.Game.Events{
 
         public static void OnBrickDamage(object sender, EventArgs e){
             if (!(sender is BrickDamage brickDamage)) return;
+            if (brickDamage.IsCancelled()) return;
             if (brickDamage.Brick.Level == 0) {
                 brickDamage.Brick.DestructBrick();
             }

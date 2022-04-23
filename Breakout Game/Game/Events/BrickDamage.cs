@@ -2,7 +2,7 @@
 using Breakout_Game.Game.Forms;
 
 namespace Breakout_Game.Game.Events{
-    public sealed class BrickDamage : Event{
+    public sealed class BrickDamage : Event, ICancellable{
         internal static event EventHandler Handler;
         
         internal Brick Brick{ get; private set; }
