@@ -27,21 +27,14 @@ namespace Breakout_Game.Game.Text{
 
         private readonly int textureID;
         #endregion
-        internal Text(int width, int height, string text, PointF position, Color background, Font police, SolidBrush solidBrush){
+        internal Text(Vector2 basePos, int width, int height, string text, Color background = new Color(), Font police = null, SolidBrush solidBrush = null){
 
             this.textureID = RessourceLoader.GenId(); //Génération de l'ID de la texture pour le texte
 
-            // internal Text(int width, int height, string text, PointF position, Color background = new Color(), Font police = null, SolidBrush solidBrush = null){
             background = (background == Color.Empty) ? Color.LightGray : background;
             police = (police == null) ? new Font(FontFamily.GenericSansSerif, 11) : police;
             solidBrush = solidBrush ?? new SolidBrush(Color.Red);
-
-
-            /*
-             Erreur affichage texte en fonctione de la position ???
-             Peut-être dans le DrawString ???
-             
-             */
+            PointF position = new PointF(0.0f, 2.0f);
 
 
             if (_data == null)
@@ -56,19 +49,24 @@ namespace Breakout_Game.Game.Text{
             _data.Add("police", police);
             _data.Add("solid_brush", solidBrush);
             _data.Add("position", position);
+            
+            points = ConstructPosition(basePos, (int) this._data["width"], (int) this._data["height"]);
+
+            
             RessourceLoader.CreateText(this.textureID, this._data); //Création du texte
             RessourceLoader.LoadText(this.textureID, this._data); // Chargement du texte
+            
 
-            points = ConstructPosition((PointF) this._data["position"], (int) this._data["width"], (int) this._data["height"]);
         }
-        private static List<Vector2> ConstructPosition(PointF origin, int width, int height){
+        private static List<Vector2> ConstructPosition(Vector2 origin, int width, int height){
 
             List<Vector2> listPoint = new List<Vector2>
             {
                 new Vector2(origin.X, origin.Y),
-                new Vector2(origin.X, origin.Y - height),
-                new Vector2(origin.X + width, origin.Y - height),
-                new Vector2(origin.X + width, origin.Y)
+                new Vector2(origin.X + width, origin.Y),
+                new Vector2(origin.X + width, origin.Y + height),
+                new Vector2(origin.X, origin.Y + height),
+
             };
 
             return listPoint;
@@ -77,6 +75,7 @@ namespace Breakout_Game.Game.Text{
             this._data["text"] = text;
             RessourceLoader.LoadText(this.textureID, this._data);
         } //TODO -> Exemple d'utilisation pour charger le texte et les nouvelles valeurs
+        
         public void Draw(){
             GL.BindTexture(TextureTarget.Texture2D, this.textureID);
             GL.Begin(PrimitiveType.Quads);

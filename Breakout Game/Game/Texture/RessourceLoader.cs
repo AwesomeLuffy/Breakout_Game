@@ -12,7 +12,7 @@ namespace Breakout_Game.Game.Texture{
         #endregion
         
         internal static int GenId(){
-            int text = -1;
+            int text;
             GL.GenTextures(1, out text);//Fill text to the value of the ID
             return text;
         }
@@ -83,32 +83,17 @@ namespace Breakout_Game.Game.Texture{
             graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             graphics.Clear((Color)data["background"]);
 
-            //Console.WriteLine((string)data["text"]);
-            //Console.WriteLine((Font)data["police"]);
-            //Console.WriteLine((SolidBrush)data["solid_brush"]);
-            //Console.WriteLine((PointF)data["position"]);
-
             graphics.DrawString(
                 (string) data["text"],
                 (Font) data["police"],
                 (SolidBrush) data["solid_brush"],
                 (PointF) data["position"]
                 );
-
-            int x = (int)((PointF)data["position"]).X;
-            int test = (int)((PointF)data["position"]).Y;
-
-            Console.WriteLine(x.ToString());
-            Console.WriteLine(test.ToString());
-
-            Rectangle rectangle = new Rectangle(x, 0, (int) data["width"], (int) data["height"]);
             
+            Rectangle rectangle = new Rectangle(0, 0, (int) data["width"], (int) data["height"]);
 
-            Console.WriteLine(rectangle);
-            Console.WriteLine("");
-
-            System.Drawing.Imaging.BitmapData dataTxt = bmpTxt.LockBits(rectangle,
-                System.Drawing.Imaging.ImageLockMode.ReadOnly,
+            BitmapData dataTxt = bmpTxt.LockBits(rectangle,
+                ImageLockMode.ReadOnly,
                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             GL.BindTexture(TextureTarget.Texture2D, textureId);
