@@ -6,44 +6,41 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
 namespace Breakout_Game.Game.Forms{
-    internal class Ball : BaseForm{
-
-        private const float LenghtHeightBall = 70.0f;
-        internal const float Radius = LenghtHeightBall / 2;
-
-        public Ball(Vector2 origin, string textureName = "brick_lvl_two.bmp") :
-            base((new List<Vector2>() {
-                {origin},
-                {new Vector2(origin.X, origin.Y - LenghtHeightBall)},
-                {new Vector2(origin.X + LenghtHeightBall, origin.Y - LenghtHeightBall)},
-                {new Vector2(origin.X + LenghtHeightBall, origin.Y)}
-            }), textureName){
+    internal class Ball : BaseForm
+    {
+        #region Attributs
+        private float verticalMove;
+        private float verticalIncrement;
+        private float horizontalMove;
+        private float horizontaIncrement;
+        private float velocity = 1.0f;
+        private int damageValue = 1;
+        #endregion // Attributs
+        public Ball(List<Vector2> points, string textureName) : base(points, textureName)
+        {
+            verticalMove = 0.0f;
+            verticalIncrement = 1.5f;
+            horizontalMove = 0.0f;
+            horizontaIncrement = 1.5f;
         }
-
-        public override Dictionary<SideObject, List<Vector2>> GetSides(){
-            Dictionary<SideObject, List<Vector2>> sides = new Dictionary<SideObject, List<Vector2>>();
-
-            var i = 0;
-            foreach (SideObject side in Enum.GetValues(typeof(SideObject))) {
-                sides[side] = new List<Vector2>() {
-                    {this._points[i]}, //0 Point
-                    {this._points[(i + 1 > 3) ? 0 : i + 1]} //1 Point
-                };
-                i++;
-            }
-
-            return sides;
-        }
-
-        public override void Update(){
-        }
-
-        public override void Draw(){
+        public override void Draw()
+        {
             GL.PushMatrix();
-
-            base.Draw(PrimitiveType.TriangleFan);
-
+            GL.Translate(horizontalMove, horizontalMove, 0.0f);
+            base.Draw(PrimitiveType.Polygon);
             GL.PopMatrix();
+        }
+        public override Dictionary<SideObject, List<Vector2>> GetSides()
+        {
+            throw new NotImplementedException();
+        }
+        public override void Update()
+        {
+            if(verticalMove + verticalIncrement >= 150.0f - _points[0].Y ||
+                )
+            {
+
+            }
         }
     }
 }

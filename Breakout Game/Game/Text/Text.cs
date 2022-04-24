@@ -36,7 +36,6 @@ namespace Breakout_Game.Game.Text{
             solidBrush = solidBrush ?? new SolidBrush(Color.Red);
             PointF position = new PointF(0.0f, 2.0f);
 
-
             if (_data == null)
             {
                 this._data = new Dictionary<string, object>(); //Création de la dictionnary 
@@ -51,11 +50,9 @@ namespace Breakout_Game.Game.Text{
             _data.Add("position", position);
             
             points = ConstructPosition(basePos, (int) this._data["width"], (int) this._data["height"]);
-
-            
+                        
             RessourceLoader.CreateText(this.textureID, this._data); //Création du texte
-            RessourceLoader.LoadText(this.textureID, this._data); // Chargement du texte
-            
+            RessourceLoader.LoadText(this.textureID, this._data); // Chargement du texte          
 
         }
         private static List<Vector2> ConstructPosition(Vector2 origin, int width, int height){
