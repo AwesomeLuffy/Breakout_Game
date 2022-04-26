@@ -2,7 +2,7 @@
     
     //In order creation
     public enum SideObject{
-        Left, Bottom, Right, Top
+        Bottom, Right, Top, Left
     }
 
     public enum Direction{
