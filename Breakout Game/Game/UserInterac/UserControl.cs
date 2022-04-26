@@ -23,6 +23,10 @@ namespace Breakout_Game.Game.UserInterac{
                         }
                     }
                     break;
+                case Key.P:
+                case Key.Escape:
+                    Game.GameAction("pause");
+                    break;
             }
         }
         

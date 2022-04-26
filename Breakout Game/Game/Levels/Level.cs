@@ -13,7 +13,7 @@ namespace Breakout_Game.Game.Levels{
         private const float HorizontalGap = 10;
         private const float VerticalGap = 5;
         private const float StartX = -270;
-        private const float StartY = 140;
+        private const float StartY = 120;
 
         public int NumberOfBricks{ get; set; }
         
@@ -29,7 +29,7 @@ namespace Breakout_Game.Game.Levels{
                 for (int j = 0; j < emplacement[i].Count; j++) {
                     if (emplacement[i][j]) {
                         
-                        this.bricks[i].Insert(j, new Brick(originPoint,
+                        this.bricks[i].Insert(j, BrickFactory.CreateBrick(originPoint,
                         (byte) ((j == MaxBrickInARow - 1 || j == 0) ? 4 :
                             ((j == MaxBrickInARow - 2 || j == 1) ? 3 :
                                 ((j == MaxBrickInARow - 3 || j == 2) ? 2 : 1)))
