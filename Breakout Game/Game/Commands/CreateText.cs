@@ -1,12 +1,13 @@
-﻿using System.Drawing;
+﻿using OpenTK;
+using System.Drawing;
 
-namespace Breakout_Game.Game.Commands{
-    public class CreateText{
-        //TODO
-        //edit text, width, heigth, position
-        public CreateText(int width, int height, string text, PointF position)
+namespace Breakout_Game.Game.Commands
+{
+    public class CreateText : ICommand
+    {
+        public void Execute()
         {
-            //Text createText = new Text(width, height, text, position);
+            throw new System.NotImplementedException();
         }
     }
 }
