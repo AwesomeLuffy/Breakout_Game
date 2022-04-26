@@ -20,9 +20,15 @@ namespace Breakout_Game.Game{
         private static Game _gmInstance = null;
         private readonly GameWindow _gameWindow;
 
-        internal static List<IRenderable> Renderables = new List<IRenderable>();
+        internal static bool IsActive;
+        internal static bool IsFinished;
+
+        internal static List<IDrawable> Renderables = new List<IDrawable>();
 
         private static int ActualLevelNumber = 0;
+
+        private Text.Text Text1;
+        private Text.Text Text2;
         
         internal static Game GetInstance (GameWindow gw){
             //?? -> is null
@@ -55,16 +61,22 @@ namespace Breakout_Game.Game{
             TextManager.init();
             new Thread((AudioManager.init)).Start();
             LevelManager.GenerateFirstLevel();
-            
+
+            Brick brick = new Brick(new Vector2(0, 0), 1);
             Renderables.Add(new Racket());
         }
 
         private void Update(object sender, EventArgs e){
+            if (Game.IsActive && !Game.IsFinished) {
+                
+            }
         }
 
         private void Render(object sender, EventArgs eventArgs){
-            GL.Clear(ClearBufferMask.ColorBufferBit);
+            if(Game.IsFinished) return;
 
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+            
             foreach (IRenderable renderable in Renderables) {
                 renderable.Draw();
             }
@@ -75,14 +87,25 @@ namespace Breakout_Game.Game{
                 }
             }
 
-            TextManager.Text1.Draw();// Pas de rôle dedans
-            TextManager.Text2.Draw();
-            //TextManager.Text3.Draw();
-
             this._gameWindow.SwapBuffers();
         }
 
         public static void CallEvent(Event e){ //If an event called ...
+        }
+
+        internal static void GameAction(string action){
+            switch (action) {
+                case "pause":
+                    Game.IsActive = false;
+                    //TODO Start menu
+                    break;
+                case "stop":
+                    Game.IsActive = false;
+                    Game.IsFinished = true;
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
