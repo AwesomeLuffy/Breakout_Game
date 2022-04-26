@@ -27,9 +27,7 @@ namespace Breakout_Game.Game.Forms
                     {new Vector2(basePosition.X + width, basePosition.Y)},
                     {basePosition}
                 }),
-                textureName: textureName)
-        {
-        }
+                textureName: textureName){ }
 
         public Ball(List<Vector2> points, string textureName) : base(points, textureName)
         {
@@ -69,6 +67,7 @@ namespace Breakout_Game.Game.Forms
         }
         public override void Update()
         {
+            
             //Console.WriteLine("========================================");
             //Console.WriteLine("points[0].X = " + _points[0].X.ToString());
             //Console.WriteLine("points[0].Y = " + _points[0].Y.ToString());
