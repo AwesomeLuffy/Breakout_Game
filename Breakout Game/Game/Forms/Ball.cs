@@ -14,7 +14,7 @@ namespace Breakout_Game.Game.Forms
         private float verticalMove;
         private float verticalIncrement;
         private float horizontalMove;
-        private float horizontaIncrement;
+        private float horizontalIncrement;
         private int damageValue = 1;
         private int textureID;
         #endregion
@@ -34,7 +34,7 @@ namespace Breakout_Game.Game.Forms
             verticalMove = 0.0f;
             horizontalMove = 0.0f;
             verticalIncrement = 1.5f;
-            horizontaIncrement = 1.0f;
+            horizontalIncrement = 1.5f;
 
             textureID = RessourceLoader.GenId();
             RessourceLoader.LoadTexture(textureID, textureName);
@@ -42,7 +42,7 @@ namespace Breakout_Game.Game.Forms
         public override void Draw()
         {
             GL.PushMatrix();
-            GL.Translate(horizontalMove, horizontalMove, 0.0f);
+            GL.Translate(horizontalMove, verticalMove, 0.0f);
             base.Draw(PrimitiveType.Quads);
             GL.PopMatrix();
         }
@@ -67,40 +67,23 @@ namespace Breakout_Game.Game.Forms
         }
         public override void Update()
         {
-            
-            //Console.WriteLine("========================================");
-            //Console.WriteLine("points[0].X = " + _points[0].X.ToString());
-            //Console.WriteLine("points[0].Y = " + _points[0].Y.ToString());
-            //Console.WriteLine("points[1].X = " + _points[1].X.ToString());
-            //Console.WriteLine("points[1].Y = " + _points[1].Y.ToString()); 
-            //Console.WriteLine("points[2].X = " + _points[2].X.ToString());
-            //Console.WriteLine("points[2].Y = " + _points[2].Y.ToString());
-            //Console.WriteLine("points[3].X = " + _points[3].X.ToString());
-            //Console.WriteLine("points[3].Y = " + _points[3].Y.ToString());
-            //Console.WriteLine("========================================");
-            //Console.WriteLine("horizontalMove     = " + horizontalMove.ToString()); 
-            //Console.WriteLine("horizontaIncrement = " + horizontaIncrement.ToString());
-            //Console.WriteLine("verticalMove       = " + verticalMove.ToString());
-            //Console.WriteLine("verticalIncrement  = " + verticalIncrement.ToString());
-
-
+            if (horizontalMove + horizontalIncrement >= 300.0f - _points[2].X
+                || horizontalMove + horizontalIncrement <= -300.0f - _points[3].X)
+            {
+                horizontalIncrement *= -1.0f;
+            }
             if (verticalMove + verticalIncrement >= 150.0f - _points[3].Y
                 || verticalMove + verticalIncrement <= -150.0f - _points[0].Y)
             {
                 verticalIncrement *= -1.0f;
             }
-            if (horizontalMove + horizontaIncrement >= 300.0f - _points[2].X
-                || horizontalMove + horizontaIncrement <= -300.0f - _points[3].X)
-            {
-                horizontaIncrement *= -1.0f;
-            }
 
-            horizontalMove += horizontaIncrement;
+            horizontalMove += horizontalIncrement;
             verticalMove += verticalIncrement;
         }
         public void invertDirection()
         {
-            horizontaIncrement *= -1.0f;
+            horizontalIncrement *= -1.0f;
             verticalIncrement *= -1.0f;
         }
         public int getDommage()
