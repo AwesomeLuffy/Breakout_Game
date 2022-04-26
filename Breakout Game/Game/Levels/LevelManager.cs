@@ -20,10 +20,13 @@ namespace Breakout_Game.Game.Levels{
 
         internal static void GenerateFirstLevel(){
                 _levels.Add(new Level(_emplacement));
-            }
+        }
 
         internal static void NextLevel(ref int actual){
             actual += (actual > -1 && actual < _levels.Count) ? 1 : 0;
+        }
+
+        internal static void RandomChangeBrickLevel(){
         }
 
 
