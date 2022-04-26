@@ -17,6 +17,9 @@ using ThreadState = System.Diagnostics.ThreadState;
 
 namespace Breakout_Game.Game{
     internal sealed class Game : GameBase{
+        #region Attribut
+        Ball ball;
+        #endregion
         private static Game _gmInstance = null;
         private readonly GameWindow _gameWindow;
 
@@ -41,9 +44,7 @@ namespace Breakout_Game.Game{
             this._gameWindow.UpdateFrame += this.Update;
             this._gameWindow.RenderFrame += this.Render;
             this._gameWindow.Resize += base.Resize;
-
             this._gameWindow.KeyDown += UserControl.OnKeyDown;
-
             this._gameWindow.Run(1.0/60.0);
         }
 
@@ -55,11 +56,14 @@ namespace Breakout_Game.Game{
             TextManager.init();
             new Thread((AudioManager.init)).Start();
             LevelManager.GenerateFirstLevel();
-            
+
+            ball = new Ball(new Vector2(40.0f, -40.0f), 60, 60, "ball.bmp");
+
             Renderables.Add(new Racket());
         }
 
         private void Update(object sender, EventArgs e){
+            ball.Update();
         }
 
         private void Render(object sender, EventArgs eventArgs){
@@ -75,9 +79,7 @@ namespace Breakout_Game.Game{
                 }
             }
 
-            TextManager.Text1.Draw();// Pas de rôle dedans
-            TextManager.Text2.Draw();
-            //TextManager.Text3.Draw();
+            ball.Draw();
 
             this._gameWindow.SwapBuffers();
         }
