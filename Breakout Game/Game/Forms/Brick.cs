@@ -14,9 +14,8 @@ namespace Breakout_Game.Game.Forms{
         public const float LenghtBrick = 50.0f;
         public const float HeightBrick = 20.0f;
         
-        // private const string LevelOneTextureName = "brick_lvl_one.bmp";
+        private const string LevelOneTextureName = "brick_lvl_one.bmp";
         private const string LevelTwoTextureName = "brick_lvl_two.bmp";
-        private const string LevelOneTextureName = "imgTest.bmp";
         private const string LevelThreeTextureName = "brick_lvl_three.bmp";
         private const string IndestructibleTextureName = "indestructible.bmp";
         
