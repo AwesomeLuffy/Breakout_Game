@@ -14,17 +14,16 @@ namespace Breakout_Game.Game.Forms{
         public const float LenghtBrick = 50.0f;
         public const float HeightBrick = 20.0f;
         
-        private const string LevelOneTextureName = "brick_lvl_one.bmp";
-        private const string LevelTwoTextureName = "brick_lvl_two.bmp";
-        private const string LevelThreeTextureName = "brick_lvl_three.bmp";
-        private const string IndestructibleTextureName = "indestructible.bmp";
+        internal const string LevelOneTextureName = "brick_lvl_one.bmp";
+        internal const string LevelTwoTextureName = "brick_lvl_two.bmp";
+        internal const string LevelThreeTextureName = "brick_lvl_three.bmp";
+        internal const string IndestructibleTextureName = "indestructible.bmp";
         
         private byte _level;
         
         private string _textureName;
 
         private bool IsInvincible = false;
-        
         
         internal byte Level{
             get => this._level;
@@ -39,7 +38,7 @@ namespace Breakout_Game.Game.Forms{
 
         #region Constructors
 
-        public Brick(Vector2 origin, byte level = 1) :
+        public Brick(Vector2 origin, byte level = 1, string textureName = Brick.LevelOneTextureName) :
             this(
                 points: (new List<Vector2>() {
                     {origin},
@@ -48,18 +47,12 @@ namespace Breakout_Game.Game.Forms{
                     {new Vector2(origin.X, origin.Y + HeightBrick)}
                 }),
                 level: level,
-                texture:
-                ((level == 4)
-                    ? IndestructibleTextureName
-                    : ((level == 3)
-                        ? LevelThreeTextureName
-                        : ((level == 2) ? LevelTwoTextureName : LevelOneTextureName)))){
-            this.IsInvincible = (this.Level == 4);
+                texture: textureName){
         }
 
         public Brick(List<Vector2> points, byte level, string texture) : base(points, texture){
-            
             this.Level = level;
+            this.IsInvincible = (this.Level == 4);
         }
         
         
@@ -96,6 +89,27 @@ namespace Breakout_Game.Game.Forms{
             
             return sides;
 
+        }
+        
+        internal static string GetTextureFromLevel(int lvl){
+            return lvl switch {
+                1 => Brick.LevelOneTextureName,
+                2 => Brick.LevelTwoTextureName,
+                3 => Brick.LevelThreeTextureName,
+                4 => Brick.IndestructibleTextureName,
+                _ => Brick.LevelOneTextureName
+            };
+
+        }
+
+        internal bool AddLevel(){
+            if (this.Level + 1 > 3) {
+                this.Level += 0;
+                return false;
+            }
+            this.Level += 1;
+            this.ChangeTexture(Brick.GetTextureFromLevel(this.Level));
+            return true;
         }
 
         internal void RemoveLevel(){
