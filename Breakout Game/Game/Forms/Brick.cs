@@ -14,8 +14,9 @@ namespace Breakout_Game.Game.Forms{
         public const float LenghtBrick = 50.0f;
         public const float HeightBrick = 20.0f;
         
-        private const string LevelOneTextureName = "brick_lvl_one.bmp";
+        // private const string LevelOneTextureName = "brick_lvl_one.bmp";
         private const string LevelTwoTextureName = "brick_lvl_two.bmp";
+        private const string LevelOneTextureName = "imgTest.bmp";
         private const string LevelThreeTextureName = "brick_lvl_three.bmp";
         private const string IndestructibleTextureName = "indestructible.bmp";
         
@@ -43,9 +44,9 @@ namespace Breakout_Game.Game.Forms{
             this(
                 points: (new List<Vector2>() {
                     {origin},
-                    {new Vector2(origin.X, origin.Y - HeightBrick)},
-                    {new Vector2(origin.X + LenghtBrick, origin.Y - HeightBrick)},
-                    {new Vector2(origin.X + LenghtBrick, origin.Y)}
+                    {new Vector2(origin.X + LenghtBrick, origin.Y)},
+                    {new Vector2(origin.X + LenghtBrick, origin.Y + HeightBrick)},
+                    {new Vector2(origin.X, origin.Y + HeightBrick)}
                 }),
                 level: level,
                 texture:
@@ -61,6 +62,8 @@ namespace Breakout_Game.Game.Forms{
             
             this.Level = level;
         }
+        
+        
 
         #endregion
 
@@ -68,15 +71,15 @@ namespace Breakout_Game.Game.Forms{
         /*Sides Documentation
          *
          *             TOP
-         * 0:0
-         * -A-   T1            T0    -D-
+         * 
+         * -D-   T1            T0    -C-
          * L0    |-------------| R1
          *       |             |
          * Left  |             |  Right
          *       |             | 
          * L1    |-------------| R0
-         *-B-  B0            B1    -C-
-         *          Bottom
+         *-A-  B0            B1    -B-
+         *0:0       Bottom
          * 
          * Creation order is -A- > -B- > -C- > -D-
          */
