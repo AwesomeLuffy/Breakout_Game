@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Breakout_Game.Game.Events;
+using Breakout_Game.Game.Levels;
 using Breakout_Game.Game.Utils;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -104,7 +105,6 @@ namespace Breakout_Game.Game.Forms{
 
         internal bool AddLevel(){
             if (this.Level + 1 > 3) {
-                this.Level += 0;
                 return false;
             }
             this.Level += 1;
@@ -117,22 +117,19 @@ namespace Breakout_Game.Game.Forms{
             Game.CallEvent(new BrickDamage(this, 1));
         }
 
-        internal void DestructBrick(){
+        internal void DestructBrickAnimation(){
             this.IsInDestruction = true;
-            //TODO
-            int i = 5;
-            var task = new Thread(() => {
-                while (i > 0) {
-                    i--;
-                    System.Threading.Thread.Sleep(5000);
-                }
-
-            });
-            task.Start();
-            if(i == 0)
-            {
-                task.Abort();
-            }
+            
+            new Thread(() => {
+                this.ChangeTexture(LevelThreeTextureName);
+                System.Threading.Thread.Sleep(2000);
+                this.ChangeTexture(LevelTwoTextureName);
+                System.Threading.Thread.Sleep(2000);
+                this.ChangeTexture(LevelOneTextureName);
+                System.Threading.Thread.Sleep(2000);
+                Game.CallEvent(new BrickDestroyAnimationFinished(this));
+                this.IsInDestruction = false;
+            }).Start();
         }
 
         public override void Update(){
