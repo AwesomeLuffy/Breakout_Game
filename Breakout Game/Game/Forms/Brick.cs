@@ -121,12 +121,14 @@ namespace Breakout_Game.Game.Forms{
             this.IsInDestruction = true;
             
             new Thread(() => {
-                this.ChangeTexture(LevelThreeTextureName);
-                System.Threading.Thread.Sleep(2000);
-                this.ChangeTexture(LevelTwoTextureName);
-                System.Threading.Thread.Sleep(2000);
-                this.ChangeTexture(LevelOneTextureName);
-                System.Threading.Thread.Sleep(2000);
+                lock (this) {
+                    this.ChangeTexture(LevelThreeTextureName);
+                    System.Threading.Thread.Sleep(2000);
+                    this.ChangeTexture(LevelTwoTextureName);
+                    System.Threading.Thread.Sleep(2000);
+                    this.ChangeTexture(LevelOneTextureName);
+                    System.Threading.Thread.Sleep(2000);
+                }
                 Game.CallEvent(new BrickDestroyAnimationFinished(this));
                 this.IsInDestruction = false;
             }).Start();
