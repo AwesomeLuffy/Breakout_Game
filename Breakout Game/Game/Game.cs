@@ -11,8 +11,10 @@ using Breakout_Game.Game.Levels;
 using Breakout_Game.Game.Text;
 using Breakout_Game.Game.Texture;
 using Breakout_Game.Game.UserInterac;
+using Breakout_Game.Game.Utils;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using OpenTK.Input;
 using ThreadState = System.Diagnostics.ThreadState;
 
 namespace Breakout_Game.Game{
@@ -25,7 +27,7 @@ namespace Breakout_Game.Game{
 
         internal static List<IRenderable> Renderables = new List<IRenderable>();
 
-        private static int ActualLevelNumber = 0;
+        internal static int ActualLevelNumber = 0;
         
         internal static Game GetInstance (GameWindow gw){
             //?? -> is null
@@ -44,7 +46,6 @@ namespace Breakout_Game.Game{
             this._gameWindow.UpdateFrame += this.Update;
             this._gameWindow.RenderFrame += this.Render;
             this._gameWindow.Resize += base.Resize;
-            this._gameWindow.KeyDown += UserControl.OnKeyDown;
             this._gameWindow.Run(1.0/60.0);
         }
 
@@ -64,6 +65,10 @@ namespace Breakout_Game.Game{
 
         private void Update(object sender, EventArgs e){
             ball.Update();
+
+            UserControl.AnyKeyDown();
+
+
         }
 
         private void Render(object sender, EventArgs eventArgs){
@@ -86,6 +91,7 @@ namespace Breakout_Game.Game{
 
         public static void CallEvent(Event e){ //If an event called ...
         }
+        
 
     }
 }
