@@ -8,7 +8,7 @@ using OpenTK.Graphics.OpenGL;
 namespace Breakout_Game.Game.Forms{
     internal class Racket : Brick{
 
-        private float _incrementFactor = 7.0f; //Speed
+        private float _incrementFactor = 4.0f; //Speed
         private float horizontalMove = .0f;
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
