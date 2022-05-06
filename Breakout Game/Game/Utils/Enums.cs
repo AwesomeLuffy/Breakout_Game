@@ -8,4 +8,9 @@
     public enum Direction{
         Right, Left
     }
+
+    public enum GameAction{
+        Pause, Resume
+    }
+    
 }
