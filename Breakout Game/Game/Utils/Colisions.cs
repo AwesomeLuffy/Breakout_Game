@@ -9,16 +9,16 @@ namespace Breakout_Game.Game.Utils
     internal static class Colisions
     {
         public static Collisions collisions = new Collisions();
-        public static void checkColisions(Ball ball, int ActualLevelNumber, List<IRenderable> Renderables)
+        public static void checkColisions()
         {
             SideObject sideCollision;
-            if (ball != null)
+            if (Game.ball != null)
             {
-                var listLineBall = ball.GetSides();
+                var listLineBall = Game.ball.GetSides();
 
                 foreach (var lineBall in listLineBall)
                 {
-                    foreach (List<Brick> firstBrick in LevelManager._levels[ActualLevelNumber].bricks) {
+                    foreach (List<Brick> firstBrick in LevelManager._levels[Game.ActualLevelNumber].bricks) {
                         foreach (Brick brick in firstBrick)
                         {
                             var listLineBrick = brick.GetSides();
@@ -26,7 +26,8 @@ namespace Breakout_Game.Game.Utils
                             {
                                 if (collisions.Intersection(lineBrick.Value, lineBall.Value))
                                 {
-                                    ball.invertDirection();
+                                    Game.ball.invertDirection();
+                                    return;
                                 }
                             }
                         }
@@ -35,12 +36,12 @@ namespace Breakout_Game.Game.Utils
                     foreach(var renderable in Game.Renderables){
                         if(renderable is Racket racket){
                             var listLineRenderable = racket.GetSides();
-                            Console.WriteLine(listLineRenderable[SideObject.Bottom][0]);
                             foreach (var lineRenderable in listLineRenderable)
                             {
                                 if (collisions.Intersection(lineRenderable.Value, lineBall.Value))
                                 {
-                                    ball.invertDirection();
+                                    Game.ball.invertDirection();
+                                    return;
                                 }
                             }
                         }
