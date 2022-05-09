@@ -19,6 +19,24 @@ namespace Breakout_Game.Game.Forms{
             
         }
 
+        public override Dictionary<SideObject, List<Vector2>> GetSides(){
+            Dictionary<SideObject, List<Vector2>> sides = new Dictionary<SideObject, List<Vector2>>();
+
+            var i = 0;
+            foreach (SideObject side in Enum.GetValues(typeof(SideObject))) {
+                sides[side] = new List<Vector2>() {
+                    {new Vector2(this._points[i].X + this.horizontalMove, this._points[i].Y)},//0 Point
+                    
+                    {new Vector2(this._points[(i + 1 > 3) ? 0 : i + 1].X + this.horizontalMove,
+                    this._points[(i + 1 > 3) ? 0 : i + 1].Y)}//1 Point
+                };
+                i++;
+            }
+            
+            return sides;
+
+        }
+
         public Racket SetDirection(Direction direction){
             if (direction == this.Direction) return this;
             this.Direction = direction;
