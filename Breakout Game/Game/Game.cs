@@ -19,9 +19,8 @@ using ThreadState = System.Diagnostics.ThreadState;
 
 namespace Breakout_Game.Game{
     internal sealed class Game : GameBase{
-        #region Attribut
-        Ball ball;
-        #endregion
+        
+        public static Ball ball;
         private static Game _gmInstance = null;
         private readonly GameWindow _gameWindow;
 
@@ -57,7 +56,6 @@ namespace Breakout_Game.Game{
             TextManager.init();
             new Thread((AudioManager.init)).Start();
             LevelManager.GenerateFirstLevel();
-            // LevelManager.GenerateSecondLevel();
 
             ball = new Ball(new Vector2(40.0f, -40.0f), 60, 60, "ball.bmp");
 
@@ -68,7 +66,7 @@ namespace Breakout_Game.Game{
             ball.Update();
             
             UserControl.AnyKeyDown();
-            Colisions.checkColisions(ball, ActualLevelNumber, Renderables);
+            Colisions.checkColisions();
 
         }
 
