@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Breakout_Game.Game.Events;
 using Breakout_Game.Game.Utils;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -12,11 +13,12 @@ namespace Breakout_Game.Game.Forms{
         private float horizontalMove = .0f;
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
+        internal RacketUpdate ev;
         
 
 
         public Racket() : base(new Vector2(0, -130)){
-            
+            this.ev = new RacketUpdate(this);
         }
 
         public override Dictionary<SideObject, List<Vector2>> GetSides(){
@@ -45,7 +47,14 @@ namespace Breakout_Game.Game.Forms{
         }
 
         public override void Update(){
-            this.horizontalMove += this._incrementFactor;
+            this.ev.Racket = this;
+            if (!this.ev.IsCancelled()) {
+                this.horizontalMove += this._incrementFactor;
+            }
+
+            if (this.ev.IsCancelled()) {
+                this.ev.SetCancelled(false);
+            }
         }
 
         public override void Draw(){
@@ -57,6 +66,12 @@ namespace Breakout_Game.Game.Forms{
 
             GL.PopMatrix();
             
+        }
+
+
+        public Direction ImpactDirection(){
+            //TODO
+            return Direction.Left;
         }
     }
 }
