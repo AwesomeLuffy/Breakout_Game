@@ -57,6 +57,7 @@ namespace Breakout_Game.Game{
             TextManager.init();
             new Thread((AudioManager.init)).Start();
             LevelManager.GenerateFirstLevel();
+            // LevelManager.GenerateSecondLevel();
 
             ball = new Ball(new Vector2(40.0f, -40.0f), 60, 60, "ball.bmp");
 
@@ -65,9 +66,9 @@ namespace Breakout_Game.Game{
 
         private void Update(object sender, EventArgs e){
             ball.Update();
-
+            
             UserControl.AnyKeyDown();
-
+            Colisions.checkColisions(ball, ActualLevelNumber, Renderables);
 
         }
 
@@ -92,6 +93,5 @@ namespace Breakout_Game.Game{
         public static void CallEvent(Event e){ //If an event called ...
         }
         
-
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenTK;
 
 namespace Breakout_Game.Game.Utils{
 
     internal class Collisions{
 
-        public bool Intersection(Vector2[] droiteTriangle, Vector2[] droiteCarre){
+        public bool Intersection(List<Vector2> droiteTriangle, List<Vector2> droiteCarre){
             // **************************************************
             // Méthodes trouvées sur le web
             // Traduite en français pour aider à la compréhension
