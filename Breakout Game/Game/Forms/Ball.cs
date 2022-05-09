@@ -81,10 +81,14 @@ namespace Breakout_Game.Game.Forms
             horizontalMove += horizontalIncrement;
             verticalMove += verticalIncrement;
         }
-        public void invertDirection()
+        public void invertDirection(bool Gap = false)
         {
             horizontalIncrement *= -1.0f;
             verticalIncrement *= -1.0f;
+            if (Gap) {
+                this.horizontalMove += this.horizontalIncrement + 2;
+                this.verticalMove += this.verticalIncrement + 2;
+            }
         }
         public int getDommage()
         {
