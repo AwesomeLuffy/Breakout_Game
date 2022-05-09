@@ -55,10 +55,11 @@
     <Compile Include="Game\Events\EventListener.cs" />
     <Compile Include="Game\Events\ICancellable.cs" />
     <Compile Include="Game\Events\BrickDestroyAnimationFinished.cs" />
-    <Compile Include="Game\Forms\BrickFactory.cs" />
     <Compile Include="Game\Forms\Ball.cs" />
+    <Compile Include="Game\Forms\BrickFactory.cs" />
     <Compile Include="Game\Forms\BaseForm.cs" />
     <Compile Include="Game\Forms\Brick.cs" />
+	<Compile Include="Game\Forms\BrickFactory.cs" />
     <Compile Include="Game\Forms\IEditableTexture.cs" />
     <Compile Include="Game\Forms\IRenderable.cs" />
     <Compile Include="Game\Forms\Racket.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Game\Text\Text.cs" />
     <Compile Include="Game\Text\TextManager.cs" />
     <Compile Include="Game\UserInterac\UserControl.cs" />
+    <Compile Include="Game\Utils\Colisions.cs" />
     <Compile Include="Game\Utils\Enums.cs" />
     <Compile Include="Game\Utils\Math.cs" />
     <Compile Include="Game\Utils\Utils.cs" />
