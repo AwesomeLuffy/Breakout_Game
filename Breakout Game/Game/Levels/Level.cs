@@ -8,7 +8,7 @@ namespace Breakout_Game.Game.Levels{
     internal class Level{
         
         public const int MaxBrickInARow = 9;
-        public const int MaxBrickInColumn = 6;
+        public const int MaxBrickInColumn = 4;
         
         private const float HorizontalGap = 10;
         private const float VerticalGap = 5;
