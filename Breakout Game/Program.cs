@@ -1,5 +1,4 @@
-﻿using Breakout_Game.Game;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics;
 
 namespace Breakout_Game{

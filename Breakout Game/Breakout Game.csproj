@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,8 +54,9 @@
     <Compile Include="Game\Events\Event.cs" />
     <Compile Include="Game\Events\EventListener.cs" />
     <Compile Include="Game\Events\ICancellable.cs" />
-    <Compile Include="Game\Events\EvExemple.cs" />
-    <Compile Include="Game\Forms\Ball.cs" />
+    <Compile Include="Game\Events\BrickDestroyAnimationFinished.cs" />
+    <Compile Include="Game\Forms\BrickFactory.cs" />
+    <Compile Include="Game\Forms\_Ball.cs" />
     <Compile Include="Game\Forms\BaseForm.cs" />
     <Compile Include="Game\Forms\Brick.cs" />
     <Compile Include="Game\Forms\IEditableTexture.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Game\Levels\Level.cs" />
     <Compile Include="Game\Levels\LevelManager.cs" />
     <Compile Include="Game\Menu\MenuManager.cs" />
+    <Compile Include="Game\Menu\MenuPause.cs" />
     <Compile Include="Game\Texture\RessourceLoader.cs" />
     <Compile Include="Game\Text\Text.cs" />
     <Compile Include="Game\Text\TextManager.cs" />
