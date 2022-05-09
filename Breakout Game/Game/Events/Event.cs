@@ -28,7 +28,7 @@ namespace Breakout_Game.Game{
             if (!(this is ICancellable)) {
                 throw new Exception("This event is not cancellable.");
             }
-            this._isCancelled = true;
+            this._isCancelled = value;
         }
         
     }

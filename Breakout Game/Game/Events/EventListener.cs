@@ -9,6 +9,7 @@ namespace Breakout_Game.Game.Events{
             CreateFormEvent.Handler += OnFormCreate;
             BrickDamage.Handler += OnBrickDamage;
             BrickDestroyAnimationFinished.Handler += OnBrickDestroyAnimationFinished;
+            RacketUpdate.Handler += OnRacketUpdate;
         }
 
         private static void OnFormCreate(object sender, EventArgs e){
@@ -34,6 +35,10 @@ namespace Breakout_Game.Game.Events{
             foreach (var bricks in LevelManager._levels[Game.ActualLevelNumber].bricks) {
                 bricks.Remove(brickDestroyAnimationFinished.Brick);
             }
+        }
+
+        private static void OnRacketUpdate(object sender, EventArgs e){
+            if(!(sender is RacketUpdate racketUpdate)) return;
         }
     }
 }
