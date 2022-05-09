@@ -38,9 +38,9 @@ namespace Breakout_Game.Game.Utils
                             var listLineRenderable = racket.GetSides();
                             foreach (var lineRenderable in listLineRenderable)
                             {
-                                if (collisions.Intersection(lineRenderable.Value, lineBall.Value))
-                                {
-                                    Game.ball.invertDirection();
+                                if (collisions.Intersection(lineRenderable.Value, lineBall.Value)) {
+                                    Game.ball.invertDirection(true);
+                                    racket.ev.SetCancelled();
                                     return;
                                 }
                             }
