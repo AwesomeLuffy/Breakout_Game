@@ -86,8 +86,8 @@ namespace Breakout_Game.Game.Forms
             horizontalIncrement *= -1.0f;
             verticalIncrement *= -1.0f;
             if (Gap) {
-                this.horizontalMove += this.horizontalIncrement + 2;
-                this.verticalMove += this.verticalIncrement + 2;
+                this.horizontalMove += this.horizontalIncrement + 0.8f;
+                this.verticalMove += this.verticalIncrement + 0.8f;
             }
         }
         public int getDommage()
