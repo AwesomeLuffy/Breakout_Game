@@ -41,7 +41,6 @@ namespace Breakout_Game.Game.Utils
                                 if (collisions.Intersection(lineRenderable.Value, lineBall.Value)) {
                                     (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
                                     if (isKeyDown) {
-                                        //TODO If Right or If Left -> if(direction == Direction.Right){//TODO}
                                         Game.ball.angleDirection(direction);
                                     }
                                     else

@@ -65,8 +65,10 @@ namespace Breakout_Game.Game{
 
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         private void Update(object sender, EventArgs e){
-            ball.Update();
-            
+            if (ball.isActivated)
+            {
+                ball.Update();
+            }
             UserControl.AnyKeyDown();
             Colisions.checkColisions();
 
@@ -91,7 +93,10 @@ namespace Breakout_Game.Game{
                 }
             }
 
-            ball.Draw();
+            if (ball.isActivated)
+            {
+                ball.Draw();
+            }
 
             this._gameWindow.SwapBuffers();
         }
