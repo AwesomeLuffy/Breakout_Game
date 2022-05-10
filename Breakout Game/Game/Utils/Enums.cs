@@ -6,7 +6,7 @@
     }
 
     public enum Direction{
-        Right, Left
+        Right, Left, None
     }
 
     public enum GameAction{
