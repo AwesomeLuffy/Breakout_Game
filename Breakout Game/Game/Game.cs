@@ -27,7 +27,7 @@ namespace Breakout_Game.Game{
 
         internal static List<IRenderable> Renderables = new List<IRenderable>();
 
-        internal static int ActualLevelNumber = 0;
+        internal static int ActualLevelNumber = 1;
         
         internal static Game GetInstance (GameWindow gw){
             //?? -> is null
@@ -56,7 +56,7 @@ namespace Breakout_Game.Game{
             
             TextManager.init();
             new Thread((AudioManager.init)).Start();
-            LevelManager.GenerateFirstLevel();
+            LevelManager.GenerateLevel(ref ActualLevelNumber);
 
             ball = new Ball(new Vector2(40.0f, -40.0f), 30, 30, "ball.bmp");
 
@@ -85,7 +85,7 @@ namespace Breakout_Game.Game{
                 }
             }
 
-            foreach (List<Brick> firstBrick in LevelManager._levels[ActualLevelNumber].bricks) {
+            foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
                 foreach (Brick brick1 in firstBrick) {
                     brick1?.Draw();
                 }

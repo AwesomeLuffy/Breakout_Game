@@ -19,7 +19,7 @@ namespace Breakout_Game.Game.Utils
 
                 foreach (var lineBall in listLineBall)
                 {
-                    foreach (List<Brick> firstBrick in LevelManager._levels[Game.ActualLevelNumber].bricks) {
+                    foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
                         foreach (Brick brick in firstBrick)
                         {
                             var listLineBrick = brick.GetSides();

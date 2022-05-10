@@ -31,7 +31,7 @@ namespace Breakout_Game.Game.Events{
 
         private static void OnBrickDestroyAnimationFinished(object sender, EventArgs e){
             if(!(sender is BrickDestroyAnimationFinished brickDestroyAnimationFinished)) return;
-            foreach (var bricks in LevelManager._levels[Game.ActualLevelNumber].bricks) {
+            foreach (var bricks in LevelManager.Level.bricks) {
                 bricks.Remove(brickDestroyAnimationFinished.Brick);
             }
         }
