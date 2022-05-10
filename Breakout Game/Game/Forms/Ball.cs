@@ -34,7 +34,7 @@ namespace Breakout_Game.Game.Forms
             verticalMove = 0.0f;
             horizontalMove = 0.0f;
             verticalIncrement = 1.5f;
-            horizontalIncrement = 1.5f;
+            horizontalIncrement = 1.5f;//1.5
 
             textureID = RessourceLoader.GenId();
             RessourceLoader.LoadTexture(textureID, textureName);
@@ -83,11 +83,36 @@ namespace Breakout_Game.Game.Forms
         }
         public void invertDirection(bool Gap = false)
         {
-            horizontalIncrement *= -1.0f;
             verticalIncrement *= -1.0f;
             if (Gap) {
                 this.horizontalMove += this.horizontalIncrement + 0.8f;
                 this.verticalMove += this.verticalIncrement + 0.8f;
+            }
+        }
+
+        public void angleDirection(Direction direction)
+        {
+            if (direction == Direction.Right)
+            {
+                if (horizontalIncrement > 0)
+                {
+                    horizontalIncrement = 2.5f;
+                }
+                else
+                {
+                    horizontalIncrement = -0.5f;
+                }
+            }
+            else if (direction == Direction.Left)
+            {
+                if (horizontalIncrement < 0)
+                {
+                    horizontalIncrement = -2.5f;
+                }
+                else
+                {
+                    horizontalIncrement = 0.5f;
+                }
             }
         }
         public int getDommage()
