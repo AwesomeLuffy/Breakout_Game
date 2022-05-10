@@ -9,6 +9,7 @@ using Breakout_Game.Audio;
 using Breakout_Game.Game.Events;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Levels;
+using Breakout_Game.Game.Menu;
 using Breakout_Game.Game.Text;
 using Breakout_Game.Game.Texture;
 using Breakout_Game.Game.UserInterac;
@@ -25,10 +26,12 @@ namespace Breakout_Game.Game{
         private static Game _gmInstance = null;
         private readonly GameWindow _gameWindow;
 
+        internal static bool IsGamePause = false;
+
         internal static List<IRenderable> Renderables = new List<IRenderable>();
 
         internal static int ActualLevelNumber = 1;
-        
+
         internal static Game GetInstance (GameWindow gw){
             //?? -> is null
             return Game._gmInstance ?? (Game._gmInstance = new Game(gw));
@@ -65,13 +68,14 @@ namespace Breakout_Game.Game{
 
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         private void Update(object sender, EventArgs e){
-            if (ball.isActivated)
-            {
-                ball.Update();
-            }
             UserControl.AnyKeyDown();
-            Colisions.checkColisions();
-
+            if (!Game.IsGamePause) {
+                if (ball.isActivated)
+                {
+                    ball.Update();
+                }
+                Colisions.checkColisions();
+            }
         }
 
         private void Render(object sender, EventArgs eventArgs){
@@ -96,6 +100,10 @@ namespace Breakout_Game.Game{
             if (ball.isActivated)
             {
                 ball.Draw();
+            }
+
+            if (Game.IsGamePause) {
+                MenuManager.ActualMenu.DrawText();
             }
 
             this._gameWindow.SwapBuffers();

@@ -29,7 +29,8 @@ namespace Breakout_Game.Game.UserInterac{
                 }
             }
             else if (state.IsKeyDown(Key.P) || state.IsKeyDown(Key.Escape)) {
-                //TODO Pause
+                Game.IsGamePause = (!Game.IsGamePause);
+                System.Threading.Thread.Sleep(100);
             }
             else if (state.IsKeyDown(Key.Space)){
                 //TODO START
