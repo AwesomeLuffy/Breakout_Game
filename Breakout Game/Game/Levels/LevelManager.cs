@@ -36,6 +36,7 @@ namespace Breakout_Game.Game.Levels{
 
 
         private static void GenerateFirstLevel(){
+            _emplacement[1][8] = false;
             Level = new Level(_emplacement);
         }
 
