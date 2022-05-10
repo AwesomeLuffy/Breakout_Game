@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using OpenTK;
 
 namespace Breakout_Game.Game.Utils{
+    
+    
 
     internal class Collisions{
 

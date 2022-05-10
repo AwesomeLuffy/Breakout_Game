@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Net;
 using System.Threading;
@@ -62,6 +63,7 @@ namespace Breakout_Game.Game{
             Renderables.Add(new Racket());
         }
 
+        [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH", MessageId = "type: OpenTK.Vector2[]")]
         private void Update(object sender, EventArgs e){
             ball.Update();
             
@@ -75,6 +77,12 @@ namespace Breakout_Game.Game{
 
             foreach (IRenderable renderable in Renderables) {
                 renderable.Draw();
+            }
+
+            foreach (var renderable in Renderables) {
+                if (renderable is Racket racket) {
+                    var sides = racket.GetSides();
+                }
             }
 
             foreach (List<Brick> firstBrick in LevelManager._levels[ActualLevelNumber].bricks) {

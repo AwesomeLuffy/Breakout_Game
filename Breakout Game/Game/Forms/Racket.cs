@@ -13,12 +13,10 @@ namespace Breakout_Game.Game.Forms{
         private float horizontalMove = .0f;
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
-        internal RacketUpdate ev;
         
 
 
         public Racket() : base(new Vector2(0, -130)){
-            this.ev = new RacketUpdate(this);
         }
 
         public override Dictionary<SideObject, List<Vector2>> GetSides(){
@@ -46,15 +44,8 @@ namespace Breakout_Game.Game.Forms{
             return this;
         }
 
-        public override void Update(){
-            this.ev.Racket = this;
-            if (!this.ev.IsCancelled()) {
-                this.horizontalMove += this._incrementFactor;
-            }
-
-            if (this.ev.IsCancelled()) {
-                this.ev.SetCancelled(false);
-            }
+        public override void Update(){ 
+            this.horizontalMove += this._incrementFactor;
         }
 
         public override void Draw(){
