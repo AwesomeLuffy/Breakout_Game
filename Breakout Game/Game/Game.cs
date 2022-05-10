@@ -50,7 +50,7 @@ namespace Breakout_Game.Game{
         }
 
         private void Load(object sender, EventArgs e){
-            GL.ClearColor(.75f, .75f, .75f, 1.0f);
+            GL.ClearColor(.9f, .9f, .9f, .9f);
             GL.Enable(EnableCap.Texture2D);
             //TODO
             
