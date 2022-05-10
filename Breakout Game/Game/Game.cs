@@ -58,12 +58,12 @@ namespace Breakout_Game.Game{
             new Thread((AudioManager.init)).Start();
             LevelManager.GenerateFirstLevel();
 
-            ball = new Ball(new Vector2(40.0f, -40.0f), 60, 60, "ball.bmp");
+            ball = new Ball(new Vector2(40.0f, -40.0f), 30, 30, "ball.bmp");
 
             Renderables.Add(new Racket());
         }
 
-        [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH", MessageId = "type: OpenTK.Vector2[]")]
+        [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         private void Update(object sender, EventArgs e){
             ball.Update();
             
