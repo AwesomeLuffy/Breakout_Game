@@ -12,7 +12,6 @@ namespace Breakout_Game.Game.Utils
         public static Collisions collisions = new Collisions();
         public static void checkColisions()
         {
-            SideObject sideCollision;
             if (Game.ball != null)
             {
                 var listLineBall = Game.ball.GetSides();
@@ -43,8 +42,12 @@ namespace Breakout_Game.Game.Utils
                                     (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
                                     if (isKeyDown) {
                                         //TODO If Right or If Left -> if(direction == Direction.Right){//TODO}
+                                        Game.ball.angleDirection(direction);
                                     }
-                                    Game.ball.invertDirection(true);
+                                    else
+                                    {
+                                        Game.ball.invertDirection(true);
+                                    }
                                     return;
                                 }
                             }
