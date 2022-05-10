@@ -18,7 +18,6 @@ namespace Breakout_Game.Game.Levels{
         public int NumberOfBricks{ get; set; }
         
         internal List<List<Brick>> bricks = new List<List<Brick>>();
-        
         public Level(List<List<bool>> emplacement){
             this.InitList();
             
@@ -27,13 +26,17 @@ namespace Breakout_Game.Game.Levels{
             for (int i = 0; i < emplacement.Count; i++) {
 
                 for (int j = 0; j < emplacement[i].Count; j++) {
+
                     if (emplacement[i][j]) {
-                        
-                        this.bricks[i].Insert(j, BrickFactory.CreateBrick(originPoint,
+                        this.bricks[i][j] = BrickFactory.CreateBrick(originPoint,
                         (byte) ((j == MaxBrickInARow - 1 || j == 0) ? 4 :
                             ((j == MaxBrickInARow - 2 || j == 1) ? 3 :
                                 ((j == MaxBrickInARow - 3 || j == 2) ? 2 : 1)))
-                        ));
+                        );
+
+                    }
+                    else {
+                        this.bricks[i][j] = null;
                     }
 
                     originPoint.X += Brick.LenghtBrick + HorizontalGap;
@@ -45,8 +48,15 @@ namespace Breakout_Game.Game.Levels{
         }
 
         private void InitList(){
-            for (int i = 0; i < MaxBrickInARow + 1; i++) {
-                this.bricks.Insert(i, new List<Brick>());
+            Brick defaultBrick = new Brick(new Vector2(0, 0));
+            for (int i = 0; i < MaxBrickInColumn; i++) {
+                this.bricks.Add(new List<Brick>());
+            }
+
+            for (int i = 0; i < this.bricks.Count; i++) {
+                for (int j = 0; j < MaxBrickInARow; j++) {
+                    this.bricks[i].Add(defaultBrick);
+                }
             }
         }
     }

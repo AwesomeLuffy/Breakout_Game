@@ -67,6 +67,8 @@
     <Compile Include="Game\GameBase.cs" />
     <Compile Include="Game\Levels\Level.cs" />
     <Compile Include="Game\Levels\LevelManager.cs" />
+    <Compile Include="Game\Menu\IMenu.cs" />
+    <Compile Include="Game\Menu\MenuLevel.cs" />
     <Compile Include="Game\Menu\MenuManager.cs" />
     <Compile Include="Game\Menu\MenuPause.cs" />
     <Compile Include="Game\Texture\RessourceLoader.cs" />
