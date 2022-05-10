@@ -14,8 +14,6 @@ namespace Breakout_Game.Game.Forms{
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
         
-
-
         public Racket() : base(new Vector2(0, -130)){
         }
 
@@ -32,9 +30,7 @@ namespace Breakout_Game.Game.Forms{
                 };
                 i++;
             }
-            
             return sides;
-
         }
 
         public Racket SetDirection(Direction direction){
@@ -45,20 +41,20 @@ namespace Breakout_Game.Game.Forms{
         }
 
         public override void Update(){ 
+            if (horizontalMove + _incrementFactor >= 300.0f - _points[2].X
+                || horizontalMove + _incrementFactor <= -300.0f - _points[3].X)
+            {
+                _incrementFactor *= -1.0f;
+            }
             this.horizontalMove += this._incrementFactor;
         }
 
         public override void Draw(){
             GL.PushMatrix();
-
             GL.Translate(this.horizontalMove, 0.0f, 0.0f);
-            
             base.Draw(PrimitiveType.Quads);
-
             GL.PopMatrix();
-            
         }
-
 
         public Direction ImpactDirection(){
             //TODO

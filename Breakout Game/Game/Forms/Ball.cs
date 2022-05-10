@@ -17,6 +17,7 @@ namespace Breakout_Game.Game.Forms
         private float horizontalIncrement;
         private int damageValue = 1;
         private int textureID;
+        public bool isActivated;
         #endregion
         public Ball(Vector2 basePosition, int width, int height, string textureName) :
             this(
@@ -35,6 +36,7 @@ namespace Breakout_Game.Game.Forms
             horizontalMove = 0.0f;
             verticalIncrement = 1.5f;
             horizontalIncrement = 1.5f;//1.5
+            isActivated = true;
 
             textureID = RessourceLoader.GenId();
             RessourceLoader.LoadTexture(textureID, textureName);
@@ -72,10 +74,14 @@ namespace Breakout_Game.Game.Forms
             {
                 horizontalIncrement *= -1.0f;
             }
-            if (verticalMove + verticalIncrement >= 150.0f - _points[3].Y
-                || verticalMove + verticalIncrement <= -150.0f - _points[0].Y)
+            if (verticalMove + verticalIncrement >= 150.0f - _points[3].Y)
             {
                 verticalIncrement *= -1.0f;
+            }
+
+            if (verticalMove + verticalIncrement <= -150.0f - _points[0].Y)
+            {
+                isActivated = false;
             }
 
             horizontalMove += horizontalIncrement;
@@ -83,6 +89,14 @@ namespace Breakout_Game.Game.Forms
         }
         public void invertDirection(bool Gap = false)
         {
+            if (horizontalIncrement > 0)
+            {
+                horizontalIncrement = 1.5f;
+            }
+            else
+            {
+                horizontalIncrement = -1.5f;
+            }
             verticalIncrement *= -1.0f;
             if (Gap) {
                 this.horizontalMove += this.horizontalIncrement + 0.8f;
