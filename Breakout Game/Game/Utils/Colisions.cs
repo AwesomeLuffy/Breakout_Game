@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Levels;
+using Breakout_Game.Game.UserInterac;
 using OpenTK;
 
 namespace Breakout_Game.Game.Utils
@@ -39,6 +40,10 @@ namespace Breakout_Game.Game.Utils
                             foreach (var lineRenderable in listLineRenderable)
                             {
                                 if (collisions.Intersection(lineRenderable.Value, lineBall.Value)) {
+                                    (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
+                                    if (isKeyDown) {
+                                        //TODO If Right or If Left -> if(direction == Direction.Right){//TODO}
+                                    }
                                     Game.ball.invertDirection(true);
                                     return;
                                 }
