@@ -31,6 +31,18 @@ namespace Breakout_Game.Game.UserInterac{
                 //TODO START
             }
         }
+
+        internal static (bool, Direction) IsRightOrLeftPress(){
+            var state = Keyboard.GetState();
+            if (state.IsKeyDown(Key.Right)) {
+                return (true, Direction.Right);
+            }
+            if (state.IsKeyDown(Key.Left)) {
+                return (true, Direction.Left);
+            }
+
+            return (false, Direction.None);
+        }
         
     }
 }
