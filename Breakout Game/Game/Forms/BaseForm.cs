@@ -11,7 +11,6 @@ namespace Breakout_Game.Game.Forms{
     internal abstract class BaseForm : IRenderable{
         #region Attributes
         
-        private static Dictionary<string, int> _ressourceLoaderId = new Dictionary<string, int>();
 
 
         private List<Vector2> _coordinates; //Texture
@@ -26,7 +25,7 @@ namespace Breakout_Game.Game.Forms{
         protected BaseForm(List<Vector2> points, string textureName){
             if (!(points.Count() <= 4)) return;
             
-            this.textureId = BaseForm.CheckAndLoadTexture(textureName);
+            this.textureId = RessourceLoader.CheckAndLoadTexture(textureName);
             
             this._points = points;
 
@@ -43,21 +42,7 @@ namespace Breakout_Game.Game.Forms{
 
         }
 
-        private static int CheckAndLoadTexture(string textureName){
-            int textId;
-            
-            if(!(_ressourceLoaderId.ContainsKey(textureName))) {
-                textId = RessourceLoader.GenId();
-                BaseForm._ressourceLoaderId[textureName] = textId;
-            }
-            else {
-                textId = BaseForm._ressourceLoaderId[textureName];
-            }
-            
-            RessourceLoader.LoadTexture(textId, textureName);
 
-            return textId;
-        }
 
         #region Getter
         
@@ -73,7 +58,7 @@ namespace Breakout_Game.Game.Forms{
                 Console.WriteLine("This Form is not Editable !");
                 return;
             }
-            this.textureId = BaseForm.CheckAndLoadTexture(textureName);
+            this.textureId = RessourceLoader.CheckAndLoadTexture(textureName);
         }
 
         public abstract void Update();
