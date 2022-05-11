@@ -28,6 +28,7 @@ namespace Breakout_Game.Game.Utils
                             {
                                 if (collisions.Intersection(lineBrick.Value, lineBall.Value))
                                 {
+                                    brick.RemoveLevel();
                                     Game.ball.invertDirection();
                                     return;
                                 }
