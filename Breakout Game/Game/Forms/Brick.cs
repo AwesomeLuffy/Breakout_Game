@@ -15,11 +15,11 @@ namespace Breakout_Game.Game.Forms{
 
         public const float LenghtBrick = 50.0f;
         public const float HeightBrick = 20.0f;
-        
+
         // internal const string LevelOneTextureName = "brick_lvl_one.bmp";
         private const string LevelOneTextureName = "brick_red.bmp";
         private const string LevelTwoTextureName = "brick_orange.bmp";
-        private const string LevelThreeTextureName = "brick_blue.bmp";
+        private const string LevelThreeTextureName = "brick_yellow.bmp";
         private const string IndestructibleTextureName = "brick_indestructible.bmp";
 
         private static readonly string[] DestructFrames = {
@@ -28,12 +28,14 @@ namespace Breakout_Game.Game.Forms{
             "brick_red_dframe_five.bmp", "brick_red_dframe_six.bmp",
             "brick_red_dframe_seven.bmp", "brick_red_dframe_eight.bmp"
         };
+        
+        internal readonly bool IsInvincible;
+        internal bool IsSpecial = false;
 
         private byte _level;
         
         private string _textureName;
 
-        private bool IsInvincible = false;
         
         internal byte Level{
             get => this._level;
@@ -54,7 +56,7 @@ namespace Breakout_Game.Game.Forms{
             }
         }
 
-        public Brick(Vector2 origin, byte level = 1, string textureName = Brick.LevelOneTextureName) :
+        public Brick(Vector2 origin, byte level = 1, string textureName = Brick.LevelOneTextureName, bool isSpe = false) :
             this(
                 points: (new List<Vector2>() {
                     {origin},
@@ -63,12 +65,14 @@ namespace Breakout_Game.Game.Forms{
                     {new Vector2(origin.X, origin.Y + HeightBrick)}
                 }),
                 level: level,
-                texture: textureName){
+                texture: textureName,
+                isSpe: isSpe){
         }
 
-        public Brick(List<Vector2> points, byte level, string texture) : base(points, texture){
+        public Brick(List<Vector2> points, byte level, string texture, bool isSpe) : base(points, texture){
             this.Level = level;
             this.IsInvincible = (this.Level == 4);
+            this.IsSpecial = isSpe;
         }
         
         
@@ -128,9 +132,12 @@ namespace Breakout_Game.Game.Forms{
         }
 
         internal void RemoveLevel(){
-            this.Level -= 1;
-            this.ChangeTexture(Brick.GetTextureFromLevel(this.Level));
-            Game.CallEvent(new BrickDamage(this, 1));
+            if (!this.IsInvincible) {
+                this.Level -= 1;
+                this.ChangeTexture(Brick.GetTextureFromLevel(this.Level));
+                Game.CallEvent(new BrickDamage(this, 1));
+            }
+
         }
 
         internal void DestructBrickAnimation(){
