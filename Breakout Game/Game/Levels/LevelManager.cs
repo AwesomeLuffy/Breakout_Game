@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Breakout_Game.Game.Forms;
 
 namespace Breakout_Game.Game.Levels{
     public static class LevelManager{
@@ -12,6 +13,8 @@ namespace Breakout_Game.Game.Levels{
          *Else -> Lvl 1
          */
 
+        private const int TimeSleepSpecialBrick = 3000;
+        
         private static List<List<bool>> _emplacement = Enumerable.Range(0, Levels.Level.MaxBrickInColumn).Select(i =>
             Enumerable.Repeat(true, Levels.Level.MaxBrickInARow).ToList()).ToList();
 
@@ -34,10 +37,11 @@ namespace Breakout_Game.Game.Levels{
             
         }
 
-
+        //List -> [Column][Row]
         private static void GenerateFirstLevel(){
-            _emplacement[1][8] = false;
-            Level = new Level(_emplacement);
+            Level = new Level(_emplacement, true);
+            RandomChangeBrickLevel();
+            
         }
 
         private static void GenerateSecondLevel(){
@@ -53,6 +57,25 @@ namespace Breakout_Game.Game.Levels{
         }
 
         internal static void RandomChangeBrickLevel(){
+            if (!Level.haveSpecial) {
+                return;
+            }
+
+            int actualLvlNumber = Game.ActualLevelNumber;
+            new Thread(() => {
+                Console.WriteLine("Thread Randomizer Change Brick started!");
+                while (actualLvlNumber == Game.ActualLevelNumber) {
+                    Thread.Sleep(TimeSleepSpecialBrick);
+                    foreach (var brick in Level.bricks.SelectMany(listBrick => listBrick.Where(brick => brick.IsSpecial))) {
+                        if (new Random().Next(1, 3) == 2) {
+                            if(brick.Level == 3){ continue; }
+                            brick.AddLevel();
+                            Thread.Sleep(TimeSleepSpecialBrick);
+                        }
+                    }
+                }
+            }).Start();
+
         }
 
 
