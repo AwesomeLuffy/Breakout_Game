@@ -11,8 +11,7 @@ namespace Breakout_Game.Game.Texture{
         
         #endregion
         
-        internal static Dictionary<string, int> _ressourceLoaderId = new Dictionary<string, int>();
-
+        private static Dictionary<string, int> _ressourceLoaderId = new Dictionary<string, int>();
         
         internal static int GenId(){
             int text;
