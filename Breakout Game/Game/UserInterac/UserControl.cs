@@ -37,8 +37,8 @@ namespace Breakout_Game.Game.UserInterac{
                 Game.IsGamePause = (!Game.IsGamePause);
                 System.Threading.Thread.Sleep(100);
             }
-            else if (_keyboardState.IsKeyDown(Key.Space)){
-                //TODO START
+            else if (_keyboardState.IsKeyDown(Key.Space)) {
+                Game.IsGameStarted = true;
             }
         }
 
