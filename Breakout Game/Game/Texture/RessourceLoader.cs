@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Breakout_Game.Game.Utils;
 using OpenTK.Graphics.OpenGL;
 using PixelFormat = OpenTK.Graphics.OpenGL.PixelFormat;
 
@@ -31,6 +32,8 @@ namespace Breakout_Game.Game.Texture{
             }
             
             RessourceLoader.LoadTexture(textId, textureName);
+            
+            Log.Send("RessourceLoader", "Ressource " + textureName + " with ID (" + textId + ") loaded !", LogType.Info);
 
             return textId;
         }

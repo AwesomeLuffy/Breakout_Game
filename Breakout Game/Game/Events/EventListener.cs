@@ -1,6 +1,7 @@
 ﻿using System;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Levels;
+using Breakout_Game.Game.Utils;
 
 namespace Breakout_Game.Game.Events{
     public static class EventListener{
@@ -34,6 +35,7 @@ namespace Breakout_Game.Game.Events{
             foreach (var bricks in LevelManager.Level.bricks) {
                 bricks.Remove(brickDestroyAnimationFinished.Brick);
             }
+            Log.Send("Event", "Brick destroyed", LogType.Info);
         }
     }
 }

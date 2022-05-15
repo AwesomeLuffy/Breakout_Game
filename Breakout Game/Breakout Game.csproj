@@ -78,6 +78,7 @@
     <Compile Include="Game\UserInterac\UserControl.cs" />
     <Compile Include="Game\Utils\Colisions.cs" />
     <Compile Include="Game\Utils\Enums.cs" />
+    <Compile Include="Game\Utils\Log.cs" />
     <Compile Include="Game\Utils\Math.cs" />
     <Compile Include="Game\Utils\Utils.cs" />
     <Compile Include="Program.cs" />

@@ -56,6 +56,8 @@ namespace Breakout_Game.Game{
             this._gameWindow.RenderFrame += this.Render;
             this._gameWindow.Resize += base.Resize;
             this._gameWindow.Run(1.0/60.0);
+            
+            Log.Send("Game", "Game started", LogType.Warn);
         }
 
         private void Load(object sender, EventArgs e){
@@ -69,6 +71,8 @@ namespace Breakout_Game.Game{
             ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
 
             Renderables.Add(new Racket());
+            
+            Log.Send("Game", "Game loaded !", LogType.Success);
         }
 
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
@@ -130,6 +134,7 @@ namespace Breakout_Game.Game{
         }
 
         public static void CallEvent(Event e){ //If an event called ...
+            Log.Send("Game", "EventCalled " + e, LogType.Info);
         }
         
     }
