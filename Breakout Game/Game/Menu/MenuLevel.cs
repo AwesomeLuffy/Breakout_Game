@@ -34,7 +34,7 @@ namespace Breakout_Game.Game.Menu{
                 solidBrush: new SolidBrush(Color.White)));
         }
 
-        public void DrawText(){
+        public void Draw(){
             foreach (var text in this._texts) {
                 text.Draw();
             }
