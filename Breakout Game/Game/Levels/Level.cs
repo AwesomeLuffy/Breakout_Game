@@ -35,12 +35,13 @@ namespace Breakout_Game.Game.Levels{
                             ((j == MaxBrickInARow - 2 || j == 1) ? 3 :
                                 ((j == MaxBrickInARow - 3 || j == 2) ? 2 : 1)))
                         );
-                        if (!this.bricks[i][j].IsInvincible) {
-                            if (new Random().Next(2, 4) == 3) {
-                                this.bricks[i][j].IsSpecial = true;
-                            }
+                        if (this.haveSpecial) {
+                            if (!this.bricks[i][j].IsInvincible) {
+                                if (new Random().Next(2, 4) == 3) {
+                                    this.bricks[i][j].IsSpecial = true;
+                                }
+                            } 
                         }
-
                     }
 
                     originPoint.X += Brick.LenghtBrick + HorizontalGap;
