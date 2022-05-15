@@ -9,7 +9,7 @@ namespace Breakout_Game.Game.Utils
 {
     internal static class Colisions
     {
-        public static Collisions collisions = new Collisions();
+        public static readonly Collisions collisions = new Collisions();
         public static void checkColisions()
         {
             if (Game.ball != null)
