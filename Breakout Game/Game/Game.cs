@@ -21,16 +21,18 @@ using ThreadState = System.Diagnostics.ThreadState;
 
 namespace Breakout_Game.Game{
     internal sealed class Game : GameBase{
-        //TODO Text -> Return BasePosition
+        //TODO Text -> Return BasePosition ET Longueur / Hauteur
         //TODO Sound -> Degât Brique -> Destruction Brique / Rebondis / GameOver / Musique Fond / Victoire 
         //TODO Niveau -> Autant que tu veux
         //TODO Si déter -> SiJeuLancé, SiJeuFinit, etc..
+        //TODO Faire les compteurs
         
         public static Ball ball;
         private static Game _gmInstance = null;
         private readonly GameWindow _gameWindow;
 
         internal static bool IsGamePause = false;
+        internal static bool IsGameStarted = false;
 
         internal static List<IRenderable> Renderables = new List<IRenderable>();
 
@@ -72,7 +74,7 @@ namespace Breakout_Game.Game{
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         private void Update(object sender, EventArgs e){
             UserControl.AnyKeyDown();
-            if (!Game.IsGamePause) {
+            if (!Game.IsGamePause && Game.IsGameStarted) {
                 if (ball.isActivated)
                 {
                     ball.Update();
@@ -105,9 +107,24 @@ namespace Breakout_Game.Game{
                 ball.Draw();
             }
 
-            if (Game.IsGamePause) {
-                MenuManager.ActualMenu.DrawText();
+            switch (MenuManager.ActualMenu) {
+                case MenuStart _:
+                    if (!Game.IsGameStarted) {
+                        MenuManager.ActualMenu.Draw();
+                    }
+                    break;
+                case MenuPause _: {
+                    if (Game.IsGamePause) {
+                        MenuManager.ActualMenu.Draw();
+                    }
+
+                    break;
+                }
+                case MenuLevel _:
+                    MenuManager.ActualMenu.Draw();
+                    break;
             }
+
 
             this._gameWindow.SwapBuffers();
         }
