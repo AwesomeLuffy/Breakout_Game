@@ -66,11 +66,13 @@ namespace Breakout_Game.Game.Levels{
                 Console.WriteLine("Thread Randomizer Change Brick started!");
                 while (actualLvlNumber == Game.ActualLevelNumber) {
                     Thread.Sleep(TimeSleepSpecialBrick);
-                    foreach (var brick in Level.bricks.SelectMany(listBrick => listBrick.Where(brick => brick.IsSpecial))) {
-                        if (new Random().Next(1, 3) == 2) {
-                            if(brick.Level == 3){ continue; }
-                            brick.AddLevel();
-                            Thread.Sleep(TimeSleepSpecialBrick);
+                    if (!Game.IsGamePause && Game.IsGameStarted) {
+                        foreach (var brick in Level.bricks.SelectMany(listBrick => listBrick.Where(brick => brick.IsSpecial))) {
+                            if (new Random().Next(1, 3) == 2) {
+                                if(brick.Level == 3){ continue; }
+                                brick.AddLevel();
+                                Thread.Sleep(TimeSleepSpecialBrick);
+                            }
                         }
                     }
                 }
