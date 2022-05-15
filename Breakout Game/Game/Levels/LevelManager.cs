@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Breakout_Game.Game.Forms;
+using Breakout_Game.Game.Utils;
 
 namespace Breakout_Game.Game.Levels{
     public static class LevelManager{
@@ -35,6 +36,8 @@ namespace Breakout_Game.Game.Levels{
                     break;
             }
             
+            Log.Send("Level", "Level " + actual + " generated", LogType.Info);
+            
         }
 
         //List -> [Column][Row]
@@ -63,7 +66,7 @@ namespace Breakout_Game.Game.Levels{
 
             int actualLvlNumber = Game.ActualLevelNumber;
             new Thread(() => {
-                Console.WriteLine("Thread Randomizer Change Brick started!");
+                Log.Send("LevelManager", "Thread Randomizer Change Brick started!", LogType.Info);
                 while (actualLvlNumber == Game.ActualLevelNumber) {
                     Thread.Sleep(TimeSleepSpecialBrick);
                     if (!Game.IsGamePause && Game.IsGameStarted) {

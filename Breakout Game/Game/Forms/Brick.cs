@@ -144,6 +144,7 @@ namespace Breakout_Game.Game.Forms{
             this.IsInDestruction = true;
             
             new Thread(() => {
+                Log.Send("Brick", "Thread destruction animation started", LogType.Info);
                 lock (this) {
                     foreach (var frame in DestructFrames) {
                         this.ChangeTexture(frame);
