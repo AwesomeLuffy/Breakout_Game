@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Breakout_Game.Game.Utils;
 
 namespace Breakout_Game.Audio{
     public static class AudioManager{
@@ -18,6 +19,7 @@ namespace Breakout_Game.Audio{
                 TestSound,
                 TestNextSound
             };
+            Log.Send("AudioManager", "Audios Loaded !", LogType.Success);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
-﻿namespace Breakout_Game.Game.Menu{
-    public interface IMenu{
-        void DrawText();
+﻿using Breakout_Game.Game.Forms;
+
+namespace Breakout_Game.Game.Menu{
+    internal interface IMenu : IDrawable{
     }
 }

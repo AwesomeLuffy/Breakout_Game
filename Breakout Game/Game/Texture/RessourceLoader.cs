@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Breakout_Game.Game.Utils;
 using OpenTK.Graphics.OpenGL;
 using PixelFormat = OpenTK.Graphics.OpenGL.PixelFormat;
 
@@ -11,10 +12,30 @@ namespace Breakout_Game.Game.Texture{
         
         #endregion
         
+        private static Dictionary<string, int> _ressourceLoaderId = new Dictionary<string, int>();
+        
         internal static int GenId(){
             int text;
             GL.GenTextures(1, out text);//Fill text to the value of the ID
             return text;
+        }
+        
+        internal static int CheckAndLoadTexture(string textureName){
+            int textId;
+            
+            if(!(RessourceLoader._ressourceLoaderId.ContainsKey(textureName))) {
+                textId = RessourceLoader.GenId();
+                RessourceLoader._ressourceLoaderId[textureName] = textId;
+            }
+            else {
+                textId = RessourceLoader._ressourceLoaderId[textureName];
+            }
+            
+            RessourceLoader.LoadTexture(textId, textureName);
+            
+            Log.Send("RessourceLoader", "Ressource " + textureName + " with ID (" + textId + ") loaded !", LogType.Info);
+
+            return textId;
         }
 
         #region Assets
@@ -25,14 +46,16 @@ namespace Breakout_Game.Game.Texture{
         /// <param name="textureId">TextureID getted by GenId() method of this class</param>
         /// <param name="textureName">Texture Name (file.bmp) in assets directory</param>
         internal static void LoadTexture(int textureId, string textureName){
-            
             GL.BindTexture(TextureTarget.Texture2D, textureId);
             BitmapData bdata = LoadImage("../../assets/" + textureName);
+            
+            //Console.WriteLine(textureName);
 
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb,
                 bdata.Width, bdata.Height, 0, PixelFormat.Bgr, PixelType.UnsignedByte, bdata.Scan0);
 
             GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
+            
         }
         
         private static BitmapData LoadImage(string name){

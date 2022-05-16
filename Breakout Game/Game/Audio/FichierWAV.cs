@@ -5,7 +5,7 @@ using System.IO;
 namespace Breakout_Game.Audio{
     internal class FichierWAV{
         #region Attributs
-        string nomFichier;
+        public string nomFichier;
         int nbrCanaux;
         int frequence;
         int nbrBits;

@@ -14,7 +14,7 @@ namespace Breakout_Game.Game.Forms{
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
         
-        public Racket() : base(new Vector2(0, -130)){
+        public Racket() : base(new Vector2(0, -130), textureName: "brick_blue.bmp"){
         }
 
         public override Dictionary<SideObject, List<Vector2>> GetSides(){
@@ -42,9 +42,8 @@ namespace Breakout_Game.Game.Forms{
 
         public override void Update(){ 
             if (horizontalMove + _incrementFactor >= 300.0f - _points[2].X
-                || horizontalMove + _incrementFactor <= -300.0f - _points[3].X)
-            {
-                _incrementFactor *= -1.0f;
+                || horizontalMove + _incrementFactor <= -300.0f - _points[3].X) {
+                return;
             }
             this.horizontalMove += this._incrementFactor;
         }
