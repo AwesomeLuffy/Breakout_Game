@@ -36,6 +36,9 @@ namespace Breakout_Game.Game.Events{
                 bricks.Remove(brickDestroyAnimationFinished.Brick);
             }
             Log.Send("Event", "Brick destroyed", LogType.Info);
+            if (LevelManager.IsLevelFinished()) {
+                //TODO STOP GAME
+            }
         }
     }
 }

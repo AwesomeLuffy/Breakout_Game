@@ -85,6 +85,18 @@ namespace Breakout_Game.Game.Levels{
 
         }
 
+        internal static bool IsLevelFinished(){
+            foreach (List<Brick> bricks in LevelManager.Level.bricks) {
+                foreach (var brick in bricks) {
+                    if (!brick.IsInvincible) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
 
 
     }

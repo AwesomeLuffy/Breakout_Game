@@ -58,9 +58,9 @@ namespace Breakout_Game.Game.Levels{
                 this.bricks.Add(new List<Brick>());
             }
 
-            for (int i = 0; i < this.bricks.Count; i++) {
+            foreach (var t in this.bricks) {
                 for (int j = 0; j < MaxBrickInARow; j++) {
-                    this.bricks[i].Add(defaultBrick);
+                    t.Add(defaultBrick);
                 }
             }
         }
