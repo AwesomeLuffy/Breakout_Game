@@ -47,8 +47,6 @@
     <Compile Include="Game\Audio\Audio.cs" />
     <Compile Include="Game\Audio\AudioManager.cs" />
     <Compile Include="Game\Audio\FichierWAV.cs" />
-    <Compile Include="Game\Commands\CreateText.cs" />
-    <Compile Include="Game\Commands\ICommand.cs" />
     <Compile Include="Game\Events\BrickDamage.cs" />
     <Compile Include="Game\Events\CreateFormEvent.cs" />
     <Compile Include="Game\Events\Event.cs" />
