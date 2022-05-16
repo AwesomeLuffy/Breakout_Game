@@ -85,17 +85,17 @@ namespace Breakout_Game.Game.Text{
             GL.End();
         }
 
-        public object getPosition()
+        public Vector2 getPosition()
         {
-            return points[0];
+            return (Vector2)points[0];
         }
-        public object getWidth()
+        public int getWidth()
         {
-            return _data["width"];
+            return (int)_data["width"];
         }
-        public object getHeight()
+        public int getHeight()
         {
-            return _data["height"];
+            return (int)_data["height"];
         }
     }
 }
