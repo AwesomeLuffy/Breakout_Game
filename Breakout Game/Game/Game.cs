@@ -67,7 +67,7 @@ namespace Breakout_Game.Game{
             TextManager.init();
             new Thread((AudioManager.init)).Start();
             LevelManager.GenerateLevel(ref ActualLevelNumber);
-
+            
             ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
 
             Renderables.Add(new Racket());
@@ -128,8 +128,6 @@ namespace Breakout_Game.Game{
                     MenuManager.ActualMenu.Draw();
                     break;
             }
-
-
             this._gameWindow.SwapBuffers();
         }
 

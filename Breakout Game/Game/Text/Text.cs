@@ -56,7 +56,6 @@ namespace Breakout_Game.Game.Text{
 
         }
         private static List<Vector2> ConstructPosition(Vector2 origin, int width, int height){
-
             List<Vector2> listPoint = new List<Vector2>
             {
                 new Vector2(origin.X, origin.Y),
@@ -65,7 +64,6 @@ namespace Breakout_Game.Game.Text{
                 new Vector2(origin.X, origin.Y + height),
 
             };
-
             return listPoint;
         }
         public void setText(string text){
@@ -85,6 +83,19 @@ namespace Breakout_Game.Game.Text{
             GL.TexCoord2(0.0f, 0.0f);
             GL.Vertex2(points[3].X, points[3].Y);
             GL.End();
+        }
+
+        public object getPosition()
+        {
+            return points[0];
+        }
+        public object getWidth()
+        {
+            return _data["width"];
+        }
+        public object getHeight()
+        {
+            return _data["height"];
         }
     }
 }
