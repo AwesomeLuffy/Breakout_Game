@@ -25,7 +25,9 @@ namespace Breakout_Game.Game.Events{
             if (!(sender is BrickDamage brickDamage)) return;
             if (brickDamage.IsCancelled()) return;
             if (brickDamage.Brick.Level == 0) {
-                brickDamage.Brick.DestructBrickAnimation();
+                if (!brickDamage.Brick.IsInDestruction) {
+                    brickDamage.Brick.DestructBrickAnimation();
+                }
             }
         }
 

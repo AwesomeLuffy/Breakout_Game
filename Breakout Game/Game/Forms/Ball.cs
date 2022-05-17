@@ -82,7 +82,7 @@ namespace Breakout_Game.Game.Forms
             }
             if (verticalMove + verticalIncrement <= -150.0f)
             {
-                isActivated = false;
+                // isActivated = false;
                 Game.BallCounter -= 1;
                 if (Game.BallCounter <= 0)
                 {

@@ -200,6 +200,7 @@ namespace Breakout_Game.Game{
                     break;
                 case Utils.GameAction.Init:
                     Game.IsGameStarted = false;
+                    Game.IsGameInProgress = true;
                     Racket.SetBasePos();
                     ball.setPosition();
                     ball.isActivated = true;

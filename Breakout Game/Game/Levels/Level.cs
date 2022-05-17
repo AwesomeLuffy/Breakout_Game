@@ -45,7 +45,6 @@ namespace Breakout_Game.Game.Levels{
                                 }
                             } 
                         }
-                        Log.Send("DDD", "TTTT", LogType.Warn);
                     }
                     else {
                         this.bricks[i][j] = null;
