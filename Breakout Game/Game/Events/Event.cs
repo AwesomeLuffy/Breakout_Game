@@ -1,7 +1,6 @@
 ﻿using System;
-using Breakout_Game.Game.Events;
 
-namespace Breakout_Game.Game{
+namespace Breakout_Game.Game.Events{
     public abstract class Event{
         protected string EventName = null;
         private bool _isCancelled = false;
