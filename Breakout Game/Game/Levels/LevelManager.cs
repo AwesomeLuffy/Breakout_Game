@@ -7,7 +7,6 @@ using Breakout_Game.Game.Utils;
 
 namespace Breakout_Game.Game.Levels{
     public static class LevelManager{
-        
         /*LEFT/RIGHT/TOP Extremity -> Lvl 4 - Indestructible
          *First LEFT/RIGHT/TOP Extremity -> Lvl 3
          *Second LEFT/RIGHT/TOP Extremity -> Lvl 2
@@ -15,34 +14,31 @@ namespace Breakout_Game.Game.Levels{
          */
 
         private const int TimeSleepSpecialBrick = 20000;
-        
-        private static List<List<bool>> _emplacement = Enumerable.Range(0, Levels.Level.MaxBrickInColumn).Select(i =>
-            Enumerable.Repeat(true, Levels.Level.MaxBrickInARow).ToList()).ToList();
 
-        internal static Level Level{ get; private set; }
+        private static List<List<bool>> _emplacement;
+
+
+        internal static Level Level;
 
         internal static void GenerateLevel(int actual){
             switch (actual) {
                 case 1:
                     GenerateFirstLevel();
-                    return;
-                case 2: 
+                    break;
+                case 2:
                     GenerateSecondLevel();
-                    return;
-                case 3:
-                    GenerateThirdLevel();
                     break;
                 default:
+                    GenerateThirdLevel();
                     break;
             }
-            if(Level.haveSpecial){ RandomChangeBrickLevel(); }
+
+            //if(Level.haveSpecial){ RandomChangeBrickLevel(); }
             Log.Send("Level", "Level " + actual + " generated", LogType.Info);
-            
         }
 
         //List -> [Column][Row]
-        private static void GenerateFirstLevel()
-        {
+        private static void GenerateFirstLevel(){
             // for (int j = 2; j < 4; j++)
             // {
             //     for (int i = 0; i < 9; i++)
@@ -50,6 +46,7 @@ namespace Breakout_Game.Game.Levels{
             //         _emplacement[j][i] = false;
             //     }
             // }
+            InitAllToTrue();
             _emplacement[0][0] = false;
             _emplacement[0][1] = false;
             _emplacement[0][2] = false;
@@ -57,45 +54,39 @@ namespace Breakout_Game.Game.Levels{
             _emplacement[0][5] = false;
             _emplacement[0][6] = false;
             _emplacement[0][7] = false;
-            
-            
-            for (int j = 1; j < 4; j++)
-            {
-                for (int i = 0; i < 9; i++)
-                {
+
+
+            for (int j = 1; j < 4; j++) {
+                for (int i = 0; i < 9; i++) {
                     _emplacement[j][i] = false;
                 }
             }
-            Level = new Level(_emplacement, true);
-            
+            Level = new Level(_emplacement, false);
         }
 
-        private static void GenerateSecondLevel()
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    if ((j == 1 && i > 2 && i < 6) || (j == 2 && i > 1 && i < 7) || j == 3 && i != 0)
-                    {
+        private static void GenerateSecondLevel(){
+            InitAllToTrue();
+            for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < 8; i++) {
+                    if ((j == 1 && i > 2 && i < 6) || (j == 2 && i > 1 && i < 7) || j == 3 && i != 0) {
                         _emplacement[j][i] = false;
                     }
                 }
             }
+
             Level = new Level(_emplacement);
         }
-        
+
         private static void GenerateThirdLevel(){
-            for (int j = 1; j < 3; j++)
-            {
-                for (int i = 2; i < 7; i++)
-                {
-                    if (i != 4)
-                    {
+            InitAllToTrue();
+            for (int j = 1; j < 3; j++) {
+                for (int i = 2; i < 7; i++) {
+                    if (i != 4) {
                         _emplacement[j][i] = false;
                     }
                 }
             }
+
             Level = new Level(_emplacement);
         }
 
@@ -114,26 +105,28 @@ namespace Breakout_Game.Game.Levels{
                 while (actualLvlNumber == Game.ActualLevelNumber) {
                     Thread.Sleep(TimeSleepSpecialBrick);
                     if (!Game.IsGamePause && Game.IsGameStarted) {
-                        foreach (var brick in Level.bricks.SelectMany(listBrick => listBrick.Where(brick => brick.IsSpecial))) {
+                        foreach (var brick in Level.bricks.SelectMany(listBrick =>
+                                     listBrick.Where(brick => brick.IsSpecial))) {
                             if (new Random().Next(1, 3) != 2) continue;
-                            if(brick.Level == 3){ continue; }
+                            if (brick.Level == 3) {
+                                continue;
+                            }
+
                             brick.AddLevel();
                             Thread.Sleep(3000);
                         }
                     }
                 }
             }).Start();
-
         }
 
         internal static bool IsLevelFinished(){
             foreach (List<Brick> bricks in LevelManager.Level.bricks) {
-                foreach (var brick in bricks)
-                {
-                    if (brick == null)
-                    {
-                        return true; 
+                foreach (var brick in bricks) {
+                    if (brick == null) {
+                        return true;
                     }
+
                     if (!(brick!.IsInvincible)) {
                         return false;
                     }
@@ -143,7 +136,9 @@ namespace Breakout_Game.Game.Levels{
             return true;
         }
 
-
-
+        private static void InitAllToTrue(){
+            _emplacement = Enumerable.Range(0, Levels.Level.MaxBrickInColumn).Select(i =>
+                Enumerable.Repeat(true, Levels.Level.MaxBrickInARow).ToList()).ToList();
+        }
     }
 }

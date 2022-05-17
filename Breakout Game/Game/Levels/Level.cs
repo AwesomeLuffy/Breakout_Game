@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Breakout_Game.Game.Forms;
+using Breakout_Game.Game.Utils;
 using OpenTK;
 
 namespace Breakout_Game.Game.Levels{
@@ -17,6 +18,8 @@ namespace Breakout_Game.Game.Levels{
 
         internal int NumberOfBricks{ get; set; }
         internal bool haveSpecial{ get; set; }
+        
+        internal int LevelNumber{ get; set; }
 
 
         internal List<List<Brick>> bricks = new List<List<Brick>>();
@@ -42,6 +45,7 @@ namespace Breakout_Game.Game.Levels{
                                 }
                             } 
                         }
+                        Log.Send("DDD", "TTTT", LogType.Warn);
                     }
                     else {
                         this.bricks[i][j] = null;

@@ -35,7 +35,7 @@ namespace Breakout_Game.Game{
 
         internal static Racket Racket;
 
-        internal static int ActualLevelNumber = 1;
+        internal static int ActualLevelNumber;
         internal static int PointCounter = 0;
         internal static int BallCounter = 3;
 
@@ -108,11 +108,14 @@ namespace Breakout_Game.Game{
             Racket.Draw();
 
             if (Game.IsLevelChoosed) {
-                foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
-                    foreach (Brick brick1 in firstBrick) {
-                        brick1?.Draw();
+                if (LevelManager.Level != null) {
+                    foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
+                        foreach (Brick brick1 in firstBrick) {
+                            brick1?.Draw();
+                        }
                     }
                 }
+
             }
 
             
@@ -189,7 +192,6 @@ namespace Breakout_Game.Game{
                         LevelManager.GenerateLevel(ActualLevelNumber);
                         Game.IsLevelChoosed = true;
                         MenuManager.ChangeMenu("start");
-                        Game.IsGameStarted = false;
                         Game.GameAction(Utils.GameAction.Init);
                     }
                     catch (Exception e) {
