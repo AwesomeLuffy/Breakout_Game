@@ -55,6 +55,7 @@ namespace Breakout_Game.Game{
             this._gameWindow.UpdateFrame += this.Update;
             this._gameWindow.RenderFrame += this.Render;
             this._gameWindow.Resize += base.Resize;
+            this._gameWindow.MouseDown += UserControl.OnMouseDown;
             this._gameWindow.Run(1.0/60.0);
             
             Log.Send("Game", "Game started", LogType.Warn);
@@ -132,7 +133,32 @@ namespace Breakout_Game.Game{
         }
 
         public static void CallEvent(Event e){ //If an event called ...
-            Log.Send("Game", "EventCalled " + e, LogType.Info);
+            Log.Send("Game", "Event Called " + e, LogType.Info);
+        }
+
+        public static void GameAction(GameAction action, object[] parameters = null){
+            switch (action) {
+                case Utils.GameAction.Pause:
+                    Game.IsGamePause = true;
+                    break;
+                case Utils.GameAction.Resume:
+                    Game.IsGamePause = false;
+                    break;
+                case Utils.GameAction.GenerateLevel:
+                    try {
+                        Console.WriteLine((int) parameters[0]);
+                        ActualLevelNumber = (int) parameters[0];
+                        LevelManager.GenerateLevel(ref ActualLevelNumber);
+                    }
+                    catch (Exception e) {
+                        Log.Send("Game", "Error for Action : " + action + "\n " + e, LogType.Error);
+                    }
+                    break;
+                case Utils.GameAction.Quit:
+                    Log.Send("Game", "User quit the game, closing...", LogType.Info);
+                    Environment.Exit(1);
+                    break;
+            }
         }
         
     }
