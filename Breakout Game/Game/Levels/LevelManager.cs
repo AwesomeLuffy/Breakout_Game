@@ -76,7 +76,7 @@ namespace Breakout_Game.Game.Levels{
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    if ((j == 1 && i > 2 && i < 6) || (j == 2 && i > 1 && i < 7) || j == 3)
+                    if ((j == 1 && i > 2 && i < 6) || (j == 2 && i > 1 && i < 7) || j == 3 && i != 0)
                     {
                         _emplacement[j][i] = false;
                     }
