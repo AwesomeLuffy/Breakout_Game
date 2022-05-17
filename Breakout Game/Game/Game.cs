@@ -33,8 +33,9 @@ namespace Breakout_Game.Game{
         internal static bool IsGamePause = false;
         internal static bool IsGameStarted = false;
         internal static bool IsGameInProgress;
-        internal static bool IsGameOVer = false;
+        internal static bool IsGameOver = false;
         internal static bool IsGameWin = false;
+        internal static bool IsLevelChoosed = false;
 
         internal static List<IRenderable> Renderables = new List<IRenderable>();
 
@@ -71,8 +72,7 @@ namespace Breakout_Game.Game{
             
             TextManager.init();
             new Thread((AudioManager.init)).Start();
-            LevelManager.GenerateLevel(ActualLevelNumber);
-            
+
             ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
 
             Renderables.Add(new Racket());
@@ -86,21 +86,20 @@ namespace Breakout_Game.Game{
 
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         private void Update(object sender, EventArgs e){
-            UserControl.AnyKeyDown();
-            if (!Game.IsGamePause && Game.IsGameStarted) {
-                if (IsGameInProgress)
-                {
-                    TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
-                    TextManager.CompteurBall.setText(BallCounter.ToString() + " ball");
-                    if (ball.isActivated)
-                    {
-                        ball.Update();
-                        if (Colisions.checkColisions())
-                        {
-                            AudioManager.BouncSound.play();
+            if (Game.IsLevelChoosed) {
+                UserControl.AnyKeyDown();
+                if (!Game.IsGamePause && Game.IsGameStarted) {
+                    if (IsGameInProgress) {
+                        TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
+                        TextManager.CompteurBall.setText(BallCounter.ToString() + " ball");
+                        if (ball.isActivated) {
+                            ball.Update();
+                            if (Colisions.checkColisions()) {
+                                AudioManager.BouncSound.play();
+                            }
                         }
+                        // vérifier ici si il y a que des bricks de level 4 alors IsGameWin = true
                     }
-                    // vérifier ici si il y a que des bricks de level 4 alors IsGameWin = true
                 }
             }
         }
@@ -121,11 +120,14 @@ namespace Breakout_Game.Game{
                 }
             }
 
-            foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
-                foreach (Brick brick1 in firstBrick) {
-                    brick1?.Draw();
+            if (Game.IsLevelChoosed) {
+                foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
+                    foreach (Brick brick1 in firstBrick) {
+                        brick1?.Draw();
+                    }
                 }
             }
+
             
             if (IsGameInProgress)
             {
@@ -141,7 +143,7 @@ namespace Breakout_Game.Game{
                     IsGameInProgress = false;
                 }
                 
-                if (IsGameOVer)
+                if (IsGameOver)
                 {
                     
                     AudioManager.BackgroundSound.stop();
@@ -164,7 +166,9 @@ namespace Breakout_Game.Game{
                     break;
                 }
                 case MenuLevel _:
-                    MenuManager.ActualMenu.Draw();
+                    if (!Game.IsLevelChoosed) {
+                        MenuManager.ActualMenu.Draw();
+                    }
                     break;
             }
             this._gameWindow.SwapBuffers();
@@ -182,14 +186,38 @@ namespace Breakout_Game.Game{
                 case Utils.GameAction.Resume:
                     Game.IsGamePause = false;
                     break;
+                case Utils.GameAction.Start:
+                    Game.IsGameStarted = true;
+                    break;
+                case Utils.GameAction.Back://Back from a level just generated
+                    if (MenuManager.ActualMenu is MenuStart || MenuManager.ActualMenu is MenuPause) {
+                        Game.IsGameStarted = false;
+                        Game.IsLevelChoosed = false;
+                        MenuManager.ChangeMenu("level");
+                    }
+                    break;
                 case Utils.GameAction.GenerateLevel:
                     try {
                         ActualLevelNumber = (int) parameters[0];
                         LevelManager.GenerateLevel(ActualLevelNumber);
+                        Game.IsLevelChoosed = true;
+                        MenuManager.ChangeMenu("start");
+                        Game.IsGameStarted = false;
+                        Game.GameAction(Utils.GameAction.Init);
                     }
                     catch (Exception e) {
                         Log.Send("Game", "Error for Action : " + action + "\n " + e, LogType.Error);
                     }
+                    break;
+                case Utils.GameAction.Init:
+                    Game.IsGameStarted = false;
+                    foreach (var renderable in Renderables) {
+                        if (renderable is Racket racket) {
+                            racket.SetBasePos();
+                            break;
+                        }
+                    }
+                    //TODO Ball base position
                     break;
                 case Utils.GameAction.Quit:
                     Log.Send("Game", "User quit the game, closing...", LogType.Info);
