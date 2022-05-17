@@ -75,10 +75,12 @@ namespace Breakout_Game.Game.Forms
                 || horizontalMove + horizontalIncrement <= -300.0f - _points[3].X)
             {
                 horizontalIncrement *= -1.0f;
+                AudioManager.BouncSound.play();
             }
             if (verticalMove + verticalIncrement >= 150.0f - _points[3].Y)
             {
                 verticalIncrement *= -1.0f;
+                AudioManager.BouncSound.play();
             }
             if (verticalMove + verticalIncrement <= -150.0f)
             {
@@ -152,7 +154,7 @@ namespace Breakout_Game.Game.Forms
 
         public void setPosition()
         {
-            verticalIncrement = -1.5f;
+            verticalIncrement = 1.5f;
             horizontalIncrement = 0.0f;
             horizontalMove = basePosition.X;
             verticalMove = basePosition.Y;

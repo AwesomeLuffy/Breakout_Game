@@ -40,6 +40,7 @@ namespace Breakout_Game.Game.Levels{
         //List -> [Column][Row]
         private static void GenerateFirstLevel(){
             InitAllToTrue();
+            
 
 
             for (int j = 1; j < 4; j++) {
@@ -47,6 +48,11 @@ namespace Breakout_Game.Game.Levels{
                     _emplacement[j][i] = false;
                 }
             }
+
+            _emplacement[0][8] = true;
+            _emplacement[0][4] = true;
+
+
             Level = new Level(_emplacement, false);
         }
 
@@ -78,6 +84,7 @@ namespace Breakout_Game.Game.Levels{
 
         internal static void NextLevel(ref int actual){
             actual += (actual > -1 && actual < 4) ? 1 : 0;
+            Game.GameAction(GameAction.GenerateLevel, new object[]{Game.ActualLevelNumber});
         }
 
         private static void RandomChangeBrickLevel(){
@@ -122,9 +129,9 @@ namespace Breakout_Game.Game.Levels{
             return true;
         }
 
-        private static void InitAllToTrue(){
+        private static void InitAllToTrue(bool to=true){
             _emplacement = Enumerable.Range(0, Levels.Level.MaxBrickInColumn).Select(i =>
-                Enumerable.Repeat(true, Levels.Level.MaxBrickInARow).ToList()).ToList();
+                Enumerable.Repeat(to, Levels.Level.MaxBrickInARow).ToList()).ToList();
         }
     }
 }

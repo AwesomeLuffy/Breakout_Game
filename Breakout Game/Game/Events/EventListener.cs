@@ -46,8 +46,15 @@ namespace Breakout_Game.Game.Events{
                     Game.BallCounter += 2;
                 }
                 Game.IsGameWin = true;
-                LevelManager.NextLevel(ref Game.ActualLevelNumber);
-                Game.GameAction(GameAction.GenerateLevel, new object[]{Game.ActualLevelNumber});
+                //LevelManager.NextLevel(ref Game.ActualLevelNumber);
+                if (Game.ActualLevelNumber == 3) {
+                    Game.GameAction(GameAction.Back);
+                }
+                else {
+                    LevelManager.NextLevel(ref Game.ActualLevelNumber);
+                }
+                
+                
             }
         }
     }

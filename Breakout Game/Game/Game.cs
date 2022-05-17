@@ -83,6 +83,7 @@ namespace Breakout_Game.Game{
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         private void Update(object sender, EventArgs e){
             if (Game.IsLevelChoosed) {
+                
                 UserControl.AnyKeyDown();
                 TextManager.CompteurNiveau.setText(ActualLevelNumber.ToString() + " lvl");
                 TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
@@ -131,7 +132,7 @@ namespace Breakout_Game.Game{
                 {
                     AudioManager.BackgroundSound.stop();
                     AudioManager.VictorySound.play();
-                    IsGameInProgress = false;
+                    IsGameWin = false;
                 }
                 
                 if (IsGameOver)
@@ -139,6 +140,7 @@ namespace Breakout_Game.Game{
                     AudioManager.BackgroundSound.stop();
                     AudioManager.GameOverSound.play();
                     IsGameInProgress = false;
+                    IsGameOver = false;
                 }
             }
 
@@ -200,6 +202,7 @@ namespace Breakout_Game.Game{
                 case Utils.GameAction.Init:
                     Game.IsGameStarted = false;
                     Game.IsGameInProgress = true;
+                    Game.IsGamePause = false;
                     Racket.SetBasePos();
                     ball.setPosition();
                     ball.isActivated = true;
