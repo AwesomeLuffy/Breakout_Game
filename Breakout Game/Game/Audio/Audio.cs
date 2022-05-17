@@ -57,7 +57,6 @@ namespace Breakout_Game.Audio{
         }
         public void play()
         {
-            Console.WriteLine("yyyyyyyy");
             Log.Send("Audio", this.audioFile.nomFichier + " played", LogType.Info);
             thread = new Thread(() => AL.SourcePlay(this.sourceSound));
             thread.Start();
@@ -66,7 +65,6 @@ namespace Breakout_Game.Audio{
         {
             AL.SourceStop(sourceSound);
             thread.Abort();
-            Console.WriteLine("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         }
         public bool isPlaying()
         {
