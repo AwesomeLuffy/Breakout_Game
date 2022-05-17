@@ -34,7 +34,6 @@ namespace Breakout_Game.Game.Events{
             foreach (var bricks in LevelManager.Level.bricks) {
                 bricks.Remove(brickDestroyAnimationFinished.Brick);
             }
-            Game.PointCounter += 5;
             AudioManager.DestructionSound.play();
             Log.Send("Event", "Brick destroyed", LogType.Info);
             if (LevelManager.IsLevelFinished()) {

@@ -31,9 +31,9 @@ namespace Breakout_Game.Game.Text{
 
             this.textureID = RessourceLoader.GenId(); //Génération de l'ID de la texture pour le texte
 
-            background = (background == Color.Empty) ? Color.LightGray : background;
+            background = (background == Color.Empty) ? Color.FromArgb(216,230,230,230) : background;
             police = (police == null) ? new Font(FontFamily.GenericSansSerif, 11) : police;
-            solidBrush = solidBrush ?? new SolidBrush(Color.Red);
+            solidBrush = solidBrush ?? new SolidBrush(Color.Black);
             PointF position = new PointF(0.0f, 2.0f);
 
             if (_data == null)

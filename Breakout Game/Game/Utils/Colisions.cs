@@ -29,7 +29,10 @@ namespace Breakout_Game.Game.Utils
                                 if (collisions.Intersection(lineBrick.Value, lineBall.Value))
                                 {
                                     brick.RemoveLevel();
-                                    Game.PointCounter += 1;
+                                    if (!brick.IsInvincible)
+                                    {
+                                        Game.PointCounter += 5;
+                                    }
                                     string SideColision;
                                     switch (lineBrick.Key)
                                     {

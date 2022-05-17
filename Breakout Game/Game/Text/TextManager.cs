@@ -28,17 +28,16 @@ namespace Breakout_Game.Game.Text
             "text-2",
             Color.Black
         );
-        public static readonly Text Text3 = new Text(
-            new Vector2(-100, -100),    
-            5,
-            290,
-            "text-3",
-            Color.Black
+        public static readonly Text CompteurPoint = new Text(
+            new Vector2(230, -140),    
+            80,
+            30,
+            (Game.PointCounter.ToString() + " pts")
         );
         public static readonly Text Text4 = new Text(
-            new Vector2(100, -100),    
-            5,
-            290,
+            new Vector2(0, 0),    
+            30,
+            30,
             "text-4",
             Color.Black
         );
@@ -49,7 +48,7 @@ namespace Breakout_Game.Game.Text
             {
                 Text1,
                 Text2,
-                Text3,
+                CompteurPoint,
                 Text4
             };
         }

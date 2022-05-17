@@ -40,6 +40,7 @@ namespace Breakout_Game.Game{
 
         internal static int ActualLevelNumber = 1;
         internal static int PointCounter = 0;
+        internal static int BallCounter = 3;
 
         internal static Game GetInstance (GameWindow gw){
             //?? -> is null
@@ -89,6 +90,7 @@ namespace Breakout_Game.Game{
             if (!Game.IsGamePause && Game.IsGameStarted) {
                 if (IsGameInProgress)
                 {
+                    TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
                     if (ball.isActivated)
                     {
                         ball.Update();
@@ -96,7 +98,7 @@ namespace Breakout_Game.Game{
                         {
                             AudioManager.BouncSound.play();
                         }
-                    } 
+                    }
                     // vérifier ici si il y a que des bricks de level 4 alors IsGameWin = true
                 }
             }
@@ -105,6 +107,8 @@ namespace Breakout_Game.Game{
         private void Render(object sender, EventArgs eventArgs){
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
+            TextManager.CompteurPoint.Draw();
+            
             foreach (IRenderable renderable in Renderables) {
                 renderable.Draw();
             }
@@ -123,7 +127,6 @@ namespace Breakout_Game.Game{
             
             if (IsGameInProgress)
             {
-                
                 if (ball.isActivated)
                 {
                     ball.Draw();
@@ -145,7 +148,6 @@ namespace Breakout_Game.Game{
                     IsGameInProgress = false;
                 }
             }
-            
 
             switch (MenuManager.ActualMenu) {
                 case MenuStart _:
