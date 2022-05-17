@@ -120,9 +120,10 @@ namespace Breakout_Game.Game{
                     brick1?.Draw();
                 }
             }
-
+            
             if (IsGameInProgress)
             {
+                
                 if (ball.isActivated)
                 {
                     ball.Draw();
@@ -131,14 +132,16 @@ namespace Breakout_Game.Game{
                 if (IsGameWin)
                 {
                     AudioManager.BackgroundSound.stop();
-                    AudioManager.BackgroundSound.waitForPlaying(AudioManager.VictorySound);
+                    AudioManager.VictorySound.play();
                     IsGameInProgress = false;
                 }
-
+                
                 if (IsGameOVer)
                 {
+                    
                     AudioManager.BackgroundSound.stop();
-                    AudioManager.BackgroundSound.waitForPlaying(AudioManager.GameOverSound);
+                    AudioManager.GameOverSound.play();
+                    
                     IsGameInProgress = false;
                 }
             }

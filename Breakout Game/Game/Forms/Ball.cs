@@ -79,8 +79,6 @@ namespace Breakout_Game.Game.Forms
             {
                 verticalIncrement *= -1.0f;
             }
-
-            // if (verticalMove + verticalIncrement <= -150.0f - _points[0].Y)
             if (verticalMove + verticalIncrement <= -150.0f)
             {
                 isActivated = false;
