@@ -6,18 +6,22 @@ namespace Breakout_Game.Audio{
     public static class AudioManager{
         private static readonly IList<Audio> Audios;
 
-        public static readonly Audio TestSoundLoop = new Audio("audioTest.wav", true);
-        public static readonly Audio TestSound = new Audio("audio2Test.wav");
-        public static readonly Audio TestNextSound = new Audio("audio3Test.wav");
-
+        // public static readonly Audio BackgroundSound = new Audio("audioTest.wav", true);
+        public static readonly Audio BackgroundSound = new Audio("Background.wav", true);
+        public static readonly Audio DestructionSound = new Audio("Destruction.wav");
+        public static readonly Audio BouncSound = new Audio("Bounce.wav");
+        public static readonly Audio GameOverSound = new Audio("GameOver.wav");
+        public static readonly Audio VictorySound = new Audio("Victory.wav");
 
         static AudioManager()
         {
             Audios = new List<Audio>()
             {
-                TestSoundLoop,
-                TestSound,
-                TestNextSound
+                BackgroundSound,
+                DestructionSound,
+                BouncSound,
+                GameOverSound,
+                VictorySound
             };
             Log.Send("AudioManager", "Audios Loaded !", LogType.Success);
         }
