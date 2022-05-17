@@ -2,32 +2,46 @@
 using System.Collections.Generic;
 using System.Drawing;
 using Breakout_Game.Game.Text;
+using Breakout_Game.Game.Utils;
 using OpenTK;
 
 namespace Breakout_Game.Game.Menu{
     public class MenuPause : IMenu{
 
-        internal List<Text.Text> _texts = new List<Text.Text>();
+        public List<Text.Text> Texts {get; set;}
 
         private const int MenuWidth = 100;
         private const int MenuHeight = 30;
 
         public MenuPause(){
-            this._texts.Add(new Text.Text(MenuManager.StartPoint, 100, 30, "Reprendre", Color.DimGray,
-                solidBrush: new SolidBrush(Color.White)));
-            
-            this._texts.Add(new Text.Text(MenuManager.AddStartPointVerticalGap(MenuManager.StartPoint, 20),
-                100,
-                30,
-                "Quitter",
-                Color.DimGray,
-                solidBrush: new SolidBrush(Color.White)));
+            this.Texts = new List<Text.Text> {
+                new Text.Text(MenuManager.StartPoint, 100, 30, "Reprendre", Color.DimGray,
+                    solidBrush: new SolidBrush(Color.White)),
+                new Text.Text(MenuManager.AddVerticalGap(MenuManager.StartPoint, 20),
+                    100,
+                    30,
+                    "Quitter",
+                    Color.DimGray,
+                    solidBrush: new SolidBrush(Color.White))
+            };
         }
-        
-        
+
+        public void DoAction(int textPosition){
+            switch (textPosition) {
+                case 0 : {
+                    Game.GameAction(GameAction.Resume);
+                    break;
+                }
+                case 1: {
+                    Game.GameAction(GameAction.Quit);
+                    break;
+                }
+            }
+        }
+
 
         public void Draw(){
-            foreach (var text in this._texts) {
+            foreach (var text in this.Texts) {
                 text.Draw();
             }
         }
