@@ -8,6 +8,8 @@ namespace Breakout_Game.Game.Menu{
 
         internal static IMenu ActualMenu = new MenuStart();
 
+        internal static bool IsAnyMenuActive = false;
+
 
         internal static void ChangeMenu(string name = "pause"){
             ActualMenu = name switch {
@@ -18,7 +20,7 @@ namespace Breakout_Game.Game.Menu{
             };
             Log.Send("MenuManager", "Actual Menu changed to " + ActualMenu.ToString(), LogType.Info);
         }
-        internal static Vector2 AddStartPointVerticalGap(Vector2 point, int value){
+        internal static Vector2 AddVerticalGap(Vector2 point, int value){
             return new Vector2(point.X, point.Y - (point.Y + value));
         }
 
