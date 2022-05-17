@@ -34,12 +34,12 @@ namespace Breakout_Game.Game.Text
             30,
             (Game.PointCounter.ToString() + " pts")
         );
-        public static readonly Text Text4 = new Text(
-            new Vector2(0, 0),    
+        public static readonly Text CompteurBall = new Text(
+            new Vector2(230, -110),    
+            80,
             30,
-            30,
-            "text-4",
-            Color.Black
+            Game.BallCounter.ToString() + " ball"
+            
         );
 
         static TextManager()
@@ -49,7 +49,7 @@ namespace Breakout_Game.Game.Text
                 Text1,
                 Text2,
                 CompteurPoint,
-                Text4
+                CompteurBall
             };
         }
         public static void init() { }

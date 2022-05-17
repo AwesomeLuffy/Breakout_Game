@@ -91,6 +91,7 @@ namespace Breakout_Game.Game{
                 if (IsGameInProgress)
                 {
                     TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
+                    TextManager.CompteurBall.setText(BallCounter.ToString() + " ball");
                     if (ball.isActivated)
                     {
                         ball.Update();
@@ -108,6 +109,7 @@ namespace Breakout_Game.Game{
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             TextManager.CompteurPoint.Draw();
+            TextManager.CompteurBall.Draw();
             
             foreach (IRenderable renderable in Renderables) {
                 renderable.Draw();
