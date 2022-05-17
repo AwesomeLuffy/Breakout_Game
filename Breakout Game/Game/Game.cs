@@ -84,17 +84,16 @@ namespace Breakout_Game.Game{
         private void Update(object sender, EventArgs e){
             if (Game.IsLevelChoosed) {
                 UserControl.AnyKeyDown();
+                TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
+                TextManager.CompteurBall.setText(BallCounter.ToString() + " ball");
                 if (!Game.IsGamePause && Game.IsGameStarted) {
                     if (IsGameInProgress) {
-                        TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
-                        TextManager.CompteurBall.setText(BallCounter.ToString() + " ball");
                         if (ball.isActivated) {
                             ball.Update();
                             if (Colisions.checkColisions()) {
                                 AudioManager.BouncSound.play();
                             }
                         }
-                        // vérifier ici si il y a que des bricks de level 4 alors IsGameWin = true
                     }
                 }
             }

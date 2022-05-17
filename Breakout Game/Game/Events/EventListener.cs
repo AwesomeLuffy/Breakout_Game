@@ -36,7 +36,14 @@ namespace Breakout_Game.Game.Events{
             }
             AudioManager.DestructionSound.play();
             Log.Send("Event", "Brick destroyed", LogType.Info);
-            if (LevelManager.IsLevelFinished()) {
+            if (LevelManager.IsLevelFinished())
+            {
+                if (Game.BallCounter >= 1)
+                {
+                    Game.PointCounter += 50;
+                    Game.BallCounter += 2;
+                }
+                Game.IsGameWin = true;
                 LevelManager.NextLevel(ref Game.ActualLevelNumber);
                 Game.GameAction(GameAction.GenerateLevel, new object[]{Game.ActualLevelNumber});
             }
