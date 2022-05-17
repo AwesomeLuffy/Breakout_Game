@@ -10,13 +10,14 @@ namespace Breakout_Game.Game.Forms{
     internal class Racket : Brick{
 
         private float _incrementFactor = 4.0f; //Speed
-        private float horizontalMove = .0f;
+        private float horizontalMove{ get; set; }
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
+        private static readonly Vector2 BasePose = new Vector2(0, -130);
         
-        public Racket() : base(new Vector2(0, -130), textureName: "brick_blue.bmp"){
+        public Racket() : base(BasePose, textureName: "brick_blue.bmp"){
         }
-
+        
         public override Dictionary<SideObject, List<Vector2>> GetSides(){
             Dictionary<SideObject, List<Vector2>> sides = new Dictionary<SideObject, List<Vector2>>();
 
@@ -55,9 +56,9 @@ namespace Breakout_Game.Game.Forms{
             GL.PopMatrix();
         }
 
-        public Direction ImpactDirection(){
-            //TODO
-            return Direction.Left;
+        internal void SetBasePos(){
+            this.horizontalMove = BasePose.X;
         }
+
     }
 }
