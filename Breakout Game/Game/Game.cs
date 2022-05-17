@@ -21,10 +21,6 @@ using ThreadState = System.Diagnostics.ThreadState;
 
 namespace Breakout_Game.Game{
     internal sealed class Game : GameBase{
-        //TODO Sound -> Degât Brique -> Destruction Brique / Rebondis / GameOver / Musique Fond / Victoire 
-        //TODO Niveau -> Autant que tu veux
-        //TODO Si déter -> SiJeuLancé, SiJeuFinit, etc..
-        //TODO Faire les compteurs
         
         public static Ball ball;
         private static Game _gmInstance = null;
@@ -73,10 +69,10 @@ namespace Breakout_Game.Game{
             TextManager.init();
             new Thread((AudioManager.init)).Start();
 
-            ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
+            ball = new Ball();
 
             Racket = new Racket();
-
+            
             IsGameInProgress = true;
             
             AudioManager.BackgroundSound.play();
@@ -204,7 +200,8 @@ namespace Breakout_Game.Game{
                 case Utils.GameAction.Init:
                     Game.IsGameStarted = false;
                     Racket.SetBasePos();
-                    //TODO Ball base position
+                    ball.setPosition();
+                    ball.isActivated = true;
                     break;
                 case Utils.GameAction.Quit:
                     Log.Send("Game", "User quit the game, closing...", LogType.Info);

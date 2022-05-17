@@ -40,6 +40,7 @@ namespace Breakout_Game.Game.UserInterac{
 
         internal static void OnMouseDown(object sender, MouseEventArgs args){
             _mouseEventArgs = args;
+            Console.WriteLine(_mouseEventArgs.X);
             var (xMouse, yMouse) = Utils.Utils.Map(_mouseEventArgs.X, _mouseEventArgs.Y);
             
             if (args.Mouse.IsButtonDown(MouseButton.Left)) {
@@ -48,6 +49,8 @@ namespace Breakout_Game.Game.UserInterac{
                 if (Game.IsGamePause || !Game.IsGameStarted) {
                     int i = 0;
                     foreach (var actualMenuText in MenuManager.ActualMenu.Texts) {
+                        Console.WriteLine(xMouse + "..." +yMouse + ":::" + actualMenuText.getPosition().X + "..." + actualMenuText.getPosition().Y);
+
                         if (Utils.Utils.IsPointIsInRect(
                                 actualMenuText.getPosition(),
                                 actualMenuText.getWidth(),

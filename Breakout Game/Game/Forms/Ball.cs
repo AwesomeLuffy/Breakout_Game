@@ -19,8 +19,9 @@ namespace Breakout_Game.Game.Forms
         private int damageValue = 1;
         private int textureID;
         public bool isActivated;
+        private static Vector2 basePosition = new Vector2(-5.0f, -40.0f);
         #endregion
-        public Ball(Vector2 basePosition, int width, int height, string textureName) :
+        public Ball(int width = 10, int height = 10, string textureName = "ball.bmp") :
             this(
                 points: (new List<Vector2>()
                 {
@@ -29,14 +30,14 @@ namespace Breakout_Game.Game.Forms
                     {new Vector2(basePosition.X + width, basePosition.Y)},
                     {basePosition}
                 }),
-                textureName: textureName){ }
+                textureName: textureName){ this.setPosition(); }
 
         public Ball(List<Vector2> points, string textureName) : base(points, textureName)
         {
-            verticalMove = 0.0f;
-            horizontalMove = 0.0f;
-            verticalIncrement = 1.5f;
-            horizontalIncrement = 0.0f;//1.5
+            // verticalMove = 0.0f;
+            // horizontalMove = 0.0f;
+            verticalIncrement = -1.5f;
+            horizontalIncrement = 0.0f;
             isActivated = true;
 
             textureID = RessourceLoader.GenId();
@@ -87,6 +88,7 @@ namespace Breakout_Game.Game.Forms
                 {
                     Game.IsGameOver = true;
                 }
+                Game.GameAction(GameAction.Init);
             }
 
             horizontalMove += horizontalIncrement;
@@ -147,9 +149,13 @@ namespace Breakout_Game.Game.Forms
                 }
             }
         }
-        public int getDommage()
+
+        public void setPosition()
         {
-            return damageValue;
+            verticalIncrement = -1.5f;
+            horizontalIncrement = 0.0f;
+            horizontalMove = basePosition.X;
+            verticalMove = basePosition.Y;
         }
     }
 }

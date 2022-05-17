@@ -43,7 +43,23 @@ namespace Breakout_Game.Game.Levels{
         //List -> [Column][Row]
         private static void GenerateFirstLevel()
         {
-            for (int j = 2; j < 4; j++)
+            // for (int j = 2; j < 4; j++)
+            // {
+            //     for (int i = 0; i < 9; i++)
+            //     {
+            //         _emplacement[j][i] = false;
+            //     }
+            // }
+            _emplacement[0][0] = false;
+            _emplacement[0][1] = false;
+            _emplacement[0][2] = false;
+            _emplacement[0][3] = false;
+            _emplacement[0][5] = false;
+            _emplacement[0][6] = false;
+            _emplacement[0][7] = false;
+            
+            
+            for (int j = 1; j < 4; j++)
             {
                 for (int i = 0; i < 9; i++)
                 {
@@ -112,8 +128,13 @@ namespace Breakout_Game.Game.Levels{
 
         internal static bool IsLevelFinished(){
             foreach (List<Brick> bricks in LevelManager.Level.bricks) {
-                foreach (var brick in bricks) {
-                    if (!brick.IsInvincible) {
+                foreach (var brick in bricks)
+                {
+                    if (brick == null)
+                    {
+                        return true; 
+                    }
+                    if (!(brick!.IsInvincible)) {
                         return false;
                     }
                 }

@@ -13,9 +13,11 @@ namespace Breakout_Game.Game.Forms{
         private float horizontalMove{ get; set; }
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
-        private static readonly Vector2 BasePose = new Vector2(0, -130);
+        private static readonly Vector2 BasePose = new Vector2(-15, -130);
         
-        public Racket() : base(BasePose, textureName: "brick_blue.bmp"){
+        public Racket() : base(BasePose, textureName: "brick_blue.bmp")
+        {
+            this.horizontalMove = BasePose.X;
         }
         
         public override Dictionary<SideObject, List<Vector2>> GetSides(){
