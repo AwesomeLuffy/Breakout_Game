@@ -22,19 +22,11 @@ namespace Breakout_Game.Game.UserInterac{
 
             if (_keyboardState.IsKeyDown(Key.Right)) {
                 if (Game.IsGamePause) return;
-                foreach (var renderable in Game.Renderables) {
-                    if (renderable is Racket racket) {
-                        racket.SetDirection(Direction.Right).Update();
-                    }
-                }
+                Game.Racket.SetDirection(Direction.Right).Update();
             }
             else if (_keyboardState.IsKeyDown(Key.Left)) {
                 if (Game.IsGamePause) return;
-                foreach (var renderable in Game.Renderables) {
-                    if (renderable is Racket racket) {
-                        racket.SetDirection(Direction.Left).Update();
-                    }
-                }
+                Game.Racket.SetDirection(Direction.Left).Update();
             }
             else if (_keyboardState.IsKeyDown(Key.P) || _keyboardState.IsKeyDown(Key.Escape)) {
                 MenuManager.ChangeMenu();

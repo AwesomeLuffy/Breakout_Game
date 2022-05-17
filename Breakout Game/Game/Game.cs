@@ -37,7 +37,7 @@ namespace Breakout_Game.Game{
         internal static bool IsGameWin = false;
         internal static bool IsLevelChoosed = false;
 
-        internal static List<IRenderable> Renderables = new List<IRenderable>();
+        internal static Racket Racket;
 
         internal static int ActualLevelNumber = 1;
         internal static int PointCounter = 0;
@@ -75,7 +75,7 @@ namespace Breakout_Game.Game{
 
             ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
 
-            Renderables.Add(new Racket());
+            Racket = new Racket();
 
             IsGameInProgress = true;
             
@@ -110,15 +110,7 @@ namespace Breakout_Game.Game{
             TextManager.CompteurPoint.Draw();
             TextManager.CompteurBall.Draw();
             
-            foreach (IRenderable renderable in Renderables) {
-                renderable.Draw();
-            }
-
-            foreach (var renderable in Renderables) {
-                if (renderable is Racket racket) {
-                    var sides = racket.GetSides();
-                }
-            }
+            Racket.Draw();
 
             if (Game.IsLevelChoosed) {
                 foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
@@ -211,12 +203,7 @@ namespace Breakout_Game.Game{
                     break;
                 case Utils.GameAction.Init:
                     Game.IsGameStarted = false;
-                    foreach (var renderable in Renderables) {
-                        if (renderable is Racket racket) {
-                            racket.SetBasePos();
-                            break;
-                        }
-                    }
+                    Racket.SetBasePos();
                     //TODO Ball base position
                     break;
                 case Utils.GameAction.Quit:

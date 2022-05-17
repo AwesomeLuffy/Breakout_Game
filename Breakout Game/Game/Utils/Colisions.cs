@@ -5,37 +5,31 @@ using Breakout_Game.Game.Levels;
 using Breakout_Game.Game.UserInterac;
 using OpenTK;
 
-namespace Breakout_Game.Game.Utils
-{
-    internal static class Colisions
-    {
+namespace Breakout_Game.Game.Utils{
+    internal static class Colisions{
         public static readonly Collisions collisions = new Collisions();
-        public static bool checkColisions()
-        {
-            if (Game.ball != null)
-            {
+
+        public static bool checkColisions(){
+            if (Game.ball != null) {
                 var listLineBall = Game.ball.GetSides();
 
-                foreach (var lineBall in listLineBall)
-                {
+                foreach (var lineBall in listLineBall) {
                     foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
-                        foreach (Brick brick in firstBrick)
-                        {
-                            if(brick == null){ continue; }
-                            
+                        foreach (Brick brick in firstBrick) {
+                            if (brick == null) {
+                                continue;
+                            }
+
                             var listLineBrick = brick.GetSides();
-                            foreach (var lineBrick in listLineBrick)
-                            {
-                                if (collisions.Intersection(lineBrick.Value, lineBall.Value))
-                                {
+                            foreach (var lineBrick in listLineBrick) {
+                                if (collisions.Intersection(lineBrick.Value, lineBall.Value)) {
                                     brick.RemoveLevel();
-                                    if (!brick.IsInvincible)
-                                    {
+                                    if (!brick.IsInvincible) {
                                         Game.PointCounter += 5;
                                     }
+
                                     string SideColision;
-                                    switch (lineBrick.Key)
-                                    {
+                                    switch (lineBrick.Key) {
                                         case SideObject.Bottom:
                                         case SideObject.Top:
                                             SideColision = "Verticale";
@@ -48,6 +42,7 @@ namespace Breakout_Game.Game.Utils
                                             SideColision = "Default";
                                             break;
                                     }
+
                                     Game.ball.invertDirection(SideColision);
                                     return true;
                                 }
@@ -55,27 +50,23 @@ namespace Breakout_Game.Game.Utils
                         }
                     }
 
-                    foreach(var renderable in Game.Renderables){
-                        if(renderable is Racket racket){
-                            var listLineRenderable = racket.GetSides();
-                            foreach (var lineRenderable in listLineRenderable)
-                            {
-                                if (collisions.Intersection(lineRenderable.Value, lineBall.Value)) {
-                                    (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
-                                    if (isKeyDown) {
-                                        Game.ball.angleDirection(direction);
-                                    }
-                                    else
-                                    {
-                                        Game.ball.invertDirection("Default", true);
-                                    }
-                                    return true;
-                                }
+                    var listLineRenderable = Game.Racket.GetSides();
+                    foreach (var lineRenderable in listLineRenderable) {
+                        if (collisions.Intersection(lineRenderable.Value, lineBall.Value)) {
+                            (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
+                            if (isKeyDown) {
+                                Game.ball.angleDirection(direction);
                             }
+                            else {
+                                Game.ball.invertDirection("Default", true);
+                            }
+
+                            return true;
                         }
                     }
                 }
             }
+
             return false;
         }
     }
