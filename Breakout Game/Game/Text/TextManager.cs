@@ -12,21 +12,11 @@ namespace Breakout_Game.Game.Text
     {
         private static IList<Text> Texts;
 
-        public static readonly Text Text1 = new Text(
-                new Vector2(-100, 100),    
-                250,
-                5,
-                "text-1",
-                Color.Black,
-                new Font(FontFamily.GenericSansSerif, 11),
-                new SolidBrush(Color.Yellow)
-            );
-        public static readonly Text Text2 = new Text(
-            new Vector2(-100, -100),    
-            250,
-            5,
-            "text-2",
-            Color.Black
+        public static readonly Text CompteurNiveau = new Text(
+            new Vector2(230, -80),    
+            80,
+            30,
+            (Game.ActualLevelNumber.ToString() + " lvl")
         );
         public static readonly Text CompteurPoint = new Text(
             new Vector2(230, -140),    
@@ -46,8 +36,7 @@ namespace Breakout_Game.Game.Text
         {
             Texts = new List<Text>()
             {
-                Text1,
-                Text2,
+                CompteurNiveau,
                 CompteurPoint,
                 CompteurBall
             };

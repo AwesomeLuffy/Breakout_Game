@@ -84,6 +84,7 @@ namespace Breakout_Game.Game{
         private void Update(object sender, EventArgs e){
             if (Game.IsLevelChoosed) {
                 UserControl.AnyKeyDown();
+                TextManager.CompteurNiveau.setText(ActualLevelNumber.ToString() + " lvl");
                 TextManager.CompteurPoint.setText(PointCounter.ToString() + " pts");
                 TextManager.CompteurBall.setText(BallCounter.ToString() + " ball");
                 if (!Game.IsGamePause && Game.IsGameStarted) {
@@ -102,6 +103,7 @@ namespace Breakout_Game.Game{
         private void Render(object sender, EventArgs eventArgs){
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
+            TextManager.CompteurNiveau.Draw();
             TextManager.CompteurPoint.Draw();
             TextManager.CompteurBall.Draw();
             
@@ -117,7 +119,6 @@ namespace Breakout_Game.Game{
                 }
 
             }
-
             
             if (IsGameInProgress)
             {
@@ -135,10 +136,8 @@ namespace Breakout_Game.Game{
                 
                 if (IsGameOver)
                 {
-                    
                     AudioManager.BackgroundSound.stop();
                     AudioManager.GameOverSound.play();
-                    
                     IsGameInProgress = false;
                 }
             }

@@ -21,7 +21,6 @@ namespace Breakout_Game.Game.Levels{
         
         internal int LevelNumber{ get; set; }
 
-
         internal List<List<Brick>> bricks = new List<List<Brick>>();
         public Level(List<List<bool>> emplacement, bool haveSpecial = false){
             this.InitList();
@@ -49,11 +48,9 @@ namespace Breakout_Game.Game.Levels{
                     else {
                         this.bricks[i][j] = null;
                     }
-
                     originPoint.X += Brick.LenghtBrick + HorizontalGap;
                 }
                 originPoint.X = StartX;
-                
                 originPoint.Y -= Brick.HeightBrick + VerticalGap;
             }
         }
