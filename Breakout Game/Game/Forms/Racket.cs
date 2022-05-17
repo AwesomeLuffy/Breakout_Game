@@ -14,7 +14,7 @@ namespace Breakout_Game.Game.Forms{
         private Direction Direction;
         private static readonly Color DefaultBackground = Color.LightGray;
         
-        public Racket() : base(new Vector2(0, -130), textureName: "brick_blue.bmp"){
+        public Racket() : base(new Vector2(-30, -130), textureName: "brick_blue.bmp"){    
         }
 
         public override Dictionary<SideObject, List<Vector2>> GetSides(){

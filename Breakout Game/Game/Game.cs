@@ -73,7 +73,7 @@ namespace Breakout_Game.Game{
             new Thread((AudioManager.init)).Start();
             LevelManager.GenerateLevel(ActualLevelNumber);
             
-            ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
+            ball = new Ball(new Vector2(-10.0f, -90.0f), 10, 10, "ball.bmp");
 
             Renderables.Add(new Racket());
 

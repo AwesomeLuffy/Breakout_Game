@@ -36,7 +36,7 @@ namespace Breakout_Game.Game.Forms
             verticalMove = 0.0f;
             horizontalMove = 0.0f;
             verticalIncrement = 1.5f;
-            horizontalIncrement = 1.5f;//1.5
+            horizontalIncrement = 0.0f;//1.5
             isActivated = true;
 
             textureID = RessourceLoader.GenId();
