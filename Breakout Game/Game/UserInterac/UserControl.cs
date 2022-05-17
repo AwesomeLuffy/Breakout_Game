@@ -42,7 +42,7 @@ namespace Breakout_Game.Game.UserInterac{
                 System.Threading.Thread.Sleep(300);
             }
             else if (_keyboardState.IsKeyDown(Key.Space)) {
-                Game.IsGameStarted = true;
+                Game.GameAction(GameAction.Start);
             }
         }
 
