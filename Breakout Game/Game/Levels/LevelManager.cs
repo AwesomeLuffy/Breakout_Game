@@ -35,7 +35,7 @@ namespace Breakout_Game.Game.Levels{
                 default:
                     break;
             }
-            
+            if(Level.haveSpecial){ RandomChangeBrickLevel(); }
             Log.Send("Level", "Level " + actual + " generated", LogType.Info);
             
         }
@@ -43,13 +43,11 @@ namespace Breakout_Game.Game.Levels{
         //List -> [Column][Row]
         private static void GenerateFirstLevel(){
             Level = new Level(_emplacement, true);
-            RandomChangeBrickLevel();
             
         }
 
         private static void GenerateSecondLevel()
         {
-            _emplacement[2][3] = false;
             Level = new Level(_emplacement);
         }
         
