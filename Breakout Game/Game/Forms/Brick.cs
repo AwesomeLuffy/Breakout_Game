@@ -106,7 +106,6 @@ namespace Breakout_Game.Game.Forms{
                 };
                 i++;
             }
-            
             return sides;
 
         }

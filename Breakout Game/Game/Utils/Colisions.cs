@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Breakout_Game.Audio;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Levels;
@@ -15,46 +16,45 @@ namespace Breakout_Game.Game.Utils{
                 var listLineBall = Game.ball.GetSides();
 
                 foreach (var lineBall in listLineBall) {
-                    foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
-                        foreach (Brick brick in firstBrick) {
-                            if (brick == null) {
-                                continue;
-                            }
+                    try {
+                        foreach (List<Brick> firstBrick in LevelManager.Level.bricks) {
+                            foreach (Brick brick in firstBrick) {
+                                if (brick == null) {
+                                    continue;
+                                }
 
-                            var listLineBrick = brick.GetSides();
-                            foreach (var lineBrick in listLineBrick) {
-                                if (collisions.Intersection(lineBrick.Value, lineBall.Value)) {
-                                    brick.RemoveLevel();
-                                    if (!brick.IsInvincible) {
-                                        Game.PointCounter += 5;
-                                    }
+                                var listLineBrick = brick.GetSides();
+                                foreach (var lineBrick in listLineBrick) {
+                                    if (collisions.Intersection(lineBall.Value, lineBrick.Value) 
+                                        || collisions.Intersection(lineBrick.Value, lineBall.Value)) {
+                                        brick.RemoveLevel();
+                                        if (!brick.IsInvincible) {
+                                            Game.PointCounter += 5;
+                                        }
+                                        string SideColision;
+                                        switch (lineBrick.Key) {
+                                            case SideObject.Bottom:
+                                            case SideObject.Top:
+                                                SideColision = "Verticale";
+                                                break;
+                                            case SideObject.Left:
+                                            case SideObject.Right:
+                                                SideColision = "Horizontale";
+                                                break;
+                                            default:
+                                                SideColision = "Default";
+                                                break;
+                                        }
 
-                                    string SideColision;
-                                    int gapX = 0;
-                                    int gapY = 0;
-                                    switch (lineBrick.Key) {
-                                        case SideObject.Bottom:
-                                        case SideObject.Top:
-                                            SideColision = "Verticale";
-                                            gapX = 1;
-                                            break;
-                                        case SideObject.Left:
-                                        case SideObject.Right:
-                                            SideColision = "Horizontale";
-                                            gapY = 1;
-                                            break;
-                                        default:
-                                            SideColision = "Default";
-                                            break;
+                                        Game.ball.invertDirection(SideColision);
+                                        return true;
                                     }
-                                    //Patching colision bug
-                                    // Game.ball.horizontalMove -= gapX * Game.ball.horizontalIncrement * 10;
-                                    // Game.ball.verticalMove -= gapY * Game.ball.verticalIncrement * 10;
-                                    Game.ball.invertDirection(SideColision);
-                                    return true;
                                 }
                             }
                         }
+                    }
+                    catch (Exception e) {
+                        return false;
                     }
 
                     var listLineRenderable = Game.Racket.GetSides();

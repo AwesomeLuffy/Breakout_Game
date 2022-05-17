@@ -98,6 +98,7 @@ namespace Breakout_Game.Game.Forms
         }
         public void invertDirection(string typeInversion, bool Gap = false)
         {
+            Console.WriteLine(typeInversion);
             if (typeInversion == "Default")
             {
                 if (horizontalIncrement > 0)
@@ -124,6 +125,7 @@ namespace Breakout_Game.Game.Forms
                 this.horizontalMove += this.horizontalIncrement + 0.8f;
                 this.verticalMove += this.verticalIncrement + 0.8f;
             }
+            Console.WriteLine(this.horizontalIncrement);
         }
 
         public void angleDirection(Direction direction)
