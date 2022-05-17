@@ -12,14 +12,14 @@ namespace Breakout_Game.Game.Menu{
 
         public MenuStart(){
             this.Texts = new List<Text.Text> {
-                new Text.Text(MenuManager.StartPoint, 100, 30, "Commencer", Color.DimGray,
+                new Text.Text(MenuManager.StartPoint, MenuWidth, MenuHeight, "Commencer", Color.DimGray,
                     solidBrush: new SolidBrush(Color.White)),
             };
             
             this.Texts.Add(new Text.Text(
                 MenuManager.AddVerticalGap(MenuManager.StartPoint, this.Texts[0].getHeight() + 20),
-                100,
-                30,
+                MenuWidth,
+                MenuHeight,
                 "Retour",
                 Color.DimGray,
                 solidBrush: new SolidBrush(Color.White)));

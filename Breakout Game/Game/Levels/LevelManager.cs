@@ -33,7 +33,7 @@ namespace Breakout_Game.Game.Levels{
                     break;
             }
 
-            if (Level.haveSpecial) {
+            if (Level.HaveSpecial) {
                 RandomChangeBrickLevel();
             }
 
@@ -52,7 +52,7 @@ namespace Breakout_Game.Game.Levels{
             }
 
 
-            Level = new Level(_emplacement, false);
+            Level = new Level(_emplacement);
         }
 
         private static void GenerateSecondLevel(){
@@ -87,11 +87,11 @@ namespace Breakout_Game.Game.Levels{
         }
 
         private static void RandomChangeBrickLevel(){
-            if (!Level.haveSpecial) {
+            if (!Level.HaveSpecial) {
                 return;
             }
 
-            void updateBrick(){
+            void UpdateBrick(){
                 try {
                     foreach (List<Brick> bricks in Level.bricks) {
                         foreach (Brick brick1 in bricks) {
@@ -128,7 +128,7 @@ namespace Breakout_Game.Game.Levels{
                 while (actualLvlNumber == Game.ActualLevelNumber) {
                     Thread.Sleep(TimeSleepSpecialBrick);
                     if (!Game.IsGamePause && Game.IsGameStarted) {
-                        updateBrick();
+                        UpdateBrick();
                     }
                 }
             }).Start();

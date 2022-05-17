@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using Breakout_Game.Game.Events;
-using Breakout_Game.Game.Levels;
 using Breakout_Game.Game.Texture;
 using Breakout_Game.Game.Utils;
 using OpenTK;
@@ -69,7 +68,7 @@ namespace Breakout_Game.Game.Forms{
                 isSpe: isSpe){
         }
 
-        public Brick(List<Vector2> points, byte level, string texture, bool isSpe) : base(points, texture){
+        private Brick(List<Vector2> points, byte level, string texture, bool isSpe) : base(points, texture){
             this.Level = level;
             this.IsInvincible = (this.Level == 4);
             this.IsSpecial = isSpe;
@@ -147,7 +146,7 @@ namespace Breakout_Game.Game.Forms{
                 lock (this) {
                     foreach (var frame in DestructFrames) {
                         this.ChangeTexture(frame);
-                        System.Threading.Thread.Sleep(200);
+                        Thread.Sleep(200);
                     }
                 }
                 Game.CallEvent(new BrickDestroyAnimationFinished(this));

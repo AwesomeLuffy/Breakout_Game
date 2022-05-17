@@ -17,8 +17,7 @@ namespace Breakout_Game.Game.Events{
             if (!(sender is CreateFormEvent form)) return;
             if (!(form.GetForm() is Brick)) return;
             Brick brick = form.GetForm() as Brick;
-            Log.Send("EventListener", "Brick created !", LogType.Info);
-
+            Log.Send("EventListener", "Brick created ! + " + brick, LogType.Info);
         }
 
         private static void OnBrickDamage(object sender, EventArgs e){

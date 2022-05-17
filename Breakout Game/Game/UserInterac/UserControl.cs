@@ -1,8 +1,4 @@
-﻿using System;
-using Breakout_Game.Game;
-using Breakout_Game.Game.Forms;
-using Breakout_Game.Game.Levels;
-using Breakout_Game.Game.Menu;
+﻿using Breakout_Game.Game.Menu;
 using Breakout_Game.Game.Utils;
 using OpenTK;
 using OpenTK.Input;

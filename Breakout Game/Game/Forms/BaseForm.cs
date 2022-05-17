@@ -13,19 +13,19 @@ namespace Breakout_Game.Game.Forms{
         
 
 
-        private List<Vector2> _coordinates; //Texture
-        protected List<Vector2> _points; //Form Position
+        private readonly List<Vector2> _coordinates; //Texture
+        protected readonly List<Vector2> _points; //Form Position
         private Vector3 _colorRGB;
 
 
-        private int textureId;
+        private int _textureId;
 
         #endregion
 
         protected BaseForm(List<Vector2> points, string textureName){
             if (!(points.Count() <= 4)) return;
             
-            this.textureId = RessourceLoader.CheckAndLoadTexture(textureName);
+            this._textureId = RessourceLoader.CheckAndLoadTexture(textureName);
             
             this._points = points;
 
@@ -58,13 +58,13 @@ namespace Breakout_Game.Game.Forms{
                 Console.WriteLine("This Form is not Editable !");
                 return;
             }
-            this.textureId = RessourceLoader.CheckAndLoadTexture(textureName);
+            this._textureId = RessourceLoader.CheckAndLoadTexture(textureName);
         }
 
         public abstract void Update();
 
         protected void Draw(PrimitiveType type){
-            GL.BindTexture(TextureTarget.Texture2D, this.textureId);
+            GL.BindTexture(TextureTarget.Texture2D, this._textureId);
             GL.Begin(type);
 
             if (type is PrimitiveType.TriangleFan) {

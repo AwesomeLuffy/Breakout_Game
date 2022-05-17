@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Texture;

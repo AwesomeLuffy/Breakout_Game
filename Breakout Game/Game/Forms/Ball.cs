@@ -4,7 +4,6 @@ using Breakout_Game.Audio;
 using Breakout_Game.Game.Texture;
 using Breakout_Game.Game.Utils;
 using OpenTK;
-using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
 namespace Breakout_Game.Game.Forms

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Breakout_Game.Game.Forms;
-using Breakout_Game.Game.Utils;
 using OpenTK;
 
 namespace Breakout_Game.Game.Levels{
@@ -17,14 +15,14 @@ namespace Breakout_Game.Game.Levels{
         private const float StartY = 120;
 
         internal int NumberOfBricks{ get; set; }
-        internal bool haveSpecial{ get; set; }
+        internal bool HaveSpecial{ get; set; }
         
         internal int LevelNumber{ get; set; }
 
         internal List<List<Brick>> bricks = new List<List<Brick>>();
         public Level(List<List<bool>> emplacement, bool haveSpecial = false){
             this.InitList();
-            this.haveSpecial = haveSpecial;
+            this.HaveSpecial = haveSpecial;
             
             Vector2 originPoint = new Vector2(StartX, StartY);
             for (int i = 0; i < emplacement.Count; i++) {
@@ -37,7 +35,7 @@ namespace Breakout_Game.Game.Levels{
                             ((j == MaxBrickInARow - 2 || j == 1) ? 3 :
                                 ((j == MaxBrickInARow - 3 || j == 2) ? 2 : 1)))
                         );
-                        if (this.haveSpecial) {
+                        if (this.HaveSpecial) {
                             if (!this.bricks[i][j].IsInvincible) {
                                 if (new Random().Next(2, 4) == 3) {
                                     this.bricks[i][j].IsSpecial = true;

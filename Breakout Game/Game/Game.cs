@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Net;
@@ -22,7 +23,7 @@ using ThreadState = System.Diagnostics.ThreadState;
 namespace Breakout_Game.Game{
     internal sealed class Game : GameBase{
         
-        public static Ball ball;
+        public static Ball Ball;
         private static Game _gmInstance = null;
         private readonly GameWindow _gameWindow;
 
@@ -69,7 +70,7 @@ namespace Breakout_Game.Game{
             TextManager.init();
             new Thread((AudioManager.init)).Start();
 
-            ball = new Ball();
+            Ball = new Ball();
 
             Racket = new Racket();
             
@@ -90,8 +91,8 @@ namespace Breakout_Game.Game{
                 TextManager.CompteurBall.setText(BallCounter.ToString() + " ball");
                 if (!Game.IsGamePause && Game.IsGameStarted) {
                     if (IsGameInProgress) {
-                        if (ball.isActivated) {
-                            ball.Update();
+                        if (Ball.isActivated) {
+                            Ball.Update();
                             if (Colisions.checkColisions()) {
                                 AudioManager.BouncSound.play();
                             }
@@ -123,9 +124,9 @@ namespace Breakout_Game.Game{
             
             if (IsGameInProgress)
             {
-                if (ball.isActivated)
+                if (Ball.isActivated)
                 {
-                    ball.Draw();
+                    Ball.Draw();
                 }
 
                 if (IsGameWin)
@@ -189,6 +190,7 @@ namespace Breakout_Game.Game{
                     break;
                 case Utils.GameAction.GenerateLevel:
                     try {
+                        Debug.Assert(parameters != null, nameof(parameters) + " != null");
                         ActualLevelNumber = (int) parameters[0];
                         LevelManager.GenerateLevel(ActualLevelNumber);
                         Game.IsLevelChoosed = true;
@@ -204,8 +206,8 @@ namespace Breakout_Game.Game{
                     Game.IsGameInProgress = true;
                     Game.IsGamePause = false;
                     Racket.SetBasePos();
-                    ball.setPosition();
-                    ball.isActivated = true;
+                    Ball.setPosition();
+                    Ball.isActivated = true;
                     break;
                 case Utils.GameAction.Quit:
                     Log.Send("Game", "User quit the game, closing...", LogType.Info);

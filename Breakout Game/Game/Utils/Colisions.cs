@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using Breakout_Game.Audio;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Levels;
 using Breakout_Game.Game.UserInterac;
-using OpenTK;
 
 namespace Breakout_Game.Game.Utils{
     internal static class Colisions{
         public static readonly Collisions collisions = new Collisions();
 
         public static bool checkColisions(){
-            if (Game.ball != null) {
-                var listLineBall = Game.ball.GetSides();
+            if (Game.Ball != null) {
+                var listLineBall = Game.Ball.GetSides();
 
                 foreach (var lineBall in listLineBall) {
                     try {
@@ -46,7 +43,7 @@ namespace Breakout_Game.Game.Utils{
                                                 break;
                                         }
 
-                                        Game.ball.invertDirection(SideColision);
+                                        Game.Ball.invertDirection(SideColision);
                                         return true;
                                     }
                                 }
@@ -62,10 +59,10 @@ namespace Breakout_Game.Game.Utils{
                         if (collisions.Intersection(lineRenderable.Value, lineBall.Value)) {
                             (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
                             if (isKeyDown) {
-                                Game.ball.angleDirection(direction);
+                                Game.Ball.angleDirection(direction);
                             }
                             else {
-                                Game.ball.invertDirection("Default", true);
+                                Game.Ball.invertDirection("Default", true);
                             }
 
                             return true;

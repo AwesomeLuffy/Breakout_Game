@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using Breakout_Game.Game.Text;
 using Breakout_Game.Game.Utils;
-using OpenTK;
 
 namespace Breakout_Game.Game.Menu{
     public class MenuPause : IMenu{
@@ -17,16 +14,16 @@ namespace Breakout_Game.Game.Menu{
             this.Texts = new List<Text.Text> {
                 new Text.Text(
                     MenuManager.StartPoint,
-                    100,
-                    30,
+                    MenuWidth,
+                    MenuHeight,
                     "Reprendre",
                     Color.DimGray,
                     solidBrush: new SolidBrush(Color.White)),
             };
             this.Texts.Add(new Text.Text(
                 MenuManager.AddVerticalGap(MenuManager.StartPoint, this.Texts[0].getHeight() + 20),
-                100,
-                30,
+                MenuWidth,
+                MenuHeight,
                 "Retour",
                 Color.DimGray,
                 solidBrush: new SolidBrush(Color.White)));

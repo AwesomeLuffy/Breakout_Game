@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using Breakout_Game.Game.Utils;
-using OpenTK;
 
 namespace Breakout_Game.Game.Menu{
     public class MenuLevel: IMenu{
