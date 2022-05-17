@@ -17,6 +17,8 @@ namespace Breakout_Game.Audio{
         private bool isLoop;
 
         private float volume;
+        
+        private Thread thread;
         #endregion
 
         public Audio(string path, bool isLooping = false) {
@@ -55,12 +57,16 @@ namespace Breakout_Game.Audio{
         }
         public void play()
         {
+            Console.WriteLine("yyyyyyyy");
             Log.Send("Audio", this.audioFile.nomFichier + " played", LogType.Info);
-            new Thread(() => AL.SourcePlay(this.sourceSound)).Start();
+            thread = new Thread(() => AL.SourcePlay(this.sourceSound));
+            thread.Start();
         }
         public void stop()
         {
             AL.SourceStop(sourceSound);
+            thread.Abort();
+            Console.WriteLine("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         }
         public bool isPlaying()
         {
