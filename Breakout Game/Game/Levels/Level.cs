@@ -43,6 +43,9 @@ namespace Breakout_Game.Game.Levels{
                             } 
                         }
                     }
+                    else {
+                        this.bricks[i][j] = null;
+                    }
 
                     originPoint.X += Brick.LenghtBrick + HorizontalGap;
                 }
