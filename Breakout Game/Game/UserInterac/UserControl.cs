@@ -39,7 +39,7 @@ namespace Breakout_Game.Game.UserInterac{
             else if (_keyboardState.IsKeyDown(Key.P) || _keyboardState.IsKeyDown(Key.Escape)) {
                 MenuManager.ChangeMenu();
                 Game.IsGamePause = (!Game.IsGamePause);
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(300);
             }
             else if (_keyboardState.IsKeyDown(Key.Space)) {
                 Game.IsGameStarted = true;

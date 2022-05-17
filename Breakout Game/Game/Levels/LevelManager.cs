@@ -14,14 +14,14 @@ namespace Breakout_Game.Game.Levels{
          *Else -> Lvl 1
          */
 
-        private const int TimeSleepSpecialBrick = 3000;
+        private const int TimeSleepSpecialBrick = 20000;
         
         private static List<List<bool>> _emplacement = Enumerable.Range(0, Levels.Level.MaxBrickInColumn).Select(i =>
             Enumerable.Repeat(true, Levels.Level.MaxBrickInARow).ToList()).ToList();
 
         internal static Level Level{ get; private set; }
 
-        internal static void GenerateLevel(ref int actual){
+        internal static void GenerateLevel(int actual){
             switch (actual) {
                 case 1:
                     GenerateFirstLevel();
@@ -55,11 +55,11 @@ namespace Breakout_Game.Game.Levels{
             Level = new Level(_emplacement);
         }
 
-        private static void NextLevel(ref int actual){
+        internal static void NextLevel(ref int actual){
             actual += (actual > -1 && actual < 4) ? 1 : 0;
         }
 
-        internal static void RandomChangeBrickLevel(){
+        private static void RandomChangeBrickLevel(){
             if (!Level.haveSpecial) {
                 return;
             }
@@ -71,11 +71,10 @@ namespace Breakout_Game.Game.Levels{
                     Thread.Sleep(TimeSleepSpecialBrick);
                     if (!Game.IsGamePause && Game.IsGameStarted) {
                         foreach (var brick in Level.bricks.SelectMany(listBrick => listBrick.Where(brick => brick.IsSpecial))) {
-                            if (new Random().Next(1, 3) == 2) {
-                                if(brick.Level == 3){ continue; }
-                                brick.AddLevel();
-                                Thread.Sleep(TimeSleepSpecialBrick);
-                            }
+                            if (new Random().Next(1, 3) != 2) continue;
+                            if(brick.Level == 3){ continue; }
+                            brick.AddLevel();
+                            Thread.Sleep(3000);
                         }
                     }
                 }

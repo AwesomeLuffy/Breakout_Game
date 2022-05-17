@@ -17,9 +17,7 @@ namespace Breakout_Game.Game.Events{
             if (!(sender is CreateFormEvent form)) return;
             if (!(form.GetForm() is Brick)) return;
             Brick brick = form.GetForm() as Brick;
-            if (brick != null) {
-
-            }
+            Log.Send("EventListener", "Brick created !", LogType.Info);
 
         }
 
@@ -40,7 +38,8 @@ namespace Breakout_Game.Game.Events{
             AudioManager.DestructionSound.play();
             Log.Send("Event", "Brick destroyed", LogType.Info);
             if (LevelManager.IsLevelFinished()) {
-                //TODO STOP GAME
+                LevelManager.NextLevel(ref Game.ActualLevelNumber);
+                Game.GameAction(GameAction.GenerateLevel, new object[]{Game.ActualLevelNumber});
             }
         }
     }

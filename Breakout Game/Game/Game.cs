@@ -56,9 +56,9 @@ namespace Breakout_Game.Game{
             this._gameWindow.RenderFrame += this.Render;
             this._gameWindow.Resize += base.Resize;
             this._gameWindow.MouseDown += UserControl.OnMouseDown;
+            Log.Send("Game", "Game started", LogType.Warn);
             this._gameWindow.Run(1.0/60.0);
             
-            Log.Send("Game", "Game started", LogType.Warn);
         }
 
         private void Load(object sender, EventArgs e){
@@ -67,7 +67,7 @@ namespace Breakout_Game.Game{
             
             TextManager.init();
             new Thread((AudioManager.init)).Start();
-            LevelManager.GenerateLevel(ref ActualLevelNumber);
+            LevelManager.GenerateLevel(ActualLevelNumber);
             
             ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
 
@@ -146,9 +146,8 @@ namespace Breakout_Game.Game{
                     break;
                 case Utils.GameAction.GenerateLevel:
                     try {
-                        Console.WriteLine((int) parameters[0]);
                         ActualLevelNumber = (int) parameters[0];
-                        LevelManager.GenerateLevel(ref ActualLevelNumber);
+                        LevelManager.GenerateLevel(ActualLevelNumber);
                     }
                     catch (Exception e) {
                         Log.Send("Game", "Error for Action : " + action + "\n " + e, LogType.Error);
