@@ -90,17 +90,30 @@ namespace Breakout_Game.Game.Forms
             horizontalMove += horizontalIncrement;
             verticalMove += verticalIncrement;
         }
-        public void invertDirection(bool Gap = false)
+        public void invertDirection(string typeInversion, bool Gap = false)
         {
-            if (horizontalIncrement > 0)
+            if (typeInversion == "Default")
             {
-                horizontalIncrement = 1.5f;
+                if (horizontalIncrement > 0)
+                {
+                    horizontalIncrement = 1.5f;
+                }
+                else
+                {
+                    horizontalIncrement = -1.5f;
+                }
+                verticalIncrement *= -1.0f;
             }
-            else
+            else if (typeInversion == "Verticale")
             {
-                horizontalIncrement = -1.5f;
+                verticalIncrement *= -1.0f;
             }
-            verticalIncrement *= -1.0f;
+            else if (typeInversion == "Horizontale")
+            {
+                horizontalIncrement *= -1.0f;
+            }
+            
+            
             if (Gap) {
                 this.horizontalMove += this.horizontalIncrement + 0.8f;
                 this.verticalMove += this.verticalIncrement + 0.8f;

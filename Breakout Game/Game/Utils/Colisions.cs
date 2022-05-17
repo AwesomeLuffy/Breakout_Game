@@ -30,7 +30,22 @@ namespace Breakout_Game.Game.Utils
                                 {
                                     brick.RemoveLevel();
                                     Game.PointCounter += 1;
-                                    Game.ball.invertDirection();
+                                    string SideColision;
+                                    switch (lineBrick.Key)
+                                    {
+                                        case SideObject.Bottom:
+                                        case SideObject.Top:
+                                            SideColision = "Verticale";
+                                            break;
+                                        case SideObject.Left:
+                                        case SideObject.Right:
+                                            SideColision = "Horizontale";
+                                            break;
+                                        default:
+                                            SideColision = "Default";
+                                            break;
+                                    }
+                                    Game.ball.invertDirection(SideColision);
                                     return true;
                                 }
                             }
@@ -49,7 +64,7 @@ namespace Breakout_Game.Game.Utils
                                     }
                                     else
                                     {
-                                        Game.ball.invertDirection(true);
+                                        Game.ball.invertDirection("Default", true);
                                     }
                                     return true;
                                 }
