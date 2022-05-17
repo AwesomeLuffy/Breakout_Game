@@ -41,17 +41,45 @@ namespace Breakout_Game.Game.Levels{
         }
 
         //List -> [Column][Row]
-        private static void GenerateFirstLevel(){
+        private static void GenerateFirstLevel()
+        {
+            for (int j = 2; j < 4; j++)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    _emplacement[j][i] = false;
+                }
+            }
             Level = new Level(_emplacement, true);
             
         }
 
         private static void GenerateSecondLevel()
         {
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    if ((j == 1 && i > 2 && i < 6) || (j == 2 && i > 1 && i < 7) || j == 3)
+                    {
+                        _emplacement[j][i] = false;
+                    }
+                }
+            }
             Level = new Level(_emplacement);
         }
         
         private static void GenerateThirdLevel(){
+            for (int j = 1; j < 3; j++)
+            {
+                for (int i = 2; i < 7; i++)
+                {
+                    if (i != 4)
+                    {
+                        _emplacement[j][i] = false;
+                    }
+                }
+            }
             Level = new Level(_emplacement);
         }
 
