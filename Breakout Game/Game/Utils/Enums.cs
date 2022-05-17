@@ -10,7 +10,7 @@
     }
 
     public enum GameAction{
-        Pause, Resume
+        Pause, Resume, GenerateLevel, Quit
     }
     
 }
