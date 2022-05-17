@@ -85,7 +85,7 @@ namespace Breakout_Game.Game.Forms
                 Game.BallCounter -= 1;
                 if (Game.BallCounter <= 0)
                 {
-                    Game.IsGameOVer = true;
+                    Game.IsGameOver = true;
                 }
             }
 
