@@ -21,7 +21,6 @@ using ThreadState = System.Diagnostics.ThreadState;
 
 namespace Breakout_Game.Game{
     internal sealed class Game : GameBase{
-        //TODO Text -> Return BasePosition ET Longueur / Hauteur
         //TODO Sound -> Degât Brique -> Destruction Brique / Rebondis / GameOver / Musique Fond / Victoire 
         //TODO Niveau -> Autant que tu veux
         //TODO Si déter -> SiJeuLancé, SiJeuFinit, etc..
@@ -33,10 +32,14 @@ namespace Breakout_Game.Game{
 
         internal static bool IsGamePause = false;
         internal static bool IsGameStarted = false;
+        internal static bool IsGameInProgress;
+        internal static bool IsGameOVer = false;
+        internal static bool IsGameWin = false;
 
         internal static List<IRenderable> Renderables = new List<IRenderable>();
 
         internal static int ActualLevelNumber = 1;
+        internal static int PointCounter = 0;
 
         internal static Game GetInstance (GameWindow gw){
             //?? -> is null
@@ -72,6 +75,10 @@ namespace Breakout_Game.Game{
             ball = new Ball(new Vector2(40.0f, -40.0f), 10, 10, "ball.bmp");
 
             Renderables.Add(new Racket());
+
+            IsGameInProgress = true;
+            
+            AudioManager.BackgroundSound.play();
             
             Log.Send("Game", "Game loaded !", LogType.Success);
         }
@@ -80,11 +87,18 @@ namespace Breakout_Game.Game{
         private void Update(object sender, EventArgs e){
             UserControl.AnyKeyDown();
             if (!Game.IsGamePause && Game.IsGameStarted) {
-                if (ball.isActivated)
+                if (IsGameInProgress)
                 {
-                    ball.Update();
+                    if (ball.isActivated)
+                    {
+                        ball.Update();
+                        if (Colisions.checkColisions())
+                        {
+                            AudioManager.BouncSound.play();
+                        }
+                    } 
+                    // vérifier ici si il y a que des bricks de level 4 alors IsGameWin = true
                 }
-                Colisions.checkColisions();
             }
         }
 
@@ -107,10 +121,28 @@ namespace Breakout_Game.Game{
                 }
             }
 
-            if (ball.isActivated)
+            if (IsGameInProgress)
             {
-                ball.Draw();
+                if (ball.isActivated)
+                {
+                    ball.Draw();
+                }
+
+                if (IsGameWin)
+                {
+                    AudioManager.BackgroundSound.stop();
+                    AudioManager.BackgroundSound.waitForPlaying(AudioManager.VictorySound);
+                    IsGameInProgress = false;
+                }
+
+                if (IsGameOVer)
+                {
+                    AudioManager.BackgroundSound.stop();
+                    AudioManager.BackgroundSound.waitForPlaying(AudioManager.GameOverSound);
+                    IsGameInProgress = false;
+                }
             }
+            
 
             switch (MenuManager.ActualMenu) {
                 case MenuStart _:
@@ -122,7 +154,6 @@ namespace Breakout_Game.Game{
                     if (Game.IsGamePause) {
                         MenuManager.ActualMenu.Draw();
                     }
-
                     break;
                 }
                 case MenuLevel _:
@@ -159,6 +190,5 @@ namespace Breakout_Game.Game{
                     break;
             }
         }
-        
     }
 }

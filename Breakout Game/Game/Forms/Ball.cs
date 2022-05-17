@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Breakout_Game.Audio;
 using Breakout_Game.Game.Texture;
 using Breakout_Game.Game.Utils;
 using OpenTK;
@@ -79,9 +80,11 @@ namespace Breakout_Game.Game.Forms
                 verticalIncrement *= -1.0f;
             }
 
-            if (verticalMove + verticalIncrement <= -150.0f - _points[0].Y)
+            // if (verticalMove + verticalIncrement <= -150.0f - _points[0].Y)
+            if (verticalMove + verticalIncrement <= -150.0f)
             {
                 isActivated = false;
+                Game.IsGameOVer = true;
             }
 
             horizontalMove += horizontalIncrement;
