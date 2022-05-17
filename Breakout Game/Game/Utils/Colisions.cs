@@ -10,7 +10,7 @@ namespace Breakout_Game.Game.Utils
     internal static class Colisions
     {
         public static readonly Collisions collisions = new Collisions();
-        public static void checkColisions()
+        public static bool checkColisions()
         {
             if (Game.ball != null)
             {
@@ -29,8 +29,9 @@ namespace Breakout_Game.Game.Utils
                                 if (collisions.Intersection(lineBrick.Value, lineBall.Value))
                                 {
                                     brick.RemoveLevel();
+                                    Game.PointCounter += 1;
                                     Game.ball.invertDirection();
-                                    return;
+                                    return true;
                                 }
                             }
                         }
@@ -50,13 +51,14 @@ namespace Breakout_Game.Game.Utils
                                     {
                                         Game.ball.invertDirection(true);
                                     }
-                                    return;
+                                    return true;
                                 }
                             }
                         }
                     }
                 }
             }
+            return false;
         }
     }
 }
