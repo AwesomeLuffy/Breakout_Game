@@ -4,9 +4,9 @@ using OpenTK;
 namespace Breakout_Game.Game.Menu{
     public static class MenuManager{
         
-        internal static readonly Vector2 StartPoint = new Vector2(-80, 40);
+        internal static readonly Vector2 StartPoint = new Vector2(-60, 80);
 
-        internal static IMenu ActualMenu = new MenuStart();
+        internal static IMenu ActualMenu = new MenuLevel();
 
         internal static bool IsAnyMenuActive = false;
 
@@ -18,10 +18,10 @@ namespace Breakout_Game.Game.Menu{
                 "level" => new MenuLevel(),
                 _ => ActualMenu
             };
-            Log.Send("MenuManager", "Actual Menu changed to " + ActualMenu.ToString(), LogType.Info);
+            Log.Send("MenuManager", "Actual Menu changed to " + ActualMenu, LogType.Info);
         }
         internal static Vector2 AddVerticalGap(Vector2 point, int value){
-            return new Vector2(point.X, point.Y - (point.Y + value));
+            return new Vector2(point.X, point.Y - value);
         }
 
     }

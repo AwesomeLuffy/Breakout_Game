@@ -15,26 +15,32 @@ namespace Breakout_Game.Game.Menu{
 
         public MenuPause(){
             this.Texts = new List<Text.Text> {
-                new Text.Text(MenuManager.StartPoint, 100, 30, "Reprendre", Color.DimGray,
-                    solidBrush: new SolidBrush(Color.White)),
-                new Text.Text(MenuManager.AddVerticalGap(MenuManager.StartPoint, 20),
+                new Text.Text(
+                    MenuManager.StartPoint,
                     100,
                     30,
-                    "Quitter",
+                    "Reprendre",
                     Color.DimGray,
-                    solidBrush: new SolidBrush(Color.White))
+                    solidBrush: new SolidBrush(Color.White)),
             };
+            this.Texts.Add(new Text.Text(
+                MenuManager.AddVerticalGap(MenuManager.StartPoint, this.Texts[0].getHeight() + 20),
+                100,
+                30,
+                "Retour",
+                Color.DimGray,
+                solidBrush: new SolidBrush(Color.White)));
         }
 
         public void DoAction(int textPosition){
             switch (textPosition) {
                 case 0 : {
                     Game.GameAction(GameAction.Resume);
-                    break;
+                    return;
                 }
                 case 1: {
-                    Game.GameAction(GameAction.Quit);
-                    break;
+                    Game.GameAction(GameAction.Back);
+                    return;
                 }
             }
         }

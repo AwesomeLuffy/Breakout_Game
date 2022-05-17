@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using Breakout_Game.Game.Utils;
 
 namespace Breakout_Game.Game.Menu{
     public class MenuStart : IMenu{
@@ -13,16 +14,27 @@ namespace Breakout_Game.Game.Menu{
             this.Texts = new List<Text.Text> {
                 new Text.Text(MenuManager.StartPoint, 100, 30, "Commencer", Color.DimGray,
                     solidBrush: new SolidBrush(Color.White)),
-                new Text.Text(MenuManager.AddVerticalGap(MenuManager.StartPoint, 20),
-                    100,
-                    30,
-                    "Quitter",
-                    Color.DimGray,
-                    solidBrush: new SolidBrush(Color.White))
             };
+            
+            this.Texts.Add(new Text.Text(
+                MenuManager.AddVerticalGap(MenuManager.StartPoint, this.Texts[0].getHeight() + 20),
+                100,
+                30,
+                "Retour",
+                Color.DimGray,
+                solidBrush: new SolidBrush(Color.White)));
         }
-        
-        public void DoAction(int textPosition){}
+
+        public void DoAction(int textPosition){
+            switch (textPosition) {
+                case 0:
+                    Game.GameAction(GameAction.Start);
+                    return;
+                case 1:
+                    Game.GameAction(GameAction.Back);
+                    return;
+            }
+        }
 
         public void Draw(){
             foreach (var text in this.Texts) {

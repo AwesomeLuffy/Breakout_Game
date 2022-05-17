@@ -19,19 +19,30 @@ namespace Breakout_Game.Game.Menu{
                     "Niveau 1",
                     Color.DimGray,
                     solidBrush: new SolidBrush(Color.White)),
-                new Text.Text(MenuManager.AddVerticalGap(MenuManager.StartPoint, 20),
-                    MenuWidth,
-                    MenuHeight,
-                    "Niveau 2",
-                    Color.DimGray,
-                    solidBrush: new SolidBrush(Color.White))
-            };
 
+            };
+            this.Texts.Add(new Text.Text(MenuManager.AddVerticalGap(
+                    this.Texts[0].getPosition(), this.Texts[0].getHeight() + 20),
+                MenuWidth,
+                MenuHeight,
+                "Niveau 2",
+                Color.DimGray,
+                solidBrush: new SolidBrush(Color.White)));
+            
             this.Texts.Add(new Text.Text(
-                MenuManager.AddVerticalGap(this.Texts[1].getPosition(), this.Texts[1].getHeight() * 2 + 20),
+                MenuManager.AddVerticalGap(this.Texts[1].getPosition(), this.Texts[1].getHeight() + 20),
                 MenuWidth,
                 MenuHeight,
                 "Niveau 3",
+                Color.DimGray,
+                solidBrush: new SolidBrush(Color.White))
+            );
+            
+            this.Texts.Add(new Text.Text(
+                MenuManager.AddVerticalGap(this.Texts[2].getPosition(), this.Texts[2].getHeight() + 20),
+                MenuWidth,
+                MenuHeight,
+                "Quitter",
                 Color.DimGray,
                 solidBrush: new SolidBrush(Color.White))
             );
@@ -49,6 +60,10 @@ namespace Breakout_Game.Game.Menu{
                 }
                 case 2: {
                     Game.GameAction(GameAction.GenerateLevel, new object[]{3});
+                    return;
+                }
+                case 3: {
+                    Game.GameAction(GameAction.Quit);
                     return;
                 }
             }
