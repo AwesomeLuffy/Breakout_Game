@@ -33,27 +33,13 @@ namespace Breakout_Game.Game.Levels{
                     break;
             }
 
-            //if(Level.haveSpecial){ RandomChangeBrickLevel(); }
+            if(Level.haveSpecial){ RandomChangeBrickLevel(); }
             Log.Send("Level", "Level " + actual + " generated", LogType.Info);
         }
 
         //List -> [Column][Row]
         private static void GenerateFirstLevel(){
-            // for (int j = 2; j < 4; j++)
-            // {
-            //     for (int i = 0; i < 9; i++)
-            //     {
-            //         _emplacement[j][i] = false;
-            //     }
-            // }
             InitAllToTrue();
-            _emplacement[0][0] = false;
-            _emplacement[0][1] = false;
-            _emplacement[0][2] = false;
-            _emplacement[0][3] = false;
-            _emplacement[0][5] = false;
-            _emplacement[0][6] = false;
-            _emplacement[0][7] = false;
 
 
             for (int j = 1; j < 4; j++) {

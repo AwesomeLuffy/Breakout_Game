@@ -29,20 +29,26 @@ namespace Breakout_Game.Game.Utils{
                                     }
 
                                     string SideColision;
+                                    int gapX = 0;
+                                    int gapY = 0;
                                     switch (lineBrick.Key) {
                                         case SideObject.Bottom:
                                         case SideObject.Top:
                                             SideColision = "Verticale";
+                                            gapX = 1;
                                             break;
                                         case SideObject.Left:
                                         case SideObject.Right:
                                             SideColision = "Horizontale";
+                                            gapY = 1;
                                             break;
                                         default:
                                             SideColision = "Default";
                                             break;
                                     }
-
+                                    //Patching colision bug
+                                    // Game.ball.horizontalMove -= gapX * Game.ball.horizontalIncrement * 10;
+                                    // Game.ball.verticalMove -= gapY * Game.ball.verticalIncrement * 10;
                                     Game.ball.invertDirection(SideColision);
                                     return true;
                                 }

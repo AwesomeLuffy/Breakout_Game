@@ -12,10 +12,10 @@ namespace Breakout_Game.Game.Forms
     internal class Ball : BaseForm
     {
         #region Attributs
-        private float verticalMove;
-        private float verticalIncrement;
-        private float horizontalMove;
-        private float horizontalIncrement;
+        public float verticalMove;
+        public float verticalIncrement;
+        public float horizontalMove;
+        public float horizontalIncrement;
         private int damageValue = 1;
         private int textureID;
         public bool isActivated;
