@@ -1,4 +1,5 @@
 ﻿using System;
+using Breakout_Game.Audio;
 using Breakout_Game.Game.Forms;
 using Breakout_Game.Game.Levels;
 using Breakout_Game.Game.Utils;
@@ -35,6 +36,8 @@ namespace Breakout_Game.Game.Events{
             foreach (var bricks in LevelManager.Level.bricks) {
                 bricks.Remove(brickDestroyAnimationFinished.Brick);
             }
+            Game.PointCounter += 5;
+            AudioManager.DestructionSound.play();
             Log.Send("Event", "Brick destroyed", LogType.Info);
             if (LevelManager.IsLevelFinished()) {
                 //TODO STOP GAME
