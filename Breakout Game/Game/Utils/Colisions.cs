@@ -56,13 +56,23 @@ namespace Breakout_Game.Game.Utils{
 
                     var listLineRenderable = Game.Racket.GetSides();
                     foreach (var lineRenderable in listLineRenderable) {
-                        if (collisions.Intersection(lineRenderable.Value, lineBall.Value)) {
+                        if (collisions.Intersection(lineRenderable.Value, lineBall.Value) || 
+                            collisions.Intersection(lineBall.Value, lineRenderable.Value)) {
                             (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
                             if (isKeyDown) {
                                 Game.Ball.angleDirection(direction);
                             }
                             else {
-                                Game.Ball.invertDirection("Default", true);
+                                switch (lineRenderable.Key) {
+                                    case SideObject.Bottom:
+                                    case SideObject.Top:
+                                        Game.Ball.invertDirection("Default", true);
+                                        break;
+                                    case SideObject.Left:
+                                    case SideObject.Right:
+                                        Game.Ball.invertDirection("Horizontale", true);
+                                        break;
+                                }
                             }
 
                             return true;
