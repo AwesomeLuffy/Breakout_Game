@@ -58,7 +58,7 @@ namespace Breakout_Game.Game.Utils{
                     foreach (var lineRenderable in listLineRenderable) {
                         if (collisions.Intersection(lineRenderable.Value, lineBall.Value) || 
                             collisions.Intersection(lineBall.Value, lineRenderable.Value)) {
-                            (var isKeyDown, var direction) = UserControl.IsRightOrLeftPress();
+                            var (isKeyDown, direction) = UserControl.IsRightOrLeftPress();
                             if (isKeyDown) {
                                 Game.Ball.angleDirection(direction);
                             }

@@ -41,7 +41,7 @@ namespace Breakout_Game.Game{
         internal static int BallCounter = 3;
 
         internal static Game GetInstance (GameWindow gw){
-            //?? -> is null
+            //?? -> is null not thread safety
             return Game._gmInstance ?? (Game._gmInstance = new Game(gw));
         }
         

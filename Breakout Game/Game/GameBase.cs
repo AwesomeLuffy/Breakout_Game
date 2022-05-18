@@ -22,7 +22,7 @@ namespace Breakout_Game.Game{
             GL.Ortho(WindowOrthoMinWidth, WindowOrthoMaxWidth, WindowOrthoMinHeight, WindowOrthoMaxHeight, -1.0, 1.0);
             GL.MatrixMode(MatrixMode.Modelview);
             Log.Send("GameBase",
-                "Becareful, depending of your device, the mouse click coordinate should not work correctly and menu will not be as exact position.",
+                "Be careful, depending of your device, the mouse click coordinate should not work correctly and menu will not be as their exact position.",
                 LogType.Warn);
         }
 
