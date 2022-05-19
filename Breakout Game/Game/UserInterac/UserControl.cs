@@ -16,11 +16,11 @@ namespace Breakout_Game.Game.UserInterac{
                 return;
             }
 
-            if (_keyboardState.IsKeyDown(Key.Right)) {
+            if (_keyboardState.IsKeyDown(Key.Right) || _keyboardState.IsKeyDown(Key.A)) {
                 if (Game.IsGamePause) return;
                 Game.Racket.SetDirection(Direction.Right).Update();
             }
-            else if (_keyboardState.IsKeyDown(Key.Left)) {
+            else if (_keyboardState.IsKeyDown(Key.Left) || _keyboardState.IsKeyDown(Key.D)) {
                 if (Game.IsGamePause) return;
                 Game.Racket.SetDirection(Direction.Left).Update();
             }
