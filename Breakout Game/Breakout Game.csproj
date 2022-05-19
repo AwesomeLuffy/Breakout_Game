@@ -54,7 +54,6 @@
     <Compile Include="Game\Events\ICancellable.cs" />
     <Compile Include="Game\Events\BrickDestroyAnimationFinished.cs" />
     <Compile Include="Game\Forms\Ball.cs" />
-    <Compile Include="Game\Forms\BrickFactory.cs" />
     <Compile Include="Game\Forms\BaseForm.cs" />
     <Compile Include="Game\Forms\Brick.cs" />
 	<Compile Include="Game\Forms\BrickFactory.cs" />
