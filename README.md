@@ -1,7 +1,8 @@
 [![--](https://img.shields.io/badge/Made%20with-CSharp%208.0+-9966ff.svg)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-[![---](https://img.shields.io/badge/Library-OpenTK%203.3.2-3366ff.svg)]([https://docs.microsoft.com/en-us/dotnet/csharp/](https://opentk.net/))
-[![----](https://img.shields.io/badge/Framework-.NET%20Framework-9900cc.svg)]([https://docs.microsoft.com/en-us/dotnet/csharp/](https://dotnet.microsoft.com/en-us/download/dotnet-framework))
-[![-----](https://img.shields.io/badge/For-Windows-e6e6e6.svg)]([https://docs.microsoft.com/en-us/dotnet/csharp/]([https://opentk.net/](https://www.microsoft.com/fr-ca/windows)))
+[![---](https://img.shields.io/badge/Made%20with-Rider%20IDE-cc0000.svg)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![----](https://img.shields.io/badge/Library-OpenTK%203.3.2-3366ff.svg)]([https://docs.microsoft.com/en-us/dotnet/csharp/](https://opentk.net/))
+[![-----](https://img.shields.io/badge/Framework-.NET%20Framework-9900cc.svg)]([https://docs.microsoft.com/en-us/dotnet/csharp/](https://dotnet.microsoft.com/en-us/download/dotnet-framework))
+[![------](https://img.shields.io/badge/For-Windows-e6e6e6.svg)]([https://docs.microsoft.com/en-us/dotnet/csharp/]([https://opentk.net/](https://www.microsoft.com/fr-ca/windows)))
 # 📌 Breakout Game
 
 This is an end-of-term project for a school, it made with [OpenTK 3.X](https://opentk.net/) and .NET Framework 4.8
