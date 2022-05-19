@@ -33,8 +33,6 @@ namespace Breakout_Game.Game.Forms
 
         public Ball(List<Vector2> points, string textureName) : base(points, textureName)
         {
-            // verticalMove = 0.0f;
-            // horizontalMove = 0.0f;
             verticalIncrement = -1.5f;
             horizontalIncrement = 0.0f;
             isActivated = true;
@@ -97,7 +95,6 @@ namespace Breakout_Game.Game.Forms
         }
         public void invertDirection(string typeInversion, bool Gap = false)
         {
-            Console.WriteLine(typeInversion);
             if (typeInversion == "Default")
             {
                 if (horizontalIncrement > 0)
@@ -124,7 +121,6 @@ namespace Breakout_Game.Game.Forms
                 this.horizontalMove += this.horizontalIncrement + 0.8f;
                 this.verticalMove += this.verticalIncrement + 0.8f;
             }
-            Console.WriteLine(this.horizontalIncrement);
         }
 
         public void angleDirection(Direction direction)
