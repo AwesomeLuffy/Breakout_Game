@@ -12,4 +12,9 @@ To play, just extract the .ZIP, if error appear, it's probably OpenAL missing on
 
 ### Info
 This Breakout Game doesn't very different than other.
-The game is far from be perfect but is playable as well.
+The game is far from be perfect but is playable as well. <br><br>
+![image](https://user-images.githubusercontent.com/56047226/169203584-167e3803-9e9c-4201-8f5b-dbd8e06b61b8.png)
+<br><br>
+![image](https://user-images.githubusercontent.com/56047226/169203681-19d003e1-75a7-4ddf-8471-231238a7bad6.png)
+
+
